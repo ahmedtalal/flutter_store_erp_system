@@ -1,6 +1,6 @@
 # erb_system
 
-A new Flutter project.
+ERB System
 
 ## Getting Started
 
