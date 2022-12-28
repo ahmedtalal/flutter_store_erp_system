@@ -7,7 +7,7 @@ class DropDownList extends StatelessWidget {
   DropDownList({Key? key}) : super(key: key);
 
   List<String> title = [
-    'الرئيسه',
+    'الرئيسيه',
     'المخازن',
     'الموردين',
     'اداره الاصناف',
@@ -34,6 +34,40 @@ class DropDownList extends StatelessWidget {
     ImageAssets.iconDropDown13,
     ImageAssets.iconDropDown14,
   ];
+  List taps = [
+    [''],
+    ['اضافه مخزن ', 'المخازن', ' تحويلات بين المخازن'],
+    ['اضافه مورد ', 'اضافه فئه الموردين', 'فئات الموردين', "الموردين"],
+    [
+      'اضافه صنف ',
+      'الاصناف',
+      'اضافه وحده القياس',
+      "وحدات القياس",
+      "فروع الانتاج"
+    ],
+    ['اضافه فاتوره مشتريات ', 'فواتير المشتريات', 'مرتجعات المشتريات'],
+    [
+      'اضافه وصفه ',
+      'وصفات التصنيع',
+      "تأكيد امر التصنيع",
+      "اوامر التصنيع",
+      "الاضافات الخاصه"
+    ],
+    [
+      'اضافه طلب ',
+      'الطلبات',
+      "شركات الشحن و المندوبين",
+      "فئات المنتجات المطلوبه",
+      "مصادر الطلبات",
+      "طرق الشحن",
+      "خطوط الشحن"
+    ],
+    [''],
+    [''],
+    [''],
+    [''],
+    [''],
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +76,12 @@ class DropDownList extends StatelessWidget {
         height: 10,
       ),
       itemBuilder: (context, index) => DefaultDropDown(
-        item: const [],
+        item: index == 0 ? [] : taps[index],
         title: title[index],
         imageUrl: image[index],
+        leading: index == 0 ? Container(width: 10,): Image.asset("assets/images/15.png"),
+        trailing: Image.asset(image[index]),
+        index: index,
       ),
       itemCount: 12,
     );

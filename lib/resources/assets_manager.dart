@@ -23,4 +23,6 @@ class ImageAssets {
   static const String iconDropDown20 = "$imagePath/20.png";
   static const String iconDropDown21 = "$imagePath/21.png";
   static const String iconDropDown22 = "$imagePath/22.png";
+  static const String iconDropDown23 = "$imagePath/23.png";
+  static const String iconDropDown52 = "$imagePath/52.png";
 }

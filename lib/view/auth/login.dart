@@ -9,18 +9,23 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  bool isVisible = true;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.white,
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset('assets/images/1.png',height: 200,),
+            Image.asset(
+              'assets/images/1.png',
+              height: 200,
+            ),
             SizedBox(
               width: 380,
               child: DefaultInputForm(
@@ -28,6 +33,7 @@ class _LoginState extends State<Login> {
                   label: 'Username',
                   onTab: () {},
                   validate: () {},
+                  passFun: () {},
                   onSave: () {},
                   obscureText: false),
             ),
@@ -42,7 +48,14 @@ class _LoginState extends State<Login> {
                   onTab: () {},
                   validate: () {},
                   onSave: () {},
-                  obscureText: true),
+                  passFun: () {
+                    setState(() {
+                      isVisible = !isVisible;
+                    });
+                    print(isVisible);
+                  },
+                  iconData: Icons.remove_red_eye,
+                  obscureText: isVisible),
             ),
             const SizedBox(
               height: 25,

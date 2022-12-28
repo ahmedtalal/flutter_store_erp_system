@@ -35,9 +35,15 @@ TextStyle getBoldStyle({double fontSize = FontSize.s12, required Color color}) {
 // semi bold text style
 
 TextStyle getSemiBoldStyle(
-    {double fontSize = FontSize.s12, required Color color}) {
+    {double fontSize = FontSize.s16, required Color color}) {
   return _getTextStyle(
       fontSize, FontConstants.fontFamily, FontWeightManager.semiBold, color);
+}
+
+TextStyle getSemiBoldStyleAR(
+    {double fontSize = FontSize.s14, required Color color}) {
+  return _getTextStyle(
+      fontSize, FontConstants.fontFamilyAR, FontWeightManager.light, color);
 }
 
 // medium text style
