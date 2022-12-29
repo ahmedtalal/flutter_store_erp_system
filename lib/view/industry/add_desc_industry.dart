@@ -3,6 +3,7 @@ import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/resources/style_manager.dart';
 import 'package:erb_system/size_config.dart';
 import 'package:erb_system/view/auth/component/text_fom_feild.dart';
+import 'package:erb_system/view/home/components/botton.dart';
 import 'package:erb_system/view/home/components/default_botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/components/default_table.dart';
@@ -10,19 +11,21 @@ import 'package:erb_system/view/home/components/drop_down.dart';
 import 'package:flutter/material.dart';
 
 
-class AddPurchaseBill extends StatefulWidget {
-  const AddPurchaseBill({Key? key}) : super(key: key);
+class AddDescIndustry extends StatefulWidget {
+  const AddDescIndustry({Key? key}) : super(key: key);
 
   @override
-  State<AddPurchaseBill> createState() => _AddPurchaseBillState();
+  State<AddDescIndustry> createState() => _AddDescIndustryState();
 }
 
-class _AddPurchaseBillState extends State<AddPurchaseBill> {
+class _AddDescIndustryState extends State<AddDescIndustry> {
   String? chose;
   String? chose1;
   String? chose2;
-  DateTime orderDate = DateTime.now();
   int? selectedIndex;
+
+  DateTime orderDate = DateTime.now();
+
   List dataTable = [
     Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -37,6 +40,7 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
       ],
     )
   ];
+
   List data = [
     {
       "1": "١/١٢.٢٠٢٢",
@@ -58,11 +62,12 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
 
   List<String> columnData = [
     "صوره الصنف",
-    "الاجمالي",
-    "السعر",
+    "التكلفه الاجاليه",
+    "التكلفه",
     "الوحده",
-    "الكميه المرتجعه",
-    "اسم الصنف",
+    "الكميه المطلوبه",
+    "النوع",
+    " الصنف",
   ];
 
   Future<void> _selectDate(BuildContext context) async {
@@ -93,7 +98,7 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
               const SizedBox(
                 height: 50,
               ),
-              DefaultContainer(title: 'اضافه فاتوره مشتريات'),
+              DefaultContainer(title: 'اضافه وصفه'),
               const SizedBox(
                 height: 50,
               ),
@@ -104,64 +109,17 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
                   Column(
                     children: [
                       Text(
-                        'التاريخ',
-                        style: getSemiBoldStyle(color: ColorManager.black),
-                      ),
-                      SizedBox(
-                        width: getProportionateScreenWidth(40),
-                        height: 60,
-                        child: ElevatedButton(
-                          onPressed: () => _selectDate(context),
-                          style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.white)),
-                          child: Text(
-                            '$orderDate',
-                            style: const TextStyle(
-                              color: Color(0xff82225E),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    width: getProportionateScreenWidth(20),
-                  ),
-                  Container(
-                    width: getProportionateScreenWidth(50),
-                    height: getProportionateScreenHeight(90),
-                    padding: const EdgeInsets.only(top: 35),
-                    child: dropDown(
-                      const ['تم الطلب', 'تم الاستلام'],
-                      selectTalab: chose,
-                      onchanged: () => (val) {
-                        setState(() {
-                          chose = val;
-                        });
-                      },
-                      label: 'حاله الشراء',
-                      foColor: Colors.white,
-                      bgColor: ColorManager.primary,
-                      dpColor: ColorManager.primary,
-                    ),
-                  ),
-                  SizedBox(
-                    width: getProportionateScreenWidth(20),
-                  ),
-                  Column(
-                    children: [
-                      Text(
-                        'اسم المورد',
+                        'اسم المنتج',
                         style: getSemiBoldStyle(color: ColorManager.black),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
                       SizedBox(
-                        width: 200,
+                        width: getProportionateScreenWidth(50),
                         height: 60,
                         child: DefaultInputForm(
+                          perFix: const Icon(Icons.search),
                           hint: '',
                           label: '',
                           onTab: () {},
@@ -177,13 +135,36 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
                   SizedBox(
                     width: getProportionateScreenWidth(20),
                   ),
+                  Container(
+                    width: getProportionateScreenWidth(70),
+                    height: getProportionateScreenHeight(90),
+                    padding: const EdgeInsets.only(top: 35),
+                    child: dropDown(
+                      const ['منتج تحت التشيل', 'منتج تام'],
+                      selectTalab: chose,
+                      onchanged: () => (val) {
+                        setState(() {
+                          chose = val;
+                        });
+                      },
+                      label: 'حاله المنتج',
+                      foColor: Colors.white,
+                      bgColor: ColorManager.primary,
+                      dpColor: ColorManager.primary,
+                    ),
+                  ),
+                  SizedBox(
+                    width: getProportionateScreenWidth(20),
+                  ),
+                  SizedBox(
+                    width: getProportionateScreenWidth(20),
+                  ),
                 ],
               ),
               const SizedBox(
                 height: 90,
               ),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   DefaultTable(
                     columnData: columnData,
@@ -191,23 +172,36 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
                     color: ColorManager.second,
                     rows: data
                         .map((data) => DataRow(cells: [
-                      DataCell(Image.asset(ImageAssets.iconDropDown23,width: 50,height: 50,)),
-                      DataCell(Text(
-                        data['5'],style: style,
-                      )),
-                      DataCell(Text(
-                        data['4'],style: style,
-                      )),
-                      DataCell(Text(
-                        data['3'],style: style,
-                      )),
-                      DataCell(Text(
-                        data['2'],style: style,
-                      )),
-                      DataCell(Text(
-                        data['1'],style: style,
-                      )),
-                    ]))
+                              DataCell(Image.asset(
+                                ImageAssets.iconDropDown23,
+                                width: 50,
+                                height: 50,
+                              )),
+                              DataCell(Text(
+                                data['5'],
+                                style: style,
+                              )),
+                              DataCell(Text(
+                                data['5'],
+                                style: style,
+                              )),
+                              DataCell(Text(
+                                data['4'],
+                                style: style,
+                              )),
+                              DataCell(Text(
+                                data['3'],
+                                style: style,
+                              )),
+                              DataCell(Text(
+                                data['2'],
+                                style: style,
+                              )),
+                              DataCell(Text(
+                                data['1'],
+                                style: style,
+                              )),
+                            ]))
                         .toList(),
                   ),
                   SizedBox(
@@ -218,17 +212,17 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
                             padding:  EdgeInsets.only(left:getProportionateScreenWidth(140)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                            IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.add,
-                                  color: Colors.red,
-                                  size: 30,
-                                )),
-                            const Text('اضافه صنف',style: TextStyle(fontSize: 25,fontWeight: FontWeight.w500),)
-                        ],
-                      ),
+                              children: [
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(
+                                      Icons.add,
+                                      color: Colors.red,
+                                      size: 30,
+                                    )),
+                                const Text('اضافه صنف',style: TextStyle(fontSize: 25,fontWeight: FontWeight.w500),)
+                              ],
+                            ),
                           ))
                     ], rows: []),
                   )
@@ -241,37 +235,13 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: SizedBox(
-                        width: getProportionateScreenWidth(59),
-                        height: getProportionateScreenHeight(50),
-                        child: dropDown(
-                          const [
-                            'خزينه المصنع',
-                            'البنك الاهلي',
-                            'فوافون كاش',
-                            'بنك مصر',
-                          ],
-                          selectTalab: chose1,
-                          onchanged: () => (val) {
-                            setState(() {
-                              chose1 = val;
-                            });
-                          },
-                          label: 'الخزينه',
-                          foColor: Colors.white,
-                          bgColor: ColorManager.primary,
-                          dpColor: ColorManager.primary,
-                        )),
-                  ),
                   SizedBox(
                     width: getProportionateScreenWidth(20),
                   ),
                   Column(
                     children: [
                       Text(
-                        'الشحن',
+                        'اجمالي التكلفه',
                         style: getSemiBoldStyle(color: ColorManager.black),
                       ),
                       const SizedBox(
@@ -299,7 +269,7 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
                   Column(
                     children: [
                       Text(
-                        'المبلغ المتبقي',
+                        'التكلفه المتغيره',
                         style: getSemiBoldStyle(color: ColorManager.black),
                       ),
                       const SizedBox(
@@ -324,38 +294,39 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
                   SizedBox(
                     width: getProportionateScreenWidth(20),
                   ),
-                  Column(
-                    children: [
-                      Text(
-                        'المبلغ المدفوع',
-                        style: getSemiBoldStyle(color: ColorManager.black),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      SizedBox(
-                        width: getProportionateScreenWidth(60),
-                        height: 60,
-                        child: DefaultInputForm(
-                          hint: '',
-                          label: '',
-                          onTab: () {},
-                          validate: () {},
-                          onSave: () {},
-                          passFun: () {},
-                          color: Colors.white,
-                          obscureText: false,
-                        ),
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: SizedBox(
+                        width: getProportionateScreenWidth(59),
+                        height: getProportionateScreenHeight(50),
+                        child: dropDown(
+                          const [
+                            'ثابت',
+                            'متغير',
+                          ],
+                          selectTalab: chose1,
+                          onchanged: () => (val) {
+                            setState(() {
+                              chose1 = val;
+                            });
+                          },
+                          label: 'نوع التكلفه',
+                          foColor: Colors.white,
+                          bgColor: ColorManager.primary,
+                          dpColor: ColorManager.primary,
+                        )),
                   ),
                 ],
               ),
               const SizedBox(
-                height: 50,
+                height: 20,
               ),
-              DefaultBotton(
-                  color: ColorManager.white, title: 'اضافه', onTap: () {})
+              Botton(
+                color: ColorManager.white,
+                title: 'تاكيد',
+                onTap: () {},
+                bgColor: ColorManager.black,
+              ),
             ],
           ),
         ),

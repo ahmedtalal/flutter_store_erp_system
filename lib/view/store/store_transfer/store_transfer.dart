@@ -1,4 +1,7 @@
 import 'package:erb_system/controller/controller.dart';
+import 'package:erb_system/merge_table/merge_table.dart';
+import 'package:erb_system/merge_table/src/datas/m_row.dart';
+import 'package:erb_system/merge_table/src/merge_table.dart';
 import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/size_config.dart';
 import 'package:erb_system/view/home/components/drop_down.dart';
@@ -6,7 +9,7 @@ import 'package:erb_system/view/store/store_transfer/balance_modification.dart';
 import 'package:erb_system/view/store/store_transfer/damage_details_transfer.dart';
 import 'package:erb_system/view/store/store_transfer/transfer_fiber_details.dart';
 import 'package:flutter/material.dart';
-import 'package:merge_table/merge_table.dart';
+
 import 'package:provider/provider.dart';
 
 
