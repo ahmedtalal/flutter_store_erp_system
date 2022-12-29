@@ -38,7 +38,7 @@ class DefaultTable extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                           textAlign: TextAlign.center,
-                          style: getSemiBoldStyle(color: Colors.white,fontSize: getProportionateScreenWidth(5))),
+                          style: getSemiBoldStyle(color: Colors.white,fontSize: getProportionateScreenWidth(3))),
                       icon ??Container(),
                     ],
                   ),
