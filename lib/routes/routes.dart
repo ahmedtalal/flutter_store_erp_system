@@ -23,7 +23,7 @@ import 'package:erb_system/view/industry/indus_orders.dart'deferred as IndustryO
 import 'package:erb_system/view/industry/spechial_add_indus.dart'deferred as IndustrySpecialAddition;
 
 import 'package:qlevar_router/qlevar_router.dart';
-//
+//updated
 class Routes {
   static final routes = <QRoute>[
     QRoute(path: '/', builder: () => const HomePage()),
