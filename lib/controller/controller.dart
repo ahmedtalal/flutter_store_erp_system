@@ -42,7 +42,7 @@ import 'package:flutter/cupertino.dart';
 
 class Controller with ChangeNotifier {
   Widget current = HomeTap();
-
+//
   List screen = [
     ['/'],
     ['/addStore',  '/Stores', '/Stores_transfer'],
