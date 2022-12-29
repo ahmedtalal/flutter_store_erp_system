@@ -1,10 +1,11 @@
 import 'package:erb_system/resources/assets_manager.dart';
 import 'package:erb_system/resources/color_manger.dart';
+import 'package:erb_system/view/home/components/appBar.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
+import 'package:erb_system/view/home/drop_down_par.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 
 import '../../resources/style_manager.dart';
 import '../../size_config.dart';
@@ -12,8 +13,6 @@ import '../auth/component/text_fom_feild.dart';
 import '../home/components/botton.dart';
 import '../home/components/default_table.dart';
 import '../home/components/drop_down.dart';
-
-
 
 class ConfirmOrder extends StatefulWidget {
   @override
@@ -116,6 +115,7 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
       });
     }
   }
+
   Future<void> _select2Date(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
         context: context,
@@ -132,601 +132,751 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
-
+    TextStyle style = TextStyle(fontSize: getProportionateScreenWidth(5));
     // var format = DateFormat.yMd('ar');
 
     return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(height: 20,),
-             DefaultContainer(title:  'شحن الطلب'),
-              Padding(
-                padding: const EdgeInsets.only(top: 64.0, left: 16, right: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      width: getProportionateScreenWidth(40),
-                      height: getProportionateScreenHeight(90),
-                      padding: const EdgeInsets.only(top: 35),
-                      child: dropDown(
-                        const ["facebook", "website", "phone call"],
-                        selectTalab: selectTalab,
-                        onchanged: () => (val) {
-                          setState(() {
-                            selectTalab = val;
-                          });
-                        },
-                        label: 'مصدر الطلب',
-                        foColor: Colors.white,
-                        bgColor: ColorManager.primary,
-                        dpColor: ColorManager.primary,
-                      ),
-                    ),
-                    Container(
-                      width: getProportionateScreenWidth(40),
-                      height: getProportionateScreenHeight(90),
-                      padding: const EdgeInsets.only(top: 35),
-                      child: dropDown(
-                        const [
-                          "الكل",
-                          "طلب مؤكد",
-                          "تم الشحن",
-                          "تم التحصيل",
-                          "تم الاستلام",
-                          "تم الصيانة",
-                          "ملغى",
-                          "رفض الاستلام"
-                        ],
-                        selectTalab: stateTalab,
-                        onchanged: () => (val) {
-                          setState(() {
-                            stateTalab = val;
-                          });
-                        },
-                        label: 'حالة الطلب',
-                        foColor: Colors.white,
-                        bgColor: ColorManager.primary,
-                        dpColor: ColorManager.primary,
-                      ),
-                    ),
-
-                    Container(
-                      width: getProportionateScreenWidth(45),
-                      height: getProportionateScreenHeight(90),
-                      padding: const EdgeInsets.only(top: 35),
-                      child: dropDown(
-                        const [
-                          "Small products",
-                          "Medium products",
-                          "Huge products"
-                        ],
-                        selectTalab: shippingMethods,
-                        onchanged: () => (val) {
-                          setState(() {
-                            shippingMethods = val;
-                          });
-                        },
-                        label: 'طرق الشحن',
-                        foColor: Colors.white,
-                        bgColor: ColorManager.primary,
-                        dpColor: ColorManager.primary,
-                      ),
-                    ),
-
-                    Column(
-                      children: [
-                        const Text('تاريخ الطلب'),
-                        SizedBox(
-                          width: getProportionateScreenWidth(50),
-                          height: 60,
-                          child: ElevatedButton(
-                            onPressed: () => _selectDate(context),
-                            style: ButtonStyle(
-                                backgroundColor:
-                                MaterialStateProperty.all(Colors.white)),
-                            child: Text(
-                              '$orderDate',
-                              style: const TextStyle(
-                                color: Color(0xff82225E),
-                              ),
-                            ),
-                          ),
-                        ),
-                        const Text('تاريخ الحالة'),
-                        SizedBox(
-                          width: getProportionateScreenWidth(50),
-                          height: 60,
-                          child: ElevatedButton(
-                            onPressed: () => _select1Date(context),
-                            style: ButtonStyle(
-                                backgroundColor:
-                                MaterialStateProperty.all(Colors.white)),
-                            child: Text(
-                              '$stateDate',
-                              style: const TextStyle(
-                                color: Color(0xff82225E),
-                              ),
-                            ),
-                          ),
-                        ),                      ],
-                    ),
-                    Column(
-                      children: [
-                        Container(
-                          width: getProportionateScreenWidth(40),
-                          height: getProportionateScreenHeight(50),
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 3, color: const Color(0xff82225E)),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Center(
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton<String>(
-                                icon: const Icon(
-                                    Icons.arrow_drop_down_outlined,
-                                    color: Color(0xff82225E)),
-                                items: [
-                                  "الكل",
-                                ]
-                                    .map((e) => DropdownMenuItem(
-                                  value: e,
-                                  child: Text(
-                                    e,
-                                    style: const TextStyle(
-                                        color: Colors.black),
-                                  ),
-                                ))
-                                    .toList(),
-                                value: city,
-                                onChanged: (val) {
-                                  setState(() {
-                                    city = val;
-                                  });
-                                },
-                                hint: const Text(
-                                  "المدينة",
-                                  style: TextStyle(
-                                    color: Color(0xff82225E),
-                                  ),
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                                dropdownColor: Colors.white,
-                                style:
-                                const TextStyle(color: Color(0xff82225E)),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: getProportionateScreenWidth(40),
-                          height: getProportionateScreenHeight(50),
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 3, color: const Color(0xff82225E)),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Center(
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton<String>(
-                                icon: const Icon(Icons.arrow_drop_down_outlined,
-                                    color: Color(0xff82225E)),
-                                items: [
-                                  "الكل",
-                                ]
-                                    .map((e) => DropdownMenuItem(
-                                  value: e,
-                                  child: Text(
-                                    e,
-                                    style: const TextStyle(
-                                        color: Colors.black),
-                                  ),
-                                ))
-                                    .toList(),
-                                value: governorate,
-                                onChanged: (val) {
-                                  setState(() {
-                                    governorate = val;
-                                  });
-                                },
-                                hint: const Text(
-                                  "المحافظة",
-                                  style: TextStyle(
-                                    color: Color(0xff82225E),
-                                  ),
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                                dropdownColor: Colors.white,
-                                style: const TextStyle(color: Color(0xff82225E)),
-                              ),
-                            ),
-                          ),
-                        ),
-
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Column(
-                          children: [
-                            Text(
-                              'اسم العميل',
-                              style: getSemiBoldStyle(color: ColorManager.black),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            SizedBox(
-                              width: getProportionateScreenWidth(30),
-                              height: 60,
-                              child: DefaultInputForm(
-                                hint: '',
-                                label: '',
-                                onTab: () {},
-                                validate: () {},
-                                onSave: () {},
-                                passFun: () {},
-                                color: Colors.white70,
-                                obscureText: false,
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        const SizedBox(
-                          height: 20,
-                        ),
-
-                        Column(
-                          children: [
-                            Text(
-                              'رقم الموبيل',
-                              style: getSemiBoldStyle(color: ColorManager.black),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            SizedBox(
-                              width: getProportionateScreenWidth(30),
-                              height: 60,
-                              child: DefaultInputForm(
-                                hint: '',
-                                label: '',
-                                onTab: () {},
-                                validate: () {},
-                                onSave: () {},
-                                passFun: () {},
-                                color: Colors.white70,
-                                obscureText: false,
-                              ),
-                            ),
-                          ],
-                        ),
-
-                      ],
-                    ),
-                    Container(
-                      width: getProportionateScreenWidth(40),
-                      height: getProportionateScreenHeight(90),
-                      padding: const EdgeInsets.only(top: 35),
-                      child: dropDown(
-                        const [
-                          "طلب جديد",
-                          "طلب استبدال",
-                          "طلب صيانة",
-                          "طلب مرتجع",
-                        ],
-                        selectTalab: payment,
-                        onchanged: () => (val) {
-                          setState(() {
-                            payment = val;
-                          });
-                        },
-                        label: 'نوع الطلب',
-                        foColor: Colors.white,
-                        bgColor: ColorManager.primary,
-                        dpColor: ColorManager.primary,
-                      ),
-                    ),
-
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20,),
-              DefaultTable(
-                columnData: columnData,
-                rows: data
-                    .map((data) => DataRow(cells: [
-                  DataCell(Image.asset(
-                    ImageAssets.iconDropDown23,
-                    width: 50,
-                    height: 50,
-                  )),
-                  DataCell(Text(
-                    data['7'],
-                  )),
-                  DataCell(Text(
-                    data['6'],
-                  )),
-                  DataCell(Text(
-                    data['5'],
-                  )),
-                  DataCell(Text(
-                    data['4'],
-                  )),
-                  DataCell(Text(
-                    data['3'],
-                  )),
-                  DataCell(Text(
-                    data['2'],
-                  )),
-                  DataCell(Text(
-                    data['1'],
-                  )),
-                ]))
-                    .toList(),
-              ),
-              SizedBox(
-                width: 659,
-                child: Center(
-                  child: Table(
-                    border: TableBorder.all(color: Colors.black),
-                    children: [
-                      TableRow(
-                          children: List.generate(
-                              dataTable.length,
-                                  (index) => Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const SizedBox(height: 10),
-                                  dataTable[index]
-                                ],
-                              ))),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20,),
-
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+      body: Row(
+        children: [
+          Expanded(
+              flex: 5,
+              child: Stack(
                 children: [
                   Container(
-                    width: getProportionateScreenWidth(50),
-                    height: getProportionateScreenHeight(90),
-                    padding: const EdgeInsets.only(top: 35),
-                    child: dropDown(
-                      const [
-                        "خزينة المصنع",
-                        "البنك االاهلي",
-                        "paymob",
-                            "valu"
-                      ],
-                      selectTalab: payment,
-                      onchanged: () => (val) {
-                        setState(() {
-                          payment = val;
-                        });
-                      },
-                      label: 'طريقة حساب الشحن',
-                      foColor: Colors.white,
-                      bgColor: ColorManager.primary,
-                      dpColor: ColorManager.primary,
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          DefaultContainer(title: 'تأكيد الطلب'),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                top: 10.0, left: 16, right: 16),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  children: [
+                                    Container(
+                                      width:
+                                      MediaQuery.of(context).size.width <=
+                                          500
+                                          ? getProportionateScreenWidth(65)
+                                          : getProportionateScreenWidth(43),
+                                      height: getProportionateScreenHeight(90),
+                                      padding: const EdgeInsets.only(top: 35),
+                                      child: dropDown(
+                                        const [
+                                          "facebook",
+                                          "website",
+                                          "phone call"
+                                        ],
+                                        selectTalab: selectTalab,
+                                        onchanged: () => (val) {
+                                          setState(() {
+                                            selectTalab = val;
+                                          });
+                                        },
+                                        label: 'مصدر الطلب',
+                                        foColor: Colors.white,
+                                        bgColor: ColorManager.primary,
+                                        dpColor: ColorManager.primary,
+                                      ),
+                                    ),
+                                    Container(
+                                      width:
+                                      MediaQuery.of(context).size.width <=
+                                          500
+                                          ? getProportionateScreenWidth(65)
+                                          : getProportionateScreenWidth(43),
+                                      height: getProportionateScreenHeight(90),
+                                      padding: const EdgeInsets.only(top: 35),
+                                      child: dropDown(
+                                        const [
+                                          "الكل",
+                                          "طلب مؤكد",
+                                          "تم الشحن",
+                                          "تم التحصيل",
+                                          "تم الاستلام",
+                                          "تم الصيانة",
+                                          "ملغى",
+                                          "رفض الاستلام"
+                                        ],
+                                        selectTalab: stateTalab,
+                                        onchanged: () => (val) {
+                                          setState(() {
+                                            stateTalab = val;
+                                          });
+                                        },
+                                        label: 'حالة الطلب',
+                                        foColor: Colors.white,
+                                        bgColor: ColorManager.primary,
+                                        dpColor: ColorManager.primary,
+                                      ),
+                                    ),
+                                    Container(
+                                      width:
+                                      MediaQuery.of(context).size.width <=
+                                          500
+                                          ? getProportionateScreenWidth(65)
+                                          : getProportionateScreenWidth(43),
+                                      height: getProportionateScreenHeight(90),
+                                      padding: const EdgeInsets.only(top: 35),
+                                      child: dropDown(
+                                        const [
+                                          "Small products",
+                                          "Medium products",
+                                          "Huge products"
+                                        ],
+                                        selectTalab: shippingMethods,
+                                        onchanged: () => (val) {
+                                          setState(() {
+                                            shippingMethods = val;
+                                          });
+                                        },
+                                        label: 'طرق الشحن',
+                                        foColor: Colors.white,
+                                        bgColor: ColorManager.primary,
+                                        dpColor: ColorManager.primary,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    Text(
+                                      'تاريخ الطلب',
+                                      style: style,
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    SizedBox(
+                                      width: getProportionateScreenWidth(50),
+                                      height: 60,
+                                      child: ElevatedButton(
+                                        onPressed: () => _selectDate(context),
+                                        style: ButtonStyle(
+                                            backgroundColor:
+                                            MaterialStateProperty.all(
+                                                Colors.white)),
+                                        child: Text(
+                                          '$orderDate',
+                                          style: TextStyle(
+                                              color: Color(0xff82225E),
+                                              fontSize:
+                                              getProportionateScreenWidth(
+                                                  5)),
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      'تاريخ الحاله',
+                                      style: style,
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    SizedBox(
+                                      width: getProportionateScreenWidth(50),
+                                      height: 60,
+                                      child: ElevatedButton(
+                                        onPressed: () => _select1Date(context),
+                                        style: ButtonStyle(
+                                            backgroundColor:
+                                            MaterialStateProperty.all(
+                                                Colors.white)),
+                                        child: Text(
+                                          '$stateDate',
+                                          style: TextStyle(
+                                              color: const Color(0xff82225E),
+                                              fontSize:
+                                              getProportionateScreenWidth(
+                                                  5)),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    Container(
+                                      width:
+                                      MediaQuery.of(context).size.width <=
+                                          500
+                                          ? getProportionateScreenWidth(75)
+                                          : getProportionateScreenWidth(43),
+                                      height: getProportionateScreenHeight(50),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10),
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              width: 3,
+                                              color: const Color(0xff82225E)),
+                                          borderRadius:
+                                          BorderRadius.circular(10)),
+                                      child: Center(
+                                        child: DropdownButtonHideUnderline(
+                                          child: DropdownButton<String>(
+                                            icon: const Icon(
+                                                Icons.arrow_drop_down_outlined,
+                                                color: Color(0xff82225E)),
+                                            items: [
+                                              "الكل",
+                                            ]
+                                                .map((e) => DropdownMenuItem(
+                                              value: e,
+                                              child: Text(
+                                                e,
+                                                style: const TextStyle(
+                                                    color:
+                                                    Colors.black),
+                                              ),
+                                            ))
+                                                .toList(),
+                                            value: city,
+                                            onChanged: (val) {
+                                              setState(() {
+                                                city = val;
+                                              });
+                                            },
+                                            hint: const Text(
+                                              "المدينة",
+                                              style: TextStyle(
+                                                color: Color(0xff82225E),
+                                              ),
+                                            ),
+                                            borderRadius:
+                                            BorderRadius.circular(10),
+                                            dropdownColor: Colors.white,
+                                            style: const TextStyle(
+                                                color: Color(0xff82225E)),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width:
+                                      MediaQuery.of(context).size.width <=
+                                          500
+                                          ? getProportionateScreenWidth(75)
+                                          : getProportionateScreenWidth(43),
+                                      height: getProportionateScreenHeight(50),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10),
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              width: 3,
+                                              color: const Color(0xff82225E)),
+                                          borderRadius:
+                                          BorderRadius.circular(10)),
+                                      child: Center(
+                                        child: DropdownButtonHideUnderline(
+                                          child: DropdownButton<String>(
+                                            icon: const Icon(
+                                                Icons.arrow_drop_down_outlined,
+                                                color: Color(0xff82225E)),
+                                            items: [
+                                              "الكل",
+                                            ]
+                                                .map((e) => DropdownMenuItem(
+                                              value: e,
+                                              child: Text(
+                                                e,
+                                                style: const TextStyle(
+                                                    color:
+                                                    Colors.black),
+                                              ),
+                                            ))
+                                                .toList(),
+                                            value: governorate,
+                                            onChanged: (val) {
+                                              setState(() {
+                                                governorate = val;
+                                              });
+                                            },
+                                            hint: const Text(
+                                              "المحافظة",
+                                              style: TextStyle(
+                                                color: Color(0xff82225E),
+                                              ),
+                                            ),
+                                            borderRadius:
+                                            BorderRadius.circular(10),
+                                            dropdownColor: Colors.white,
+                                            style: const TextStyle(
+                                                color: Color(0xff82225E)),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    Column(
+                                      children: [
+                                        Text(
+                                          'اسم العميل',
+                                          style: style,
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        SizedBox(
+                                          width:
+                                          getProportionateScreenWidth(30),
+                                          height: 60,
+                                          child: DefaultInputForm(
+                                            hint: '',
+                                            label: '',
+                                            onTab: () {},
+                                            validate: () {},
+                                            onSave: () {},
+                                            passFun: () {},
+                                            color: Colors.white70,
+                                            obscureText: false,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          'رقم الموبيل',
+                                          style: style,
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        SizedBox(
+                                          width:
+                                          getProportionateScreenWidth(30),
+                                          height: 60,
+                                          child: DefaultInputForm(
+                                            hint: '',
+                                            label: '',
+                                            onTab: () {},
+                                            validate: () {},
+                                            onSave: () {},
+                                            passFun: () {},
+                                            color: Colors.white70,
+                                            obscureText: false,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                Container(
+                                  width:
+                                  MediaQuery.of(context).size.width <= 500
+                                      ? getProportionateScreenWidth(65)
+                                      : getProportionateScreenWidth(43),
+                                  height: getProportionateScreenHeight(90),
+                                  padding: const EdgeInsets.only(top: 35),
+                                  child: dropDown(
+                                    const [
+                                      "طلب جديد",
+                                    ],
+                                    selectTalab: typeOrder,
+                                    onchanged: () => (val) {
+                                      setState(() {
+                                        typeOrder = val;
+                                      });
+                                    },
+                                    label: 'نوع الطلب',
+                                    foColor: Colors.white,
+                                    bgColor: ColorManager.primary,
+                                    dpColor: ColorManager.primary,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Column(
+                                children: [
+                                  Container(
+                                    width:getProportionateScreenWidth(70),
+                                    height: getProportionateScreenHeight(183),
+                                    decoration: BoxDecoration(
+                                      borderRadius:  BorderRadius.circular(15),
+                                      border: Border.all(color: Colors.black,width: 2),
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Icon(Icons.more_horiz),
+                                            Text('ملحوظات',style: style,),
+                                            Icon(Icons.close)
+                                          ],),
+                                        const Divider(color: Colors.black,thickness: 2,),
+                                        TextFormField(
+                                          keyboardType: TextInputType.multiline,
+                                          maxLines: 5,
+                                          decoration: const InputDecoration(
+                                              border: InputBorder.none
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10,),
+                                  Container(
+                                    width:getProportionateScreenWidth(70),
+                                    height: getProportionateScreenHeight(183),
+                                    decoration: BoxDecoration(
+                                      borderRadius:  BorderRadius.circular(15),
+                                      border: Border.all(color: Colors.black,width: 2),
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Icon(Icons.more_horiz),
+                                            Text('تتبع',style: style,),
+                                            Icon(Icons.close)
+                                          ],),
+                                        const Divider(color: Colors.black,thickness: 2,),
+                                        TextFormField(
+                                          keyboardType: TextInputType.multiline,
+                                          maxLines: 5,
+                                          decoration: const InputDecoration(
+                                              border: InputBorder.none
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  DefaultTable(
+                                    columnData: columnData,
+                                    size: getProportionateScreenWidth(6),
+                                    color: ColorManager.second,
+                                    rows: data
+                                        .map((data) => DataRow(cells: [
+                                      DataCell(Image.asset(
+                                        ImageAssets.iconDropDown23,
+                                        width: 50,
+                                        height: 50,
+                                      )),
+                                      DataCell(Text(
+                                        data['7'],style: style,
+                                      )),
+                                      DataCell(Text(
+                                        data['6'],style: style,
+                                      )),
+                                      DataCell(Text(
+                                        data['5'],style: style,
+                                      )),
+                                      DataCell(Text(
+                                        data['4'],style: style,
+                                      )),
+                                      DataCell(Text(
+                                        data['3'],style: style,
+                                      )),
+                                      DataCell(Text(
+                                        data['2'],style: style,
+                                      )),
+                                      DataCell(Text(
+                                        data['1'],style: style,
+                                      )),
+                                    ]))
+                                        .toList(),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      IconButton(
+                                          onPressed: () {},
+                                          icon: const Icon(
+                                            Icons.add,
+                                            color: Colors.red,
+                                          )),
+                                      Text('اضافه منتج',style: style,)
+                                    ],
+                                  ),
+                                ],
+                              ),
+
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width <= 500
+                                    ? getProportionateScreenWidth(65)
+                                    : getProportionateScreenWidth(43),
+                                height: getProportionateScreenHeight(90),
+                                padding: const EdgeInsets.only(top: 35),
+                                child: dropDown(
+                                  const [
+                                    "خزينه المصنع",
+                                    "البنك االاهلي",
+                                    "paymob",
+                                    "valu"
+                                  ],
+                                  selectTalab: payment,
+                                  onchanged: () => (val) {
+                                    setState(() {
+                                      payment = val;
+                                    });
+                                  },
+                                  label: 'الخزينه',
+                                  foColor: Colors.white,
+                                  bgColor: ColorManager.primary,
+                                  dpColor: ColorManager.primary,
+                                ),
+                              ),
+                              Column(
+                                children: [
+                                  Text(
+                                      'صافي القيمة',
+                                      style: style
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  SizedBox(
+                                    width: getProportionateScreenWidth(50),
+                                    height: 60,
+                                    child: DefaultInputForm(
+                                      hint: '',
+                                      label: '',
+                                      onTab: () {},
+                                      validate: () {},
+                                      onSave: () {},
+                                      passFun: () {},
+                                      color: Colors.white70,
+                                      obscureText: false,
+                                    ),
+                                  ),
+                                  Container(
+                                    width: MediaQuery.of(context).size.width <= 500
+                                        ? getProportionateScreenWidth(65)
+                                        : getProportionateScreenWidth(43),
+                                    height: getProportionateScreenHeight(90),
+                                    padding: const EdgeInsets.only(top: 35),
+                                    child: dropDown(
+                                      const [
+                                        "الخط الاول",
+                                        "الخط الثاني",
+                                        "الخط الثالث",
+                                      ],
+                                      selectTalab: numLine,
+                                      onchanged: () => (val) {
+                                        setState(() {
+                                          numLine = val;
+                                        });
+                                      },
+                                      label: 'رقم الخط',
+                                      foColor: Colors.white,
+                                      bgColor: ColorManager.primary,
+                                      dpColor: ColorManager.primary,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text(
+                                    'مبلغ تحت الحساب',
+                                    style: style,
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  SizedBox(
+                                    width: getProportionateScreenWidth(50),
+                                    height: 60,
+                                    child: DefaultInputForm(
+                                      hint: '',
+                                      label: '',
+                                      onTab: () {},
+                                      validate: () {},
+                                      onSave: () {},
+                                      passFun: () {},
+                                      color: Colors.white70,
+                                      obscureText: false,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text(
+                                      'اجمالى الفاتورة',
+                                      style: style
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  SizedBox(
+                                    width: getProportionateScreenWidth(50),
+                                    height: 60,
+                                    child: DefaultInputForm(
+                                      hint: '',
+                                      label: '',
+                                      onTab: () {},
+                                      validate: () {},
+                                      onSave: () {},
+                                      passFun: () {},
+                                      color: Colors.white70,
+                                      obscureText: false,
+                                    ),
+                                  ),
+                                  Text(
+                                    'تاريخ الشحن',
+                                    style: style,
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  SizedBox(
+                                    width: getProportionateScreenWidth(50),
+                                    height: 60,
+                                    child: ElevatedButton(
+                                      onPressed: () => _select2Date(context),
+                                      style: ButtonStyle(
+                                          backgroundColor:
+                                          MaterialStateProperty.all(
+                                              Colors.white)),
+                                      child: Text(
+                                        '$chargeDate',
+                                        style: TextStyle(
+                                            color: const Color(0xff82225E),
+                                            fontSize:
+                                            getProportionateScreenWidth(
+                                                5)),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text(
+                                      'مصاريف الشحن', style: style
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  SizedBox(
+                                    width: getProportionateScreenWidth(50),
+                                    height: 60,
+                                    child: DefaultInputForm(
+                                      hint: '',
+                                      label: '',
+                                      onTab: () {},
+                                      validate: () {},
+                                      onSave: () {},
+                                      passFun: () {},
+                                      color: Colors.white70,
+                                      obscureText: false,
+                                    ),
+                                  ),
+                                  Text(
+                                      'خط التوزيع', style: style
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  SizedBox(
+                                    width: getProportionateScreenWidth(50),
+                                    height: 60,
+                                    child: DefaultInputForm(
+                                      hint: '',
+                                      label: '',
+                                      onTab: () {},
+                                      validate: () {},
+                                      onSave: () {},
+                                      passFun: () {},
+                                      color: Colors.white70,
+                                      obscureText: false,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Container(
+                                width:getProportionateScreenWidth(35) ,
+                                height:getProportionateScreenHeight(132) ,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: Colors.black,
+                                      width: 2,
+                                    )
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text('ارفاق ايصال الدفع',style: style,),
+                                    Image.asset(ImageAssets.iconDropDown20,width: getProportionateScreenWidth(35),height: getProportionateScreenHeight(85),)
+                                  ],
+                                ),
+
+                              ),
+                              const SizedBox(width: 20,),
+
+                            ],),
+                          Botton(
+                            bgColor: Colors.black,
+                            color: Colors.white,
+                            title: 'تاكيد',
+                            onTap: () {},
+                          )
+                        ],
+                      ),
                     ),
                   ),
-
-                  Column(
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            'صافي القيمة',
-                            style: getSemiBoldStyle(color: ColorManager.black),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          SizedBox(
-                            width: getProportionateScreenWidth(50),
-                            height: 60,
-                            child: DefaultInputForm(
-                              hint: '',
-                              label: '',
-                              onTab: () {},
-                              validate: () {},
-                              onSave: () {},
-                              passFun: () {},
-                              color: Colors.white70,
-                              obscureText: false,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        width: getProportionateScreenWidth(50),
-                        height: getProportionateScreenHeight(90),
-                        padding: const EdgeInsets.only(top: 35),
-                        child: dropDown(
-                          const [
-                            "الخط االاول",
-                            "الخط الثاني",
-                            "الخط الثالث"
-                          ],
-                          selectTalab: numLine1,
-                          onchanged: () => (val) {
-                            setState(() {
-                              numLine1 = val;
-                            });
-                          },
-                          label: 'رقم الخط',
-                          foColor: Colors.white,
-                          bgColor: ColorManager.primary,
-                          dpColor: ColorManager.primary,
-                        ),
-                      ),
-
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            'مبلغ تحت الحساب',
-                            style: getSemiBoldStyle(color: ColorManager.black),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          SizedBox(
-                            width: getProportionateScreenWidth(50),
-                            height: 60,
-                            child: DefaultInputForm(
-                              hint: '',
-                              label: '',
-                              onTab: () {},
-                              validate: () {},
-                              onSave: () {},
-                              passFun: () {},
-                              color: Colors.white70,
-                              obscureText: false,
-                            ),
-                          ),
-                        ],
-                      ),
-
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            'اجمالى الفاتورة',
-                            style: getSemiBoldStyle(color: ColorManager.black),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          SizedBox(
-                            width: getProportionateScreenWidth(50),
-                            height: 60,
-                            child: DefaultInputForm(
-                              hint: '',
-                              label: '',
-                              onTab: () {},
-                              validate: () {},
-                              onSave: () {},
-                              passFun: () {},
-                              color: Colors.white70,
-                              obscureText: false,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      const Text('تاريخ الشحن'),
-                      SizedBox(
-                        width: getProportionateScreenWidth(50),
-                        height: 60,
-                        child: ElevatedButton(
-                          onPressed: () => _select2Date(context),
-                          style: ButtonStyle(
-                              backgroundColor:
-                              MaterialStateProperty.all(Colors.white)),
-                          child: Text(
-                            '$chargeDate',
-                            style: const TextStyle(
-                              color: Color(0xff82225E),
-                            ),
-                          ),
-                        ),
-                      ),
-
-
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            'مصاريف الشحن',
-                            style: getSemiBoldStyle(color: ColorManager.black),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          SizedBox(
-                            width: getProportionateScreenWidth(50),
-                            height: 60,
-                            child: DefaultInputForm(
-                              hint: '',
-                              label: '',
-                              onTab: () {},
-                              validate: () {},
-                              onSave: () {},
-                              passFun: () {},
-                              color: Colors.white70,
-                              obscureText: false,
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            'خط التوزيع',
-                            style: getSemiBoldStyle(color: ColorManager.black),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          SizedBox(
-                            width: getProportionateScreenWidth(50),
-                            height: 60,
-                            child: DefaultInputForm(
-                              hint: '',
-                              label: '',
-                              onTab: () {},
-                              validate: () {},
-                              onSave: () {},
-                              passFun: () {},
-                              color: Colors.white70,
-                              obscureText: false,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                  DefaultAppBar()
                 ],
-              ),
-              const SizedBox(height: 64,),
-              Botton(
-                bgColor: Colors.black,
-                color: Colors.white, title: 'تاكيد', onTap: () {  },
-              )
-            ],
-          ),
-        ),
+              )),
+          Expanded(
+              flex: 1,
+              child: Container(
+                  padding: const EdgeInsets.only(top: 20),
+                  decoration: BoxDecoration(
+                    color: ColorManager.primary,
+                  ),
+                  child: DropDownList())),
+        ],
       ),
+
     );
   }
 }

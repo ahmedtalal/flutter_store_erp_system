@@ -1,7 +1,14 @@
 
 import 'package:erb_system/routes/deferred_loader.dart';
 import 'package:erb_system/view/home/homepage.dart';
+import 'package:erb_system/view/orders/add_orders.dart';
+import 'package:erb_system/view/orders/collection_order_details.dart';
+import 'package:erb_system/view/orders/confirm_order.dart';
+import 'package:erb_system/view/orders/load_order.dart';
+import 'package:erb_system/view/orders/order_maintenance.dart';
+import 'package:erb_system/view/orders/orders_details.dart';
 import 'package:erb_system/view/store/add_store.dart' deferred as store;
+import 'package:erb_system/view/store/store_transfer/store_transfer.dart';
 import 'package:erb_system/view/store/stores.dart' deferred as stores;
 import 'package:erb_system/view/store/store_transfer/store_transfer.dart' deferred as Stores_transfer;
 import 'package:erb_system/view/suppliers/add_sup.dart' deferred as AddSup;
@@ -21,12 +28,20 @@ import 'package:erb_system/view/industry/industry_desc.dart'deferred as Industry
 import 'package:erb_system/view/industry/confirm_indus.dart'deferred as ConfirmIndus;
 import 'package:erb_system/view/industry/indus_orders.dart'deferred as IndustryOrder;
 import 'package:erb_system/view/industry/spechial_add_indus.dart'deferred as IndustrySpecialAddition;
+import 'package:erb_system/view/orders/add_orders.dart'deferred as AddOrderv;
+import 'package:erb_system/view/orders/orders_details.dart'deferred as Talabat;
+import 'package:erb_system/view/orders/confirm_order.dart'deferred as ConfirmOrder;
+import 'package:erb_system/view/orders/load_order.dart'deferred as LoadOrder;
+import 'package:erb_system/view/orders/order_maintenance.dart'deferred as OrderMaintenance;
+import 'package:erb_system/view/orders/collection_order.dart'deferred as CollectionOrder;
+import 'package:erb_system/view/orders/collection_order_details.dart'deferred as CollectionOrderDetails;
+
 
 import 'package:qlevar_router/qlevar_router.dart';
 //updated
 class Routes {
   static final routes = <QRoute>[
-    QRoute(path: '/', builder: () => const HomePage()),
+    QRoute(path: '/', builder: () =>   HomePage()),
 
     // route Store
     QRoute(
@@ -179,6 +194,61 @@ class Routes {
         DefferedLoader(IndustrySpecialAddition.loadLibrary),
       ],
     ),
+
+    // route orders
+    //orders
+    QRoute(
+      path: '/AddOrderv',
+      builder: () =>AddOrderv.AddOrder(),
+      middleware: [
+        DefferedLoader(AddOrderv.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/Talabat',
+      builder: () =>Talabat.Talabat(),
+      middleware: [
+        DefferedLoader(Talabat.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/ConfirmOrder',
+      builder: () =>ConfirmOrder.ConfirmOrder(),
+      middleware: [
+        DefferedLoader(ConfirmOrder.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/LoadOrder',
+      builder: () =>LoadOrder.LoadOrder(),
+      middleware: [
+        DefferedLoader(LoadOrder.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/OrderMaintenance',
+      builder: () =>OrderMaintenance.OrderMaintenance(),
+      middleware: [
+        DefferedLoader(OrderMaintenance.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/CollectionOrder',
+      builder: () =>CollectionOrder.CollectionOrder(),
+      middleware: [
+        DefferedLoader(CollectionOrder.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/CollectionOrderDetails',
+      builder: () =>CollectionOrderDetails.CollectionOrderDetails(),
+      middleware: [
+        DefferedLoader(CollectionOrderDetails.loadLibrary),
+      ],
+    ),
+
+
+
 
   ];
 }

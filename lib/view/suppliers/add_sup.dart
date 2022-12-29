@@ -2,9 +2,11 @@ import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/resources/style_manager.dart';
 import 'package:erb_system/size_config.dart';
 import 'package:erb_system/view/auth/component/text_fom_feild.dart';
+import 'package:erb_system/view/home/components/appBar.dart';
 import 'package:erb_system/view/home/components/botton.dart';
 import 'package:erb_system/view/home/components/default_botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
+import 'package:erb_system/view/home/drop_down_par.dart';
 import 'package:flutter/material.dart';
 
 class AddSup extends StatefulWidget {
@@ -22,204 +24,225 @@ class _AddSupState extends State<AddSup> {
     SizeConfig.init(context);
     return SafeArea(
         child: Scaffold(
-      body: SizedBox(
-        width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(
-              height: 60,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Column(
-                  children: [
-                    Text(
-                      'العنوان',
-                      style: getSemiBoldStyle(color: ColorManager.black),
+      body: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+              flex: 5,
+              child: Stack(
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const SizedBox(
+                          height: 60,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Column(
+                              children: [
+                                Text(
+                                  'العنوان',
+                                  style: getSemiBoldStyle(color: ColorManager.black),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                SizedBox(
+                                  width: getProportionateScreenWidth(50),
+                                  height: 60,
+                                  child: DefaultInputForm(
+                                    hint: '',
+                                    label: '',
+                                    onTab: () {},
+                                    validate: () {},
+                                    onSave: () {},
+                                    passFun: () {},
+                                    color: Colors.white70,
+                                    obscureText: false,
+                                  ),
+                                )
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 50,
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  'فئه المورد',
+                                  style: getSemiBoldStyle(color: ColorManager.black),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                SizedBox(
+                                  width: getProportionateScreenWidth(50),
+                                  height: 60,
+                                  child: DefaultInputForm(
+                                    hint: '',
+                                    label: '',
+                                    onTab: () {},
+                                    validate: () {},
+                                    onSave: () {},
+                                    passFun: () {},
+                                    color: Colors.white70,
+                                    obscureText: false,
+                                  ),
+                                )
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 50,
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  'الاسم',
+                                  style: getSemiBoldStyle(color: ColorManager.black),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                SizedBox(
+                                  width: getProportionateScreenWidth(50),
+                                  height: 60,
+                                  child: DefaultInputForm(
+                                    hint: '',
+                                    label: '',
+                                    onTab: () {},
+                                    validate: () {},
+                                    onSave: () {},
+                                    passFun: () {},
+                                    color: Colors.white70,
+                                    obscureText: false,
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              width: getProportionateScreenWidth(50),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 60,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Column(
+                              children: [
+                                Text(
+                                  'تقييم السعر',
+                                  style: getSemiBoldStyle(color: ColorManager.black),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                SizedBox(
+                                  width: getProportionateScreenWidth(50),
+                                  height: 60,
+                                  child: DefaultInputForm(
+                                    hint: '',
+                                    label: '',
+                                    onTab: () {},
+                                    validate: () {},
+                                    onSave: () {},
+                                    passFun: () {},
+                                    color: Colors.white70,
+                                    obscureText: false,
+                                  ),
+                                )
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 50,
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  'تقييم المورد',
+                                  style: getSemiBoldStyle(color: ColorManager.black),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                SizedBox(
+                                  width: getProportionateScreenWidth(50),
+                                  height: 60,
+                                  child: DefaultInputForm(
+                                    hint: '',
+                                    label: '',
+                                    onTab: () {},
+                                    validate: () {},
+                                    onSave: () {},
+                                    passFun: () {},
+                                    color: Colors.white70,
+                                    obscureText: false,
+                                  ),
+                                )
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 50,
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  'رقم الهاتف',
+                                  style: getSemiBoldStyle(color: ColorManager.black),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                SizedBox(
+                                  width: getProportionateScreenWidth(50),
+                                  height: 60,
+                                  child: DefaultInputForm(
+                                    hint: '',
+                                    label: '',
+                                    onTab: () {},
+                                    validate: () {},
+                                    onSave: () {},
+                                    passFun: () {},
+                                    color: Colors.white70,
+                                    obscureText: false,
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              width: getProportionateScreenWidth(50),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 200,
+                        ),
+                        Botton(
+                          color: ColorManager.white, title: 'اضافه', onTap: () {}, bgColor: ColorManager.black,),
+                      ],
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    SizedBox(
-                      width: getProportionateScreenWidth(50),
-                      height: 60,
-                      child: DefaultInputForm(
-                        hint: '',
-                        label: '',
-                        onTab: () {},
-                        validate: () {},
-                        onSave: () {},
-                        passFun: () {},
-                        color: Colors.white70,
-                        obscureText: false,
-                      ),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  width: 50,
-                ),
-                Column(
-                  children: [
-                    Text(
-                      'فئه المورد',
-                      style: getSemiBoldStyle(color: ColorManager.black),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    SizedBox(
-                      width: getProportionateScreenWidth(50),
-                      height: 60,
-                      child: DefaultInputForm(
-                        hint: '',
-                        label: '',
-                        onTab: () {},
-                        validate: () {},
-                        onSave: () {},
-                        passFun: () {},
-                        color: Colors.white70,
-                        obscureText: false,
-                      ),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  width: 50,
-                ),
-                Column(
-                  children: [
-                    Text(
-                      'الاسم',
-                      style: getSemiBoldStyle(color: ColorManager.black),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    SizedBox(
-                      width: getProportionateScreenWidth(50),
-                      height: 60,
-                      child: DefaultInputForm(
-                        hint: '',
-                        label: '',
-                        onTab: () {},
-                        validate: () {},
-                        onSave: () {},
-                        passFun: () {},
-                        color: Colors.white70,
-                        obscureText: false,
-                      ),
-                    )
-                  ],
-                ),
-                 SizedBox(
-                  width: getProportionateScreenWidth(50),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 60,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Column(
-                  children: [
-                    Text(
-                      'تقييم السعر',
-                      style: getSemiBoldStyle(color: ColorManager.black),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    SizedBox(
-                      width: getProportionateScreenWidth(50),
-                      height: 60,
-                      child: DefaultInputForm(
-                        hint: '',
-                        label: '',
-                        onTab: () {},
-                        validate: () {},
-                        onSave: () {},
-                        passFun: () {},
-                        color: Colors.white70,
-                        obscureText: false,
-                      ),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  width: 50,
-                ),
-                Column(
-                  children: [
-                    Text(
-                      'تقييم المورد',
-                      style: getSemiBoldStyle(color: ColorManager.black),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    SizedBox(
-                      width: getProportionateScreenWidth(50),
-                      height: 60,
-                      child: DefaultInputForm(
-                        hint: '',
-                        label: '',
-                        onTab: () {},
-                        validate: () {},
-                        onSave: () {},
-                        passFun: () {},
-                        color: Colors.white70,
-                        obscureText: false,
-                      ),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  width: 50,
-                ),
-                Column(
-                  children: [
-                    Text(
-                      'رقم الهاتف',
-                      style: getSemiBoldStyle(color: ColorManager.black),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    SizedBox(
-                      width: getProportionateScreenWidth(50),
-                      height: 60,
-                      child: DefaultInputForm(
-                        hint: '',
-                        label: '',
-                        onTab: () {},
-                        validate: () {},
-                        onSave: () {},
-                        passFun: () {},
-                        color: Colors.white70,
-                        obscureText: false,
-                      ),
-                    )
-                  ],
-                ),
-                 SizedBox(
-                  width: getProportionateScreenWidth(50),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 200,
-            ),
-            Botton(
-              color: ColorManager.white, title: 'اضافه', onTap: () {}, bgColor: ColorManager.black,),
-          ],
-        ),
-      ),
+                  ),
+                  DefaultAppBar()],
+              )),
+          Expanded(
+              flex: 1,
+              child: Container(
+                  padding: const EdgeInsets.only(top: 20),
+                  decoration: BoxDecoration(
+                    color: ColorManager.primary,
+                  ),
+                  child: DropDownList())),
+        ],
+      )
+
+
     ));
   }
 }

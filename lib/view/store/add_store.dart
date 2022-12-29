@@ -29,96 +29,92 @@ class _add_StockState extends State<add_Stock> {
         child: Scaffold(
             body: Row(
               children: [
-                Consumer<Controller>(
-                  builder: (context, value, child) {
-                    return Expanded(
-                        flex: 5,
-                        child: Stack(
-                          children: [ SizedBox(
-                          width: double.infinity,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              DefaultContainer(
-                                title: 'اضافة مخزون',
-                              ),
-                              const SizedBox(
-                                height: 60,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Column(
-                                    children: [
-                                      Text(
-                                        'الوصف',
-                                        style: getSemiBoldStyle(color: ColorManager.black),
+                Expanded(
+                    flex: 5,
+                    child: Stack(
+                      children: [ SizedBox(
+                        width: double.infinity,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            DefaultContainer(
+                              title: 'اضافة مخزون',
+                            ),
+                            const SizedBox(
+                              height: 60,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Column(
+                                  children: [
+                                    Text(
+                                      'الوصف',
+                                      style: getSemiBoldStyle(color: ColorManager.black),
+                                    ),
+                                    Container(
+                                      width: getProportionateScreenWidth(50),
+                                      height: 60,
+                                      child: DefaultInputForm(
+                                        hint: '',
+                                        label: '',
+                                        onTab: () {},
+                                        validate: () {},
+                                        onSave: () {},
+                                        passFun: () {},
+                                        color: Colors.white70,
+                                        obscureText: false,
                                       ),
-                                      Container(
-                                        width: getProportionateScreenWidth(50),
-                                        height: 60,
-                                        child: DefaultInputForm(
-                                          hint: '',
-                                          label: '',
-                                          onTab: () {},
-                                          validate: () {},
-                                          onSave: () {},
-                                          passFun: () {},
-                                          color: Colors.white70,
-                                          obscureText: false,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    width: 50,
-                                  ),
-                                  Column(
-                                    children: [
-                                      Text(
-                                        'اسم المخزن',
-                                        style: getSemiBoldStyle(color: ColorManager.black),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  width: 50,
+                                ),
+                                Column(
+                                  children: [
+                                    Text(
+                                      'اسم المخزن',
+                                      style: getSemiBoldStyle(color: ColorManager.black),
+                                    ),
+                                    Container(
+                                      width: getProportionateScreenWidth(50),
+                                      height: 60,
+                                      child: DefaultInputForm(
+                                        hint: '',
+                                        label: '',
+                                        onTab: () {},
+                                        validate: () {},
+                                        onSave: () {},
+                                        passFun: () {},
+                                        color: Colors.white70,
+                                        obscureText: false,
                                       ),
-                                      Container(
-                                        width: getProportionateScreenWidth(50),
-                                        height: 60,
-                                        child: DefaultInputForm(
-                                          hint: '',
-                                          label: '',
-                                          onTab: () {},
-                                          validate: () {},
-                                          onSave: () {},
-                                          passFun: () {},
-                                          color: Colors.white70,
-                                          obscureText: false,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    width: 120,
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 300,
-                              ),
-                              Botton(
-                                color: ColorManager.white,
-                                title: 'اضافه',
-                                onTap: () {},
-                                bgColor: ColorManager.black,
-                              ),
-                            ],
-                          ),
-                        ), DefaultAppBar()],
-                        ));
-                  },
-                ),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  width: 120,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 300,
+                            ),
+                            Botton(
+                              color: ColorManager.white,
+                              title: 'اضافه',
+                              onTap: () {},
+                              bgColor: ColorManager.black,
+                            ),
+                          ],
+                        ),
+                      ), DefaultAppBar()],
+                    )),
                 Expanded(
                     flex: 1,
                     child: Container(

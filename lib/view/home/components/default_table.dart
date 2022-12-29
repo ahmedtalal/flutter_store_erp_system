@@ -32,6 +32,7 @@ class DefaultTable extends StatelessWidget {
                 (index) => DataColumn(
                 label: Flexible(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(columnData[index],

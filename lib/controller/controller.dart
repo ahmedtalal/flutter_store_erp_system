@@ -67,6 +67,15 @@ class Controller with ChangeNotifier {
       '/ConfirmIndus',
       '/IndustryOrder',
       '/IndustrySpecialAddition',
+    ],
+    [
+      '/AddOrderv',
+      '/Talabat',
+      '/ConfirmOrder',
+      '/LoadOrder',
+      '/OrderMaintenance',
+      '/CollectionOrder',
+      '/CollectionOrderDetails',
     ]
   ];
 

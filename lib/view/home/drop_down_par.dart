@@ -1,3 +1,4 @@
+import 'package:erb_system/size_config.dart';
 import 'package:flutter/material.dart';
 
 import '../../resources/assets_manager.dart';
@@ -77,9 +78,9 @@ class DropDownList extends StatelessWidget {
       ),
       itemBuilder: (context, index) => DefaultDropDown(
         item:  taps[index],
-        title: title[index],
+        title:title[index],
         imageUrl: image[index],
-        leading: index == 0 ? Container(width: 10,): Image.asset("assets/images/15.png"),
+        leading: index == 0 ? Container(width: 10,): Image.asset("assets/images/15.png",),
         trailing: Image.asset(image[index]),
         index: index,
       ),
