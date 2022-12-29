@@ -3,6 +3,7 @@ import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/resources/style_manager.dart';
 import 'package:erb_system/size_config.dart';
 import 'package:erb_system/view/auth/component/text_fom_feild.dart';
+import 'package:erb_system/view/home/components/botton.dart';
 import 'package:erb_system/view/home/components/default_botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/components/default_table.dart';
@@ -354,8 +355,8 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
               const SizedBox(
                 height: 50,
               ),
-              DefaultBotton(
-                  color: ColorManager.white, title: 'اضافه', onTap: () {})
+              Botton(
+                  color: ColorManager.white, title: 'اضافه', onTap: () {}, bgColor: ColorManager.black,)
             ],
           ),
         ),
