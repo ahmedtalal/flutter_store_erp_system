@@ -58,7 +58,7 @@ class _DefaultDropDownState extends State<DefaultDropDown> {
               child: ListTile(
                 onTap: () {
                   QR.to(pro.screen[widget.index][i],
-                      pageAlreadyExistAction: PageAlreadyExistAction.BringToTop);
+                      pageAlreadyExistAction: PageAlreadyExistAction.Remove);
                   // pro.changePage(pro.screen[widget.index][i]);
                   setState(() {
                     selectedItem = i;

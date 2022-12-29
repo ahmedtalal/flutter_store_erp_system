@@ -46,26 +46,27 @@ class Controller with ChangeNotifier {
   List screen = [
     ['/'],
     ['/addStore',  '/Stores', '/Stores_transfer'],
+
     [
       '/AddSup',
-      const AddSupCat(),
-      SupCat(),
-      Suppliers(),
+      '/add_cat_sup',
+      '/sup_cat',
+      '/suppliers',
     ],
     [
-      const AddCat(),
-      const Categories(),
-      const AddNyotin(),
-      const Nyotins(),
-      const Production()
+      '/addcat',
+      '/Categories',
+      '/AddNyotin',
+      '/Nyotins',
+      '/Production'
     ],
-    [const AddPurchaseBill(), const Purchases(), const ConfirmBackPurchases()],
+    [ '/add_purchase_bill',  '/purchases', '/confirm_back_purchase'],
     [
-      const AddDescIndustry(),
-      const IndustryDesc(),
-      const ConfirmIndus(),
-      const IndustryOrder(),
-      const IndustrySpecialAddition()
+      '/AddDescIndustry',
+      '/IndustryDesc',
+      '/ConfirmIndus',
+      '/IndustryOrder',
+      '/IndustrySpecialAddition',
     ]
   ];
 
