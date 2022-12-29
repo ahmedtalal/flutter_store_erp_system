@@ -130,7 +130,7 @@ class MergeTable extends StatelessWidget {
   Widget buildSingleColumn(String title) {
     return Container(
       color: color,
-      child: buildAlign(Text(title,style: TextStyle(fontSize: size),),),
+      child: buildAlign(Text(title,style: TextStyle(fontSize: size,color: Colors.white),),),
     );
   }
 

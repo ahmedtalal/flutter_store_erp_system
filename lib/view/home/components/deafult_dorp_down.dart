@@ -4,6 +4,7 @@ import 'package:erb_system/resources/value_manager.dart';
 import 'package:erb_system/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qlevar_router/qlevar_router.dart';
 
 class DefaultDropDown extends StatefulWidget {
   DefaultDropDown(
@@ -39,7 +40,8 @@ class _DefaultDropDownState extends State<DefaultDropDown> {
         title: Center(
           child: Text(
             widget.title,
-            style:  TextStyle(fontSize: getProportionateScreenWidth(5), color: Colors.white),
+            style: TextStyle(
+                fontSize: getProportionateScreenWidth(5), color: Colors.white),
           ),
         ),
         leading: widget.leading,
@@ -55,7 +57,9 @@ class _DefaultDropDownState extends State<DefaultDropDown> {
                   borderRadius: BorderRadius.circular(AppSize.s15)),
               child: ListTile(
                 onTap: () {
-                  pro.changePage(pro.screen[widget.index-1][i]);
+                  QR.to(pro.screen[widget.index][i],
+                      pageAlreadyExistAction: PageAlreadyExistAction.BringToTop);
+                  // pro.changePage(pro.screen[widget.index][i]);
                   setState(() {
                     selectedItem = i;
                   });

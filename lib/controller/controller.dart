@@ -44,9 +44,10 @@ class Controller with ChangeNotifier {
   Widget current = HomeTap();
 
   List screen = [
-    [const add_Stock(), Stock(), StoreTransfer()],
+    ['/'],
+    ['/addStore',  '/Stores', '/Stores_transfer'],
     [
-      const AddSup(),
+      '/AddSup',
       const AddSupCat(),
       SupCat(),
       Suppliers(),

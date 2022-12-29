@@ -35,7 +35,7 @@ class DropDownList extends StatelessWidget {
     ImageAssets.iconDropDown14,
   ];
   List taps = [
-    [''],
+    ['الرئيسيه'],
     ['اضافه مخزن ', 'المخازن', ' تحويلات بين المخازن'],
     ['اضافه مورد ', 'اضافه فئه الموردين', 'فئات الموردين', "الموردين"],
     [
@@ -76,7 +76,7 @@ class DropDownList extends StatelessWidget {
         height: 10,
       ),
       itemBuilder: (context, index) => DefaultDropDown(
-        item: index == 0 ? [] : taps[index],
+        item:  taps[index],
         title: title[index],
         imageUrl: image[index],
         leading: index == 0 ? Container(width: 10,): Image.asset("assets/images/15.png"),
