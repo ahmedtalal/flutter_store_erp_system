@@ -709,15 +709,27 @@ class _TalabatState extends State<Talabat> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: List.generate(
                                     data.length,
-                                        (index) => Column(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Padding(
-                                          padding:  MediaQuery.of(context).size.width <= 776? const EdgeInsets.only(top: 10,bottom: 10):const EdgeInsets.only(top: 5),
-                                          child: IconButton(icon: const Icon(Icons.more_horiz),onPressed: (){},),
-                                        ),
-                                      ],
-                                    )),
+                                    (index) => Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Padding(
+                                              padding: MediaQuery.of(context)
+                                                          .size
+                                                          .width <=
+                                                      776
+                                                  ? const EdgeInsets.only(
+                                                      top: 10, bottom: 10)
+                                                  : const EdgeInsets.only(
+                                                      top: 5),
+                                              child: IconButton(
+                                                icon: const Icon(
+                                                    Icons.more_horiz),
+                                                onPressed: () {},
+                                              ),
+                                            ),
+                                          ],
+                                        )),
                               ),
                             ),
                             DefaultTable(
@@ -803,7 +815,8 @@ class _TalabatState extends State<Talabat> {
                                                 Icons.notifications,
                                                 color: const Color(0xff82225E),
                                                 size:
-                                                    getProportionateScreenWidth(4),
+                                                    getProportionateScreenWidth(
+                                                        4),
                                               )
                                             ],
                                           ),
@@ -828,7 +841,8 @@ class _TalabatState extends State<Talabat> {
                                                 children: [
                                                   InkWell(
                                                     child: Image.asset(
-                                                      ImageAssets.iconDropDown29,
+                                                      ImageAssets
+                                                          .iconDropDown29,
                                                       width: 20,
                                                       height: 20,
                                                     ),
@@ -841,7 +855,8 @@ class _TalabatState extends State<Talabat> {
                                                   ),
                                                   InkWell(
                                                     child: Image.asset(
-                                                      ImageAssets.iconDropDown27,
+                                                      ImageAssets
+                                                          .iconDropDown27,
                                                       width: 20,
                                                       height: 30,
                                                     ),
@@ -863,147 +878,154 @@ class _TalabatState extends State<Talabat> {
                         ),
                         visable
                             ? Padding(
-                          padding: const EdgeInsets.only(top: 32.0),
-                          child: Stack(children: [
-                            Positioned(
-                              right: width / 6,
-                              child: CircleAvatar(
-                                  backgroundColor: Colors.black,
-                                  radius: 50,
-                                  child: InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          visable = false;
-                                        });
-                                      },
-                                      child: const Icon(
-                                        Icons.clear,
-                                        size: 100,
-                                        color: Colors.white,
-                                      ))),
-                            ),
-                            Center(
-                              child: Container(
-                                  width: 700,
-                                  height: 600,
-                                  decoration: const BoxDecoration(
-                                      color: Color(0xff82225E),
-                                      borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(400.0),
-                                        topRight: Radius.circular(400.0),
-                                        bottomLeft: Radius.circular(400.0),
-                                        bottomRight: Radius.circular(400.0),
-                                      ))),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 128.0),
-                              child: Center(
-                                child: Container(
-                                  width: 600,
-                                  height: 450,
-                                  decoration: const BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(300.0),
-                                        topRight: Radius.circular(300.0),
-                                        bottomLeft: Radius.circular(350.0),
-                                        bottomRight: Radius.circular(350.0),
-                                      )),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.center,
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                        children: [
-                                          SizedBox(
-                                            width:
-                                            getProportionateScreenWidth(
-                                                30),
-                                            child: DefaultInputForm(
-                                              hint: '',
-                                              label: '',
-                                              onTab: () {},
-                                              validate: () {},
-                                              onSave: () {},
-                                              passFun: () {},
-                                              obscureText: false,
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 15,
-                                          ),
-                                          const Text(
-                                            'رقم الطلب',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 18),
-                                          ),
-                                        ],
-                                      ),
-                                      DefaultTable(
-                                        columnData: columnData1,
-                                        size: getProportionateScreenWidth(5),
-                                        color: ColorManager.primary,
-                                        rows: data1
-                                            .map((data) => DataRow(cells: [
-                                          DataCell(Text(
-                                            data['6'],
-                                            style: style,
-                                          )),
-                                          DataCell(Text(
-                                            data['5'],
-                                            style: style,
-                                          )),
-                                          DataCell(Text(
-                                            data['4'],
-                                            style: style,
-                                          )),
-                                          DataCell(Text(
-                                            data['3'],
-                                            style: style,
-                                          )),
-                                          DataCell(Text(
-                                            data['2'],
-                                            style: style,
-                                          )),
-                                          DataCell(Text(
-                                            data['1'],
-                                            style: style,
-                                          )),
-                                        ]))
-                                            .toList(),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 200.0),
-                                        child: Row(
+                                padding: const EdgeInsets.only(top: 32.0),
+                                child: Stack(children: [
+                                  Positioned(
+                                    right: width / 6,
+                                    child: CircleAvatar(
+                                        backgroundColor: Colors.black,
+                                        radius: 50,
+                                        child: InkWell(
+                                            onTap: () {
+                                              setState(() {
+                                                visable = false;
+                                              });
+                                            },
+                                            child: const Icon(
+                                              Icons.clear,
+                                              size: 100,
+                                              color: Colors.white,
+                                            ))),
+                                  ),
+                                  Center(
+                                    child: Container(
+                                        width: 700,
+                                        height: 600,
+                                        decoration: const BoxDecoration(
+                                            color: Color(0xff82225E),
+                                            borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(400.0),
+                                              topRight: Radius.circular(400.0),
+                                              bottomLeft:
+                                                  Radius.circular(400.0),
+                                              bottomRight:
+                                                  Radius.circular(400.0),
+                                            ))),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 128.0),
+                                    child: Center(
+                                      child: Container(
+                                        width: 600,
+                                        height: 450,
+                                        decoration: const BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(300.0),
+                                              topRight: Radius.circular(300.0),
+                                              bottomLeft:
+                                                  Radius.circular(350.0),
+                                              bottomRight:
+                                                  Radius.circular(350.0),
+                                            )),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
                                           children: [
-                                            Image.asset(
-                                              ImageAssets.iconDropDown29,
-                                              width: 100,
-                                              height: 100,
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                SizedBox(
+                                                  width:
+                                                      getProportionateScreenWidth(
+                                                          30),
+                                                  child: DefaultInputForm(
+                                                    hint: '',
+                                                    label: '',
+                                                    onTab: () {},
+                                                    validate: () {},
+                                                    onSave: () {},
+                                                    passFun: () {},
+                                                    obscureText: false,
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  width: 15,
+                                                ),
+                                                const Text(
+                                                  'رقم الطلب',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18),
+                                                ),
+                                              ],
                                             ),
-                                            Image.asset(
-                                              ImageAssets.iconDropDown28,
-                                              width: 100,
-                                              height: 100,
+                                            DefaultTable(
+                                              columnData: columnData1,
+                                              size: getProportionateScreenWidth(
+                                                  5),
+                                              color: ColorManager.primary,
+                                              rows: data1
+                                                  .map(
+                                                      (data) => DataRow(cells: [
+                                                            DataCell(Text(
+                                                              data['6'],
+                                                              style: style,
+                                                            )),
+                                                            DataCell(Text(
+                                                              data['5'],
+                                                              style: style,
+                                                            )),
+                                                            DataCell(Text(
+                                                              data['4'],
+                                                              style: style,
+                                                            )),
+                                                            DataCell(Text(
+                                                              data['3'],
+                                                              style: style,
+                                                            )),
+                                                            DataCell(Text(
+                                                              data['2'],
+                                                              style: style,
+                                                            )),
+                                                            DataCell(Text(
+                                                              data['1'],
+                                                              style: style,
+                                                            )),
+                                                          ]))
+                                                  .toList(),
                                             ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 200.0),
+                                              child: Row(
+                                                children: [
+                                                  Image.asset(
+                                                    ImageAssets.iconDropDown29,
+                                                    width: 100,
+                                                    height: 100,
+                                                  ),
+                                                  Image.asset(
+                                                    ImageAssets.iconDropDown28,
+                                                    width: 100,
+                                                    height: 100,
+                                                  ),
+                                                ],
+                                              ),
+                                            )
                                           ],
                                         ),
-                                      )
-                                    ],
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                            ),
-                          ]),
-                        )
+                                ]),
+                              )
                             : Container(),
                       ],
                     ),
@@ -1015,11 +1037,26 @@ class _TalabatState extends State<Talabat> {
               ),
             ),
           ),
-          IconButton(
-              onPressed: () {
-                QR.navigator.popUntilOrPush('/');
-              },
-              icon: const Icon(Icons.home))
+          Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              color: ColorManager.primary,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Center(
+              child: InkWell(
+                  onTap: () {
+                    QR.navigator.popUntilOrPush('/');
+                  },
+                  child: Image.asset(ImageAssets.iconDropDown2)),
+            ),
+          ),
+          // IconButton(
+          //     onPressed: () {
+          //       QR.navigator.popUntilOrPush('/');
+          //     },
+          //     icon: const Icon(Icons.home))
         ],
       ),
     );

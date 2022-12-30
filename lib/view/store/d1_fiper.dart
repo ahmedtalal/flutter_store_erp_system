@@ -1,3 +1,4 @@
+import 'package:erb_system/resources/assets_manager.dart';
 import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/size_config.dart';
 import 'package:erb_system/view/home/components/default_botton.dart';
@@ -38,60 +39,99 @@ class D1Details extends StatelessWidget {
     SizeConfig.init(context);
     return SafeArea(
         child: Scaffold(
-      body: SizedBox(
-        width: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-
-            const SizedBox(
-              height: 50,
-            ),
-            DefaultContainer(title: 'للفايبر D1 تفاصيل'),
-            const SizedBox(
-              height: 50,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+      body: Stack(
+        children: [
+          SizedBox(
+            width: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                DefaultTable(
-                  columnData: columnData,
-                  size: getProportionateScreenWidth(10),
-                  color: ColorManager.second,
-                  rows: data
-                      .map((data) => DataRow(cells: [
-                            DataCell(Text(
-                              data['8'],
-                            )),
-                            DataCell(Text(
-                              data['7'],
-                            )),
-                            DataCell(Text(
-                              data['6'],
-                            )),
-                            DataCell(Text(
-                              data['5'],
-                            )),
-                            DataCell(Text(
-                              data['4'],
-                            )),
-                            DataCell(Text(
-                              data['3'],
-                            )),
-                            DataCell(Text(
-                              data['2'],
-                            )),
-                            DataCell(Text(
-                              data['1'],
-                            )),
-                          ]))
-                      .toList(),
+
+                const SizedBox(
+                  height: 50,
                 ),
+                DefaultContainer(title: 'للفايبر D1 تفاصيل'),
+                const SizedBox(
+                  height: 50,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    DefaultTable(
+                      columnData: columnData,
+                      size: getProportionateScreenWidth(10),
+                      color: ColorManager.second,
+                      rows: data
+                          .map((data) => DataRow(cells: [
+                                DataCell(Text(
+                                  data['8'],
+                                )),
+                                DataCell(Text(
+                                  data['7'],
+                                )),
+                                DataCell(Text(
+                                  data['6'],
+                                )),
+                                DataCell(Text(
+                                  data['5'],
+                                )),
+                                DataCell(Text(
+                                  data['4'],
+                                )),
+                                DataCell(Text(
+                                  data['3'],
+                                )),
+                                DataCell(Text(
+                                  data['2'],
+                                )),
+                                DataCell(Text(
+                                  data['1'],
+                                )),
+                              ]))
+                          .toList(),
+                    ),
+                  ],
+                ),
+                DDetails(),
               ],
             ),
-            DDetails(),
-          ],
-        ),
+          ),
+          Row(
+            children: [
+              Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: ColorManager.primary,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Center(
+                  child: InkWell(
+                      onTap: () {
+                        QR.navigator.popUntilOrPush('/');
+                      },
+                      child: Image.asset(ImageAssets.iconDropDown2)),
+                ),
+              ),
+              SizedBox(width: 5,),
+              Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: ColorManager.primary,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Center(
+                  child: InkWell(
+                      onTap: () {
+                        QR.navigator.popUntilOrPush('/');
+                      },
+                      child: Image.asset(ImageAssets.iconDropDown52)),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     ));
   }

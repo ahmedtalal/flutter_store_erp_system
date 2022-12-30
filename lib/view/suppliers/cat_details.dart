@@ -1,3 +1,4 @@
+import 'package:erb_system/resources/assets_manager.dart';
 import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/size_config.dart';
 import 'package:erb_system/view/auth/component/text_fom_feild.dart';
@@ -6,6 +7,7 @@ import 'package:erb_system/view/home/components/default_botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/components/default_table.dart';
 import 'package:flutter/material.dart';
+import 'package:qlevar_router/qlevar_router.dart';
 
 class CatDetails extends StatelessWidget {
   CatDetails({Key? key}) : super(key: key);
@@ -41,88 +43,127 @@ class CatDetails extends StatelessWidget {
 
     return SafeArea(
         child: Scaffold(
-      body: SizedBox(
-        width: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(
-              height: 50,
-            ),
-            DefaultContainer(title: 'تفاصيل موردين القماش'),
-            const SizedBox(
-              height: 50,
-            ),
-            Column(
+      body: Stack(
+        children: [
+          SizedBox(
+            width: double.infinity,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  'البحث',
-                  style: style,
+                const SizedBox(
+                  height: 50,
+                ),
+                DefaultContainer(title: 'تفاصيل موردين القماش'),
+                const SizedBox(
+                  height: 50,
+                ),
+                Column(
+                  children: [
+                    Text(
+                      'البحث',
+                      style: style,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      width: getProportionateScreenWidth(70),
+                      height: 60,
+                      child: DefaultInputForm(
+                        perFix: IconButton(
+                          icon: const Icon(Icons.search),
+                          color: Colors.grey[500],
+                          onPressed: () {},
+                        ),
+                        hint: '',
+                        label: '',
+                        onTab: () {},
+                        validate: () {},
+                        onSave: () {},
+                        passFun: () {},
+                        color: Colors.white70,
+                        obscureText: false,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    DefaultTable(
+                      columnData: columnData,
+                      size: getProportionateScreenWidth(10),
+                      color: ColorManager.second,
+                      rows: data
+                          .map((data) => DataRow(cells: [
+                        DataCell(Text(
+                          data['5'],
+                        )),
+                                DataCell(Text(
+                                  data['4'],
+                                )),
+                                DataCell(Text(
+                                  data['3'],
+                                )),
+                                DataCell(Text(
+                                  data['2'],
+                                )),
+                                DataCell(Text(
+                                  data['1'],
+                                )),
+                              ]))
+                          .toList(),
+                    ),
+                  ],
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 30,
                 ),
-                SizedBox(
-                  width: getProportionateScreenWidth(70),
-                  height: 60,
-                  child: DefaultInputForm(
-                    perFix: IconButton(
-                      icon: const Icon(Icons.search),
-                      color: Colors.grey[500],
-                      onPressed: () {},
-                    ),
-                    hint: '',
-                    label: '',
-                    onTab: () {},
-                    validate: () {},
-                    onSave: () {},
-                    passFun: () {},
-                    color: Colors.white70,
-                    obscureText: false,
-                  ),
+                Botton(
+                  color: ColorManager.white,
+                  title: 'المزيد',
+                  onTap: () {},
+                  bgColor: ColorManager.primary,
                 ),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                DefaultTable(
-                  columnData: columnData,
-                  size: getProportionateScreenWidth(10),
-                  color: ColorManager.second,
-                  rows: data
-                      .map((data) => DataRow(cells: [
-                    DataCell(Text(
-                      data['5'],
-                    )),
-                            DataCell(Text(
-                              data['4'],
-                            )),
-                            DataCell(Text(
-                              data['3'],
-                            )),
-                            DataCell(Text(
-                              data['2'],
-                            )),
-                            DataCell(Text(
-                              data['1'],
-                            )),
-                          ]))
-                      .toList(),
+          ),
+          Row(
+            children: [
+              Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: ColorManager.primary,
+                  borderRadius: BorderRadius.circular(20),
                 ),
-              ],
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            Botton(
-              color: ColorManager.white,
-              title: 'المزيد',
-              onTap: () {},
-              bgColor: ColorManager.primary,
-            ),
-          ],
-        ),
+                child: Center(
+                  child: InkWell(
+                      onTap: () {
+                        QR.navigator.popUntilOrPush('/');
+                      },
+                      child: Image.asset(ImageAssets.iconDropDown2)),
+                ),
+              ),
+              const SizedBox(width: 5,),
+              Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: ColorManager.primary,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Center(
+                  child: InkWell(
+                      onTap: () {
+                        QR.navigator.popUntilOrPush('/');
+                      },
+                      child: Image.asset(ImageAssets.iconDropDown52)),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     ));
   }

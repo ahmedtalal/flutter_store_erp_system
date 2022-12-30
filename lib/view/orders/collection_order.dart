@@ -414,36 +414,6 @@ class _CollectionOrderState extends State<CollectionOrder> {
                                     const SizedBox(
                                       height: 5,
                                     ),
-                                    Column(
-                                      children: [
-                                        Text(
-                                          'العنوان',
-                                          style: style,
-                                        ),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        SizedBox(
-                                          width: MediaQuery.of(context)
-                                              .size
-                                              .width <=
-                                              917
-                                              ? getProportionateScreenWidth(75)
-                                              : getProportionateScreenWidth(43),
-                                          height: 60,
-                                          child: DefaultInputForm(
-                                            hint: '',
-                                            label: '',
-                                            onTab: () {},
-                                            validate: () {},
-                                            onSave: () {},
-                                            passFun: () {},
-                                            color: Colors.white70,
-                                            obscureText: false,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
                                   ],
                                 ),
                                 Column(
@@ -959,6 +929,35 @@ class _CollectionOrderState extends State<CollectionOrder> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
+                              Column(
+                                children: [
+                                  Text(
+                                    'العنوان',
+                                    style: style,
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  SizedBox(
+                                    width: MediaQuery.of(context)
+                                        .size
+                                        .width <=
+                                        917
+                                        ? getProportionateScreenWidth(75)
+                                        : getProportionateScreenWidth(63),
+                                    height: 100,
+                                    child: TextFormField(
+                                      maxLines: 5,
+                                      decoration: InputDecoration(
+                                          border: OutlineInputBorder(
+                                              borderSide: BorderSide(color: ColorManager.primary)
+                                          )
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(width: 20,),
                               Container(
                                 width: getProportionateScreenWidth(35),
                                 height: getProportionateScreenHeight(132),
@@ -1019,6 +1018,7 @@ class _CollectionOrderState extends State<CollectionOrder> {
                                   ],
                                 ),
                               ),
+
                             ],
                           ),
                           Botton(

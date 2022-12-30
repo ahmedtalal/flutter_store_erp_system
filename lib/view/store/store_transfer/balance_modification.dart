@@ -1,9 +1,11 @@
+import 'package:erb_system/resources/assets_manager.dart';
 import 'package:erb_system/size_config.dart';
 import 'package:erb_system/view/auth/component/text_fom_feild.dart';
 import 'package:erb_system/view/home/components/botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:qlevar_router/qlevar_router.dart';
 
 import '../../../resources/color_manger.dart';
 
@@ -72,124 +74,27 @@ class _ModificationBalanceState extends State<ModificationBalance> {
     // var format = DateFormat.yMd('ar');
 
     return Scaffold(
-      body: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(height: 64,),
-              DefaultContainer(title: 'تعديل الرصيد'),
-              const SizedBox(height: 64,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: Stack(
+        children: [
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Column(
+                  const SizedBox(height: 64,),
+                  DefaultContainer(title: 'تعديل الرصيد'),
+                  const SizedBox(height: 64,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
-                        'الفرق',
-                        style: getSemiBoldStyle(color: ColorManager.black),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      SizedBox(
-                        width: getProportionateScreenWidth(50),
-                        height: 60,
-                        child: DefaultInputForm(
-                          hint: '',
-                          label: '',
-                          onTab: () {},
-                          validate: () {},
-                          onSave: () {},
-                          passFun: () {},
-                          color: Colors.white70,
-                          obscureText: false,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Text(
-                        'الرصيد الجديد',
-                        style: getSemiBoldStyle(color: ColorManager.black),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      SizedBox(
-                        width: getProportionateScreenWidth(50),
-                        height: 60,
-                        child: DefaultInputForm(
-                          hint: '',
-                          label: '',
-                          onTab: () {},
-                          validate: () {},
-                          onSave: () {},
-                          passFun: () {},
-                          color: Colors.white70,
-                          obscureText: false,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Text(
-                        'الرصيد',
-                        style: getSemiBoldStyle(color: ColorManager.black),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      SizedBox(
-                        width: getProportionateScreenWidth(50),
-                        height: 60,
-                        child: DefaultInputForm(
-                          hint: '',
-                          label: '',
-                          onTab: () {},
-                          validate: () {},
-                          onSave: () {},
-                          passFun: () {},
-                          color: Colors.white70,
-                          obscureText: false,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Text(
-                        ' اسم الصنف',
-                        style: getSemiBoldStyle(color: ColorManager.black),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      SizedBox(
-                        width: getProportionateScreenWidth(50),
-                        height: 60,
-                        child: DefaultInputForm(
-                          hint: '',
-                          label: '',
-                          onTab: () {},
-                          validate: () {},
-                          onSave: () {},
-                          passFun: () {},
-                          color: Colors.white70,
-                          obscureText: false,
-                        ),
-                      ),
-
                       Column(
                         children: [
                           Text(
-                            'المخزن',
+                            'الفرق',
                             style: getSemiBoldStyle(color: ColorManager.black),
                           ),
                           const SizedBox(
@@ -211,84 +116,220 @@ class _ModificationBalanceState extends State<ModificationBalance> {
                           ),
                         ],
                       ),
+                      Column(
+                        children: [
+                          Text(
+                            'الرصيد الجديد',
+                            style: getSemiBoldStyle(color: ColorManager.black),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            width: getProportionateScreenWidth(50),
+                            height: 60,
+                            child: DefaultInputForm(
+                              hint: '',
+                              label: '',
+                              onTab: () {},
+                              validate: () {},
+                              onSave: () {},
+                              passFun: () {},
+                              color: Colors.white70,
+                              obscureText: false,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            'الرصيد',
+                            style: getSemiBoldStyle(color: ColorManager.black),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            width: getProportionateScreenWidth(50),
+                            height: 60,
+                            child: DefaultInputForm(
+                              hint: '',
+                              label: '',
+                              onTab: () {},
+                              validate: () {},
+                              onSave: () {},
+                              passFun: () {},
+                              color: Colors.white70,
+                              obscureText: false,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            ' اسم الصنف',
+                            style: getSemiBoldStyle(color: ColorManager.black),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            width: getProportionateScreenWidth(50),
+                            height: 60,
+                            child: DefaultInputForm(
+                              hint: '',
+                              label: '',
+                              onTab: () {},
+                              validate: () {},
+                              onSave: () {},
+                              passFun: () {},
+                              color: Colors.white70,
+                              obscureText: false,
+                            ),
+                          ),
+
+                          Column(
+                            children: [
+                              Text(
+                                'المخزن',
+                                style: getSemiBoldStyle(color: ColorManager.black),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              SizedBox(
+                                width: getProportionateScreenWidth(50),
+                                height: 60,
+                                child: DefaultInputForm(
+                                  hint: '',
+                                  label: '',
+                                  onTab: () {},
+                                  validate: () {},
+                                  onSave: () {},
+                                  passFun: () {},
+                                  color: Colors.white70,
+                                  obscureText: false,
+                                ),
+                              ),
+                            ],
+                          ),
+
+                        ],
+                      ),
 
                     ],
                   ),
-
+                  Row(
+                   mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width:getProportionateScreenWidth(70),
+                        height: getProportionateScreenHeight(183),
+                        decoration: BoxDecoration(
+                          borderRadius:  BorderRadius.circular(15),
+                          border: Border.all(color: Colors.black,width: 2),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(Icons.more_horiz),
+                                Text('ملحوظات',style: style,),
+                                Icon(Icons.close)
+                              ],),
+                            const Divider(color: Colors.black,thickness: 2,),
+                            TextFormField(
+                              keyboardType: TextInputType.multiline,
+                              maxLines: 5,
+                              decoration: const InputDecoration(
+                                  border: InputBorder.none
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 10,),
+                      Container(
+                        width:getProportionateScreenWidth(70),
+                        height: getProportionateScreenHeight(183),
+                        decoration: BoxDecoration(
+                          borderRadius:  BorderRadius.circular(15),
+                          border: Border.all(color: Colors.black,width: 2),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(Icons.more_horiz),
+                                Text('تتبع',style: style,),
+                                Icon(Icons.close)
+                              ],),
+                            const Divider(color: Colors.black,thickness: 2,),
+                            TextFormField(
+                              keyboardType: TextInputType.multiline,
+                              maxLines: 5,
+                              decoration: const InputDecoration(
+                                  border: InputBorder.none
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 64,),
+                  Botton(
+                    bgColor: Colors.black,
+                    color: Colors.white, title: 'تعديل رصيد', onTap: () {  },
+                  )
                 ],
               ),
-              Row(
-               mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width:getProportionateScreenWidth(70),
-                    height: getProportionateScreenHeight(183),
-                    decoration: BoxDecoration(
-                      borderRadius:  BorderRadius.circular(15),
-                      border: Border.all(color: Colors.black,width: 2),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Icon(Icons.more_horiz),
-                            Text('ملحوظات',style: style,),
-                            Icon(Icons.close)
-                          ],),
-                        const Divider(color: Colors.black,thickness: 2,),
-                        TextFormField(
-                          keyboardType: TextInputType.multiline,
-                          maxLines: 5,
-                          decoration: const InputDecoration(
-                              border: InputBorder.none
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 10,),
-                  Container(
-                    width:getProportionateScreenWidth(70),
-                    height: getProportionateScreenHeight(183),
-                    decoration: BoxDecoration(
-                      borderRadius:  BorderRadius.circular(15),
-                      border: Border.all(color: Colors.black,width: 2),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Icon(Icons.more_horiz),
-                            Text('تتبع',style: style,),
-                            Icon(Icons.close)
-                          ],),
-                        const Divider(color: Colors.black,thickness: 2,),
-                        TextFormField(
-                          keyboardType: TextInputType.multiline,
-                          maxLines: 5,
-                          decoration: const InputDecoration(
-                              border: InputBorder.none
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
+            ),
+          ),
+          Row(
+            children: [
+              Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: ColorManager.primary,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Center(
+                  child: InkWell(
+                      onTap: () {
+                        QR.navigator.popUntilOrPush('/');
+                      },
+                      child: Image.asset(ImageAssets.iconDropDown2)),
+                ),
               ),
-              const SizedBox(height: 64,),
-              Botton(
-                bgColor: Colors.black,
-                color: Colors.white, title: 'تعديل رصيد', onTap: () {  },
-              )
+              SizedBox(width: 5,),
+              Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: ColorManager.primary,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Center(
+                  child: InkWell(
+                      onTap: () {
+                        QR.navigator.popUntilOrPush('/');
+                      },
+                      child: Image.asset(ImageAssets.iconDropDown52)),
+                ),
+              ),
             ],
           ),
-        ),
+        ],
       ),
     );
   }
