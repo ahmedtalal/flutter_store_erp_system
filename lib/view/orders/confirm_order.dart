@@ -411,6 +411,39 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
                                         ),
                                       ),
                                     ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          'العنوان',
+                                          style: style,
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        SizedBox(
+                                          width: MediaQuery.of(context)
+                                              .size
+                                              .width <=
+                                              917
+                                              ? getProportionateScreenWidth(75)
+                                              : getProportionateScreenWidth(43),
+                                          height: 60,
+                                          child: DefaultInputForm(
+                                            hint: '',
+                                            label: '',
+                                            onTab: () {},
+                                            validate: () {},
+                                            onSave: () {},
+                                            passFun: () {},
+                                            color: Colors.white70,
+                                            obscureText: false,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ],
                                 ),
                                 Column(
@@ -426,7 +459,7 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
                                         ),
                                         SizedBox(
                                           width:
-                                          getProportionateScreenWidth(30),
+                                          getProportionateScreenWidth(40),
                                           height: 60,
                                           child: DefaultInputForm(
                                             hint: '',
@@ -447,7 +480,7 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
                                     Column(
                                       children: [
                                         Text(
-                                          'رقم الموبيل',
+                                          'رقم الموبيل 1',
                                           style: style,
                                         ),
                                         const SizedBox(
@@ -455,7 +488,32 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
                                         ),
                                         SizedBox(
                                           width:
-                                          getProportionateScreenWidth(30),
+                                          getProportionateScreenWidth(40),
+                                          height: 60,
+                                          child: DefaultInputForm(
+                                            hint: '',
+                                            label: '',
+                                            onTab: () {},
+                                            validate: () {},
+                                            onSave: () {},
+                                            passFun: () {},
+                                            color: Colors.white70,
+                                            obscureText: false,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          'رقم الموبيل 2',
+                                          style: style,
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        SizedBox(
+                                          width:
+                                          getProportionateScreenWidth(40),
                                           height: 60,
                                           child: DefaultInputForm(
                                             hint: '',
@@ -602,33 +660,7 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
                                     ]))
                                         .toList(),
                                   ),
-                                  InkWell(
-                                    onTap: (){},
-                                    child: Container(
-                                      width:getProportionateScreenWidth(42),
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.all(Radius.circular(25)),
-                                          border: Border.all(color: ColorManager.primary)
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.add,
-                                            color: ColorManager.primary,
-                                          ),
 
-                                          Text(
-                                            'اضافه منتج',
-                                            style: TextStyle(
-                                                fontSize: getProportionateScreenWidth(5),
-                                                fontWeight: FontWeight.w500),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
                                 ],
                               ),
 

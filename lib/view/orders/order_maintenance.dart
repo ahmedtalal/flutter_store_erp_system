@@ -260,7 +260,8 @@ class _OrderMaintenanceState extends State<OrderMaintenance> {
                                             MaterialStateProperty.all(
                                                 Colors.white)),
                                         child: Text(
-                                          '$orderDate',
+                                          "${orderDate.year.toString()}/${orderDate.month.toString().padLeft(2, '0')}/${orderDate.day.toString().padLeft(2, '0')}",
+
                                           style: TextStyle(
                                               color:Colors.black,
                                               fontSize:
@@ -286,7 +287,7 @@ class _OrderMaintenanceState extends State<OrderMaintenance> {
                                             MaterialStateProperty.all(
                                                 Colors.white)),
                                         child: Text(
-                                          '$stateDate',
+                                          "${stateDate.year.toString()}/${stateDate.month.toString().padLeft(2, '0')}/${stateDate.day.toString().padLeft(2, '0')}",
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontSize:
@@ -354,6 +355,9 @@ class _OrderMaintenanceState extends State<OrderMaintenance> {
                                         ),
                                       ),
                                     ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
                                     Container(
                                       width:
                                       MediaQuery.of(context).size.width <=
@@ -409,6 +413,39 @@ class _OrderMaintenanceState extends State<OrderMaintenance> {
                                         ),
                                       ),
                                     ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          'العنوان',
+                                          style: style,
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        SizedBox(
+                                          width: MediaQuery.of(context)
+                                              .size
+                                              .width <=
+                                              917
+                                              ? getProportionateScreenWidth(75)
+                                              : getProportionateScreenWidth(43),
+                                          height: 60,
+                                          child: DefaultInputForm(
+                                            hint: '',
+                                            label: '',
+                                            onTab: () {},
+                                            validate: () {},
+                                            onSave: () {},
+                                            passFun: () {},
+                                            color: Colors.white70,
+                                            obscureText: false,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ],
                                 ),
                                 Column(
@@ -424,7 +461,7 @@ class _OrderMaintenanceState extends State<OrderMaintenance> {
                                         ),
                                         SizedBox(
                                           width:
-                                          getProportionateScreenWidth(30),
+                                          getProportionateScreenWidth(40),
                                           height: 60,
                                           child: DefaultInputForm(
                                             hint: '',
@@ -445,7 +482,7 @@ class _OrderMaintenanceState extends State<OrderMaintenance> {
                                     Column(
                                       children: [
                                         Text(
-                                          'رقم الموبيل',
+                                          'رقم الموبيل 1',
                                           style: style,
                                         ),
                                         const SizedBox(
@@ -453,7 +490,32 @@ class _OrderMaintenanceState extends State<OrderMaintenance> {
                                         ),
                                         SizedBox(
                                           width:
-                                          getProportionateScreenWidth(30),
+                                          getProportionateScreenWidth(40),
+                                          height: 60,
+                                          child: DefaultInputForm(
+                                            hint: '',
+                                            label: '',
+                                            onTab: () {},
+                                            validate: () {},
+                                            onSave: () {},
+                                            passFun: () {},
+                                            color: Colors.white70,
+                                            obscureText: false,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          'رقم الموبيل 2',
+                                          style: style,
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        SizedBox(
+                                          width:
+                                          getProportionateScreenWidth(40),
                                           height: 60,
                                           child: DefaultInputForm(
                                             hint: '',
@@ -797,7 +859,8 @@ class _OrderMaintenanceState extends State<OrderMaintenance> {
                                           MaterialStateProperty.all(
                                               Colors.white)),
                                       child: Text(
-                                        '$chargeDate',
+                                        "${chargeDate.year.toString()}/${chargeDate.month.toString().padLeft(2, '0')}/${chargeDate.day.toString().padLeft(2, '0')}",
+
                                         style: TextStyle(
                                             color: const Color(0xff82225E),
                                             fontSize:

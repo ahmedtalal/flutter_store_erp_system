@@ -1,5 +1,7 @@
 import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/size_config.dart';
+import 'package:erb_system/view/auth/component/text_fom_feild.dart';
+import 'package:erb_system/view/home/components/botton.dart';
 import 'package:erb_system/view/home/components/default_botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/components/default_table.dart';
@@ -35,6 +37,8 @@ class CatDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
+    TextStyle style = TextStyle(fontSize: getProportionateScreenWidth(4));
+
     return SafeArea(
         child: Scaffold(
       body: SizedBox(
@@ -48,6 +52,36 @@ class CatDetails extends StatelessWidget {
             DefaultContainer(title: 'تفاصيل موردين القماش'),
             const SizedBox(
               height: 50,
+            ),
+            Column(
+              children: [
+                Text(
+                  'البحث',
+                  style: style,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  width: getProportionateScreenWidth(70),
+                  height: 60,
+                  child: DefaultInputForm(
+                    perFix: IconButton(
+                      icon: const Icon(Icons.search),
+                      color: Colors.grey[500],
+                      onPressed: () {},
+                    ),
+                    hint: '',
+                    label: '',
+                    onTab: () {},
+                    validate: () {},
+                    onSave: () {},
+                    passFun: () {},
+                    color: Colors.white70,
+                    obscureText: false,
+                  ),
+                ),
+              ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -77,6 +111,15 @@ class CatDetails extends StatelessWidget {
                       .toList(),
                 ),
               ],
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Botton(
+              color: ColorManager.white,
+              title: 'المزيد',
+              onTap: () {},
+              bgColor: ColorManager.primary,
             ),
           ],
         ),

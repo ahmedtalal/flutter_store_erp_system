@@ -1,5 +1,6 @@
 import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/size_config.dart';
+import 'package:erb_system/view/home/components/botton.dart';
 import 'package:erb_system/view/home/components/default_botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/components/default_table.dart';
@@ -58,76 +59,87 @@ class POFiper extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     TextStyle style=TextStyle(fontSize: getProportionateScreenWidth(5));
-    return  Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const SizedBox(
-          height: 50,
-        ),
-        DefaultContainer(title: 'تفاصيل المشتريات PO للفايبر'),
-        const SizedBox(
-          height: 50,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 50),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: List.generate(
-                    data.length,
-                        (index) => Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: DefaultBotton(
-                            top:  MediaQuery.of(context).size.width<=500?getProportionateScreenWidth(8):getProportionateScreenWidth(3),
-                            right: getProportionateScreenWidth(3),
-                            title: 'تفاصيل',
-                            color: ColorManager.white,
-                            onTap: () {},
+    return  Scaffold(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(
+            height: 50,
+          ),
+          DefaultContainer(title: 'تفاصيل المشتريات PO للفايبر'),
+          const SizedBox(
+            height: 50,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 50),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: List.generate(
+                      data.length,
+                          (index) => Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: DefaultBotton(
+                              top:  MediaQuery.of(context).size.width<=500?getProportionateScreenWidth(8):getProportionateScreenWidth(3),
+                              right: getProportionateScreenWidth(3),
+                              title: 'تفاصيل',
+                              color: ColorManager.white,
+                              onTap: () {},
+                            ),
                           ),
-                        ),
-                      ],
-                    )),
+                        ],
+                      )),
+                ),
               ),
-            ),
-            SizedBox(width: getProportionateScreenWidth(5),),
-            DefaultTable(columnData: columnData,
-              size: getProportionateScreenWidth(5),
-              color: ColorManager.second,
-              rows:data.map((data) => DataRow(cells: [
-              DataCell(Text(
-                data['9'],style: style,
-              )),
-              DataCell(Text(
-                data['8'],style: style,
-              )),
-              DataCell(Text(
-                data['7'],style: style,
-              )),
-              DataCell(Text(
-                data['6'],style: style,
-              )),
-              DataCell(Text(
-                data['5'],style: style,
-              )),
-              DataCell(Text(
-                data['4'],style: style,
-              )),  DataCell(Text(
-                data['3'],style: style,
-              )),  DataCell(Text(
-                data['2'],style: style,
-              )),  DataCell(Text(
-                data['1'],style: style,
-              )),
-            ]))
-                .toList(),),
-          ],
-        ),
-      ],
+              SizedBox(width: getProportionateScreenWidth(5),),
+              DefaultTable(columnData: columnData,
+                size: getProportionateScreenWidth(5),
+                color: ColorManager.second,
+                rows:data.map((data) => DataRow(cells: [
+                  DataCell(Text(
+                    data['9'],style: style,
+                  )),
+                  DataCell(Text(
+                    data['8'],style: style,
+                  )),
+                  DataCell(Text(
+                    data['7'],style: style,
+                  )),
+                  DataCell(Text(
+                    data['6'],style: style,
+                  )),
+                  DataCell(Text(
+                    data['5'],style: style,
+                  )),
+                  DataCell(Text(
+                    data['4'],style: style,
+                  )),  DataCell(Text(
+                    data['3'],style: style,
+                  )),  DataCell(Text(
+                    data['2'],style: style,
+                  )),  DataCell(Text(
+                    data['1'],style: style,
+                  )),
+                ]))
+                    .toList(),),
+            ],
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          Botton(
+            color: ColorManager.white,
+            title: 'المزيد',
+            onTap: () {},
+            bgColor: ColorManager.primary,
+          ),
+        ],
+      ),
     );
   }
 }

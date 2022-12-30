@@ -160,7 +160,7 @@ class _IndustrySpecialAdditionState extends State<IndustrySpecialAddition> {
                                               ),
 
                                               Text(
-                                                'اضافه منتج',
+                                                'اضافه',
                                                 style: TextStyle(
                                                     fontSize: getProportionateScreenWidth(5),
                                                     fontWeight: FontWeight.w500),

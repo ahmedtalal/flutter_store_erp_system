@@ -1,6 +1,7 @@
 import 'package:erb_system/resources/assets_manager.dart';
 import 'package:erb_system/size_config.dart';
 import 'package:erb_system/view/auth/component/text_fom_feild.dart';
+import 'package:erb_system/view/home/components/default_botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/components/default_table.dart';
 import 'package:erb_system/view/home/components/drop_down.dart';
@@ -346,7 +347,7 @@ class _TalabatState extends State<Talabat> {
                                           MaterialStateProperty.all(
                                               Colors.white)),
                                   child: Text(
-                                    '$orderDate',
+                                    "${orderDate.year.toString()}/${orderDate.month.toString().padLeft(2, '0')}/${orderDate.day.toString().padLeft(2, '0')}",
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontSize:
@@ -371,7 +372,7 @@ class _TalabatState extends State<Talabat> {
                                           MaterialStateProperty.all(
                                               Colors.white)),
                                   child: Text(
-                                    '$stateDate',
+                                    "${stateDate.year.toString()}/${stateDate.month.toString().padLeft(2, '0')}/${stateDate.day.toString().padLeft(2, '0')}",
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontSize:
@@ -700,144 +701,165 @@ class _TalabatState extends State<Talabat> {
                     Stack(
                       alignment: Alignment.center,
                       children: [
-                        DefaultTable(
-                          columnData: dataTable,
-                          color: ColorManager.primary,
-                          size: getProportionateScreenWidth(0.2),
-                          icon: Image.asset(
-                            ImageAssets.iconDropDown32,
-                            width: getProportionateScreenWidth(20),
-                            height: getProportionateScreenWidth(6),
-                          ),
-                          rows: data
-                              .map((data) => DataRow(cells: [
-                                    DataCell(Text(
-                                      data['18'],
-                                      style: style,
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 71),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: List.generate(
+                                    data.length,
+                                        (index) => Column(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Padding(
+                                          padding:  MediaQuery.of(context).size.width <= 776? const EdgeInsets.only(top: 10,bottom: 10):const EdgeInsets.only(top: 5),
+                                          child: IconButton(icon: const Icon(Icons.more_horiz),onPressed: (){},),
+                                        ),
+                                      ],
                                     )),
-                                    DataCell(Text(
-                                      data['16'],
-                                      style: style,
-                                    )),
-                                    DataCell(Text(
-                                      data['15'],
-                                      style: style,
-                                    )),
-                                    DataCell(Text(
-                                      data['14'],
-                                      style: style,
-                                    )),
-                                    DataCell(Text(
-                                      data['12'],
-                                      style: style,
-                                    )),
-                                    DataCell(Text(
-                                      data['11'],
-                                      style: style,
-                                    )),
-                                    DataCell(Text(
-                                      data['10'],
-                                      style: style,
-                                    )),
-                                    DataCell(Text(
-                                      data['9'],
-                                      style: style,
-                                    )),
-                                    DataCell(Text(
-                                      data['8'],
-                                      style: style,
-                                    )),
-                                    DataCell(Text(
-                                      data['7'],
-                                      style: style,
-                                    )),
-                                    DataCell(Text(
-                                      data['6'],
-                                      style: style,
-                                    )),
-                                    DataCell(Text(
-                                      data['5'],
-                                      style: style,
-                                    )),
-                                    DataCell(
-                                      Container(
-                                          color: const Color(0xff82225E),
-                                          child: Text(
-                                            'تم الشحن',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize:
-                                                    getProportionateScreenWidth(
-                                                        5)),
-                                          )),
-                                    ),
-                                    DataCell(
-                                      Column(
-                                        children: [
-                                          Text(
-                                            'مستعمل',
-                                            style: style,
+                              ),
+                            ),
+                            DefaultTable(
+                              columnData: dataTable,
+                              color: ColorManager.primary,
+                              size: getProportionateScreenWidth(0.2),
+                              icon: Image.asset(
+                                ImageAssets.iconDropDown32,
+                                width: getProportionateScreenWidth(20),
+                                height: getProportionateScreenWidth(6),
+                              ),
+                              rows: data
+                                  .map((data) => DataRow(cells: [
+                                        DataCell(Text(
+                                          data['18'],
+                                          style: style,
+                                        )),
+                                        DataCell(Text(
+                                          data['16'],
+                                          style: style,
+                                        )),
+                                        DataCell(Text(
+                                          data['15'],
+                                          style: style,
+                                        )),
+                                        DataCell(Text(
+                                          data['14'],
+                                          style: style,
+                                        )),
+                                        DataCell(Text(
+                                          data['12'],
+                                          style: style,
+                                        )),
+                                        DataCell(Text(
+                                          data['11'],
+                                          style: style,
+                                        )),
+                                        DataCell(Text(
+                                          data['10'],
+                                          style: style,
+                                        )),
+                                        DataCell(Text(
+                                          data['9'],
+                                          style: style,
+                                        )),
+                                        DataCell(Text(
+                                          data['8'],
+                                          style: style,
+                                        )),
+                                        DataCell(Text(
+                                          data['7'],
+                                          style: style,
+                                        )),
+                                        DataCell(Text(
+                                          data['6'],
+                                          style: style,
+                                        )),
+                                        DataCell(Text(
+                                          data['5'],
+                                          style: style,
+                                        )),
+                                        DataCell(
+                                          Container(
+                                              color: const Color(0xff82225E),
+                                              child: Text(
+                                                'تم الشحن',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize:
+                                                        getProportionateScreenWidth(
+                                                            5)),
+                                              )),
+                                        ),
+                                        DataCell(
+                                          Column(
+                                            children: [
+                                              Text(
+                                                'مستعمل',
+                                                style: style,
+                                              ),
+                                              Icon(
+                                                Icons.notifications,
+                                                color: const Color(0xff82225E),
+                                                size:
+                                                    getProportionateScreenWidth(4),
+                                              )
+                                            ],
                                           ),
-                                          Icon(
-                                            Icons.notifications,
-                                            color: const Color(0xff82225E),
-                                            size:
-                                                getProportionateScreenWidth(4),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    DataCell(Text(
-                                      data['2'],
-                                      style: style,
-                                    )),
-                                    DataCell(
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          const Text(
-                                            '0',
-                                          ),
-                                          Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
+                                        ),
+                                        DataCell(Text(
+                                          data['2'],
+                                          style: style,
+                                        )),
+                                        DataCell(
+                                          Column(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
-                                              InkWell(
-                                                child: Image.asset(
-                                                  ImageAssets.iconDropDown29,
-                                                  width: 20,
-                                                  height: 20,
-                                                ),
-                                                onTap: () {},
+                                              const Text(
+                                                '0',
                                               ),
-                                              Image.asset(
-                                                ImageAssets.iconDropDown28,
-                                                width: 20,
-                                                height: 30,
-                                              ),
-                                              InkWell(
-                                                child: Image.asset(
-                                                  ImageAssets.iconDropDown27,
-                                                  width: 20,
-                                                  height: 30,
-                                                ),
-                                                onTap: () {
-                                                  setState(() {
-                                                    visable = !visable;
-                                                  });
-                                                },
-                                              ),
+                                              Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  InkWell(
+                                                    child: Image.asset(
+                                                      ImageAssets.iconDropDown29,
+                                                      width: 20,
+                                                      height: 20,
+                                                    ),
+                                                    onTap: () {},
+                                                  ),
+                                                  Image.asset(
+                                                    ImageAssets.iconDropDown28,
+                                                    width: 20,
+                                                    height: 30,
+                                                  ),
+                                                  InkWell(
+                                                    child: Image.asset(
+                                                      ImageAssets.iconDropDown27,
+                                                      width: 20,
+                                                      height: 30,
+                                                    ),
+                                                    onTap: () {
+                                                      setState(() {
+                                                        visable = !visable;
+                                                      });
+                                                    },
+                                                  ),
+                                                ],
+                                              )
                                             ],
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  ]))
-                              .toList(),
+                                          ),
+                                        )
+                                      ]))
+                                  .toList(),
+                            ),
+                          ],
                         ),
                         visable
                             ? Padding(

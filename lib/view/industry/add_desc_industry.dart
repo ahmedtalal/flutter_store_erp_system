@@ -136,14 +136,14 @@ class _AddDescIndustryState extends State<AddDescIndustry> {
                                     height: getProportionateScreenHeight(90),
                                     padding: const EdgeInsets.only(top: 35),
                                     child: dropDown(
-                                      const ['منتج التشيل', 'منتج تام'],
+                                      const ['منتج التشغيل', 'منتج تام'],
                                       selectTalab: chose,
                                       onchanged: () => (val) {
                                         setState(() {
                                           chose = val;
                                         });
                                       },
-                                      label: 'حاله المنتج',
+                                      label: 'نوع المنتج',
                                       foColor: Colors.white,
                                       bgColor: ColorManager.primary,
                                       dpColor: ColorManager.primary,

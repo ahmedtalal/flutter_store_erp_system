@@ -5,6 +5,7 @@ import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/components/default_table.dart';
 import 'package:erb_system/view/store/mo_fiber.dart';
 import 'package:flutter/material.dart';
+import 'package:qlevar_router/qlevar_router.dart';
 
 class MO4Details extends StatelessWidget {
   MO4Details({Key? key}) : super(key: key);
@@ -44,6 +45,27 @@ class MO4Details extends StatelessWidget {
           children: [
             const SizedBox(
               height: 50,
+            ),
+            SizedBox(
+              height: 50,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap:(){
+                      QR.back();
+                    },
+                    child: Image.asset('assets/images/22.png'),
+                  ),
+                  InkWell(
+                    onTap:(){
+                      QR.to('/');
+                    },
+                    child: Image.asset('assets/images/2.png',width: getProportionateScreenWidth(50),),
+                  )
+                ],
+              ),
             ),
             DefaultContainer(title: 'تفاصيل MO4 للفايبر'),
             const SizedBox(

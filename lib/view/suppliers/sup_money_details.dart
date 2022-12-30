@@ -6,6 +6,7 @@ import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/components/default_table.dart';
 import 'package:erb_system/view/home/components/drop_down.dart';
 import 'package:flutter/material.dart';
+import 'package:qlevar_router/qlevar_router.dart';
 
 class SupMoneyDetails extends StatefulWidget {
   const SupMoneyDetails({Key? key}) : super(key: key);
@@ -114,7 +115,9 @@ class _SupMoneyDetailsState extends State<SupMoneyDetails> {
                                           ? chose1
                                           : chose2,
                                       onchanged: () => (val) {
-                                        print(index);
+                                       if(val =='سداد المورد' ){
+                                         QR.to('/sup_pay');
+                                       }
                                         setState(() {
                                           selectedIndex = index;
                                           chose1 = val;

@@ -210,7 +210,7 @@ class _ConfirmIndusState extends State<ConfirmIndus> {
                                               backgroundColor:
                                               MaterialStateProperty.all(Colors.white)),
                                           child: Text(
-                                            '$orderDate',
+                                            "${orderDate.year.toString()}/${orderDate.month.toString().padLeft(2, '0')}/${orderDate.day.toString().padLeft(2, '0')}",
                                             style: const TextStyle(
                                               color: Colors.black,
                                             ),
@@ -274,7 +274,14 @@ class _ConfirmIndusState extends State<ConfirmIndus> {
                                   SizedBox(width: getProportionateScreenWidth(1),),
                                 ],
                               ),
-                              const SizedBox(height: 20,),
+                              const SizedBox(height: 100,),
+                              Botton(
+                                color: ColorManager.white,
+                                title: 'تاكيد',
+                                onTap: () {},
+                                bgColor: ColorManager.primary,
+                              ),
+
                             ],
                           ),
                         ),

@@ -9,6 +9,7 @@ import 'package:erb_system/view/home/drop_down_par.dart';
 import 'package:erb_system/view/suppliers/cat_details.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qlevar_router/qlevar_router.dart';
 
 class SupCat extends StatelessWidget {
   SupCat({Key? key}) : super(key: key);
@@ -83,7 +84,8 @@ class SupCat extends StatelessWidget {
                                                         3),
                                                 color: ColorManager.white,
                                                 onTap: () {
-                                                  pro.changePage(CatDetails());
+                                                  QR.to('/cat_details');
+
                                                 },
                                               ),
                                             ),

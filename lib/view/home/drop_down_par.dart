@@ -1,5 +1,8 @@
+import 'package:erb_system/resources/color_manger.dart';
+import 'package:erb_system/resources/value_manager.dart';
 import 'package:erb_system/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:qlevar_router/qlevar_router.dart';
 
 import '../../resources/assets_manager.dart';
 import 'components/deafult_dorp_down.dart';
@@ -8,7 +11,6 @@ class DropDownList extends StatelessWidget {
   DropDownList({Key? key}) : super(key: key);
 
   List<String> title = [
-    'الرئيسيه',
     'المخازن',
     'الموردين',
     'اداره الاصناف',
@@ -22,7 +24,6 @@ class DropDownList extends StatelessWidget {
     'الايصالات و الاذونات',
   ];
   List<String> image = [
-    ImageAssets.iconDropDown2,
     ImageAssets.iconDropDown3,
     ImageAssets.iconDropDown4,
     ImageAssets.iconDropDown5,
@@ -36,7 +37,6 @@ class DropDownList extends StatelessWidget {
     ImageAssets.iconDropDown14,
   ];
   List taps = [
-    ['الرئيسيه'],
     ['اضافه مخزن ', 'المخازن', ' تحويلات بين المخازن'],
     ['اضافه مورد ', 'اضافه فئه الموردين', 'فئات الموردين', "الموردين"],
     [
@@ -46,7 +46,7 @@ class DropDownList extends StatelessWidget {
       "وحدات القياس",
       "فروع الانتاج"
     ],
-    ['اضافه فاتوره مشتريات ', 'فواتير المشتريات', 'مرتجعات المشتريات'],
+    ['اضافه فاتوره مشتريات ', 'فواتير المشتريات'],
     [
       'اضافه وصفه ',
       'وصفات التصنيع',
@@ -72,19 +72,58 @@ class DropDownList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      separatorBuilder: (context, index) => const SizedBox(
-        height: 10,
-      ),
-      itemBuilder: (context, index) => DefaultDropDown(
-        item:  taps[index],
-        title:title[index],
-        imageUrl: image[index],
-        leading: index == 0 ? Container(width: 10,): Image.asset("assets/images/15.png",),
-        trailing: Image.asset(image[index]),
-        index: index,
-      ),
-      itemCount: 12,
+    return Column(
+      children: [
+        ListTile(
+          onTap: () {
+            QR.to('/');
+            DateTime now = DateTime.now();
+            String convertedDateTime =
+                "${now.year.toString()}/${now.month.toString().padLeft(2, '0')}/${now.day.toString().padLeft(2, '0')}";
+            print(convertedDateTime);
+          },
+          trailing: Image.asset(ImageAssets.iconDropDown2),
+          title: Center(
+            child: MediaQuery.of(context).size.width < 1500
+                ? const Text(' ')
+                : Text(
+                    'الرئيسيه',
+                    style: TextStyle(
+                        fontSize: getProportionateScreenWidth(5),
+                        color: Colors.white),
+                  ),
+          ),
+          leading: MediaQuery.of(context).size.width < 800
+              ? Container(
+                  width: 2,
+                )
+              : Image.asset(
+                  "assets/images/15.png",
+                ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Expanded(
+          child: ListView.separated(
+            shrinkWrap: true,
+            separatorBuilder: (context, index) => const SizedBox(
+              height: 10,
+            ),
+            itemBuilder: (context, index) => DefaultDropDown(
+              item: taps[index],
+              title: title[index],
+              imageUrl: image[index],
+              leading: Image.asset(
+                "assets/images/15.png",
+              ),
+              trailing: Image.asset(image[index]),
+              index: index,
+            ),
+            itemCount: 11,
+          ),
+        ),
+      ],
     );
   }
 }

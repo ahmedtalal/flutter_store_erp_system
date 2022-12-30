@@ -1,5 +1,6 @@
 import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/size_config.dart';
+import 'package:erb_system/view/home/components/botton.dart';
 import 'package:erb_system/view/home/components/default_botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/components/default_table.dart';
@@ -101,6 +102,15 @@ class MODetails extends StatelessWidget {
                 .toList(),),
 
           ],
+        ),
+        const SizedBox(
+          height: 30,
+        ),
+        Botton(
+          color: ColorManager.white,
+          title: 'المزيد',
+          onTap: () {},
+          bgColor: ColorManager.primary,
         ),
       ],
     );

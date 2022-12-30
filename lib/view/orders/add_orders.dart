@@ -49,7 +49,6 @@ class _AddOrderState extends State<AddOrder> {
       "4": "100",
       "5": "كيلو",
       "6": "٣٠",
-
     },
     {
       "1": "١/١٢.٢٠٢٢",
@@ -58,12 +57,10 @@ class _AddOrderState extends State<AddOrder> {
       "4": "100",
       "5": "كيلو",
       "6": "٣٠",
-
     },
   ];
 
   List<String> columnData = [
-
     "صورةالمنتج",
     "اجمالي سعر البيع",
     "سعر البيع",
@@ -114,7 +111,7 @@ class _AddOrderState extends State<AddOrder> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(
-                                top: 10.0, left: 16, right: 16),
+                                top: 10.0, left: 8, right: 8),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -224,7 +221,7 @@ class _AddOrderState extends State<AddOrder> {
                                             MaterialStateProperty.all(
                                                 Colors.white)),
                                         child: Text(
-                                          '$orderDate',
+                                          "${orderDate.year.toString()}/${orderDate.month.toString().padLeft(2, '0')}/${orderDate.day.toString().padLeft(2, '0')}",
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontSize:
@@ -234,23 +231,22 @@ class _AddOrderState extends State<AddOrder> {
                                       ),
                                     ),
                                     Container(
-                                      width: MediaQuery.of(context).size.width <= 660
+                                      width:
+                                      MediaQuery.of(context).size.width <=
+                                          660
                                           ? getProportionateScreenWidth(52)
                                           : getProportionateScreenWidth(43),
                                       height: getProportionateScreenHeight(90),
                                       padding: const EdgeInsets.only(top: 35),
                                       child: dropDown(
-                                        const [
-                                          "افراد",
-                                          "شركه"
-                                        ],
+                                        const ["افراد", "شركه"],
                                         selectTalab: typeCustomer,
                                         onchanged: () => (val) {
                                           setState(() {
                                             typeCustomer = val;
                                           });
                                         },
-                                        label:  "نوع العميل",
+                                        label: "نوع العميل",
                                         foColor: Colors.white,
                                         bgColor: ColorManager.primary,
                                         dpColor: ColorManager.primary,
@@ -259,6 +255,9 @@ class _AddOrderState extends State<AddOrder> {
                                   ],
                                 ),
                                 Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Container(
                                       width:
@@ -303,7 +302,7 @@ class _AddOrderState extends State<AddOrder> {
                                             hint: const Text(
                                               "المدينة",
                                               style: TextStyle(
-                                                color:Colors.black,
+                                                color: Colors.black,
                                               ),
                                             ),
                                             borderRadius:
@@ -314,6 +313,9 @@ class _AddOrderState extends State<AddOrder> {
                                           ),
                                         ),
                                       ),
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
                                     ),
                                     Container(
                                       width:
@@ -358,7 +360,7 @@ class _AddOrderState extends State<AddOrder> {
                                             hint: const Text(
                                               "المحافظة",
                                               style: TextStyle(
-                                                color:Colors.black,
+                                                color: Colors.black,
                                               ),
                                             ),
                                             borderRadius:
@@ -370,6 +372,10 @@ class _AddOrderState extends State<AddOrder> {
                                         ),
                                       ),
                                     ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+
                                   ],
                                 ),
                                 Column(
@@ -385,7 +391,7 @@ class _AddOrderState extends State<AddOrder> {
                                         ),
                                         SizedBox(
                                           width:
-                                          getProportionateScreenWidth(30),
+                                          getProportionateScreenWidth(40),
                                           height: 60,
                                           child: DefaultInputForm(
                                             hint: '',
@@ -406,7 +412,7 @@ class _AddOrderState extends State<AddOrder> {
                                     Column(
                                       children: [
                                         Text(
-                                          'رقم الموبيل',
+                                          'رقم الموبيل 1',
                                           style: style,
                                         ),
                                         const SizedBox(
@@ -414,7 +420,32 @@ class _AddOrderState extends State<AddOrder> {
                                         ),
                                         SizedBox(
                                           width:
-                                          getProportionateScreenWidth(30),
+                                          getProportionateScreenWidth(40),
+                                          height: 60,
+                                          child: DefaultInputForm(
+                                            hint: '',
+                                            label: '',
+                                            onTab: () {},
+                                            validate: () {},
+                                            onSave: () {},
+                                            passFun: () {},
+                                            color: Colors.white70,
+                                            obscureText: false,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          'رقم الموبيل 2',
+                                          style: style,
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        SizedBox(
+                                          width:
+                                          getProportionateScreenWidth(40),
                                           height: 60,
                                           child: DefaultInputForm(
                                             hint: '',
@@ -467,96 +498,113 @@ class _AddOrderState extends State<AddOrder> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Container(
-                                width:getProportionateScreenWidth(70),
+                                width: getProportionateScreenWidth(70),
                                 height: getProportionateScreenHeight(193),
                                 decoration: BoxDecoration(
-                                  borderRadius:  BorderRadius.circular(15),
-                                  border: Border.all(color: Colors.black,width: 2),
+                                  borderRadius: BorderRadius.circular(15),
+                                  border:
+                                  Border.all(color: Colors.black, width: 2),
                                 ),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Icon(Icons.more_horiz),
-                                        Text('ملحوظات',style: style,),
-                                        Icon(Icons.close)
-                                      ],),
-                                    const Divider(color: Colors.black,thickness: 2,),
+                                        const Icon(Icons.more_horiz),
+                                        Text(
+                                          'ملحوظات',
+                                          style: style,
+                                        ),
+                                        const Icon(Icons.close)
+                                      ],
+                                    ),
+                                    const Divider(
+                                      color: Colors.black,
+                                      thickness: 2,
+                                    ),
                                     TextFormField(
                                       keyboardType: TextInputType.multiline,
                                       maxLines: 5,
                                       decoration: const InputDecoration(
-                                          border: InputBorder.none
-                                      ),
+                                          border: InputBorder.none),
                                     )
                                   ],
                                 ),
                               ),
-                              Column(children: [
-                                DefaultTable(
-                                  columnData: columnData,
-                                  size: getProportionateScreenWidth(5),
-                                  color: ColorManager.primary,
-                                  rows: data
-                                      .map((data) => DataRow(cells: [
-                                    DataCell(Image.asset(
-                                      'assets/images/23.png',
-                                      width: 50,
-                                      height: 50,
-                                    )),
+                              Column(
+                                children: [
+                                  DefaultTable(
+                                    columnData: columnData,
+                                    size: getProportionateScreenWidth(5),
+                                    color: ColorManager.primary,
+                                    rows: data
+                                        .map((data) => DataRow(cells: [
+                                      DataCell(Image.asset(
+                                        'assets/images/23.png',
+                                        width: 50,
+                                        height: 50,
+                                      )),
+                                      DataCell(Text(
+                                        data['5'],
+                                        style: style,
+                                      )),
+                                      DataCell(Text(
+                                        data['4'],
+                                        style: style,
+                                      )),
+                                      DataCell(Text(
+                                        data['3'],
+                                        style: style,
+                                      )),
+                                      DataCell(Text(
+                                        data['2'],
+                                        style: style,
+                                      )),
+                                      DataCell(Text(
+                                        data['1'],
+                                        style: style,
+                                      )),
+                                    ]))
+                                        .toList(),
+                                  ),                                        const SizedBox(
+                                    height: 5,
+                                  ),
 
-                                    DataCell(Text(
-                                      data['5'],
-                                      style: style,
-                                    )),
-                                    DataCell(Text(
-                                      data['4'],
-                                      style: style,
-                                    )),
-                                    DataCell(Text(
-                                      data['3'],
-                                      style: style,
-                                    )),
-                                    DataCell(Text(
-                                      data['2'],
-                                      style: style,
-                                    )),
-                                    DataCell(Text(
-                                      data['1'],
-                                      style: style,
-                                    )),
-                                  ]))
-                                      .toList(),
-                                ),
-                                InkWell(
-                                  onTap: (){},
-                                  child: Container(
-                                    decoration: BoxDecoration(
-// color: ColorManager.primary,
-                                        border: Border.all(color: ColorManager.primary)
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.add,
-                                          color: ColorManager.primary,
-                                        ),
+                                  InkWell(
+                                    onTap: (){},
+                                    child: Container(
+                                      width:getProportionateScreenWidth(42),
+                                      decoration: BoxDecoration(
+                                          borderRadius: const BorderRadius.all(Radius.circular(25)),
+                                          border: Border.all(color: ColorManager.primary)
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.add,
+                                            color: ColorManager.primary,
+                                          ),
 
-                                        Text(
-                                          'اضافه صنف',
-                                          style: TextStyle(
+                                          Text(
+                                            'اضافه صنف ',
+                                            style: TextStyle(
                                               fontSize: getProportionateScreenWidth(5),
-                                              fontWeight: FontWeight.w500),
-                                        )
-                                      ],
+                                              fontWeight: FontWeight.w500,
+                                              // color: ColorManager.primary
+
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],),
+                                ],
+                              ),
                             ],
                           ),
                           const SizedBox(
@@ -593,10 +641,7 @@ class _AddOrderState extends State<AddOrder> {
                               ),
                               Column(
                                 children: [
-                                  Text(
-                                      'صافي القيمة',
-                                      style: style
-                                  ),
+                                  Text('صافي القيمة', style: style),
                                   const SizedBox(
                                     height: 10,
                                   ),
@@ -643,10 +688,7 @@ class _AddOrderState extends State<AddOrder> {
                               ),
                               Column(
                                 children: [
-                                  Text(
-                                      'اجمالى الفاتورة',
-                                      style: style
-                                  ),
+                                  Text('اجمالى الفاتورة', style: style),
                                   const SizedBox(
                                     height: 10,
                                   ),
@@ -668,9 +710,7 @@ class _AddOrderState extends State<AddOrder> {
                               ),
                               Column(
                                 children: [
-                                  Text(
-                                      'مصاريف الشحن', style: style
-                                  ),
+                                  Text('مصاريف الشحن', style: style),
                                   const SizedBox(
                                     height: 10,
                                   ),
@@ -695,28 +735,65 @@ class _AddOrderState extends State<AddOrder> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
+                              Column(
+                                children: [
+                                  Text(
+                                    'العنوان',
+                                    style: style,
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  SizedBox(
+                                    width: MediaQuery.of(context)
+                                        .size
+                                        .width <=
+                                        917
+                                        ? getProportionateScreenWidth(75)
+                                        : getProportionateScreenWidth(63),
+                                    height: 100,
+                                    child: TextFormField(
+                                      maxLines: 5,
+                                      decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                          borderSide: BorderSide(color: ColorManager.primary)
+                                        )
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(width: 20,),
                               Container(
-                                width:getProportionateScreenWidth(35) ,
-                                height:getProportionateScreenHeight(132) ,
+                                width: getProportionateScreenWidth(35),
+                                height: getProportionateScreenHeight(132),
                                 decoration: BoxDecoration(
                                     border: Border.all(
                                       color: Colors.black,
                                       width: 2,
-                                    )
-                                ),
+                                    )),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Text('ارفاق ايصال الدفع',style: style,),
-                                    Image.asset(ImageAssets.iconDropDown20,width: getProportionateScreenWidth(35),height: getProportionateScreenHeight(85),)
+                                    Text(
+                                      'ارفاق ايصال الدفع',
+                                      style: style,
+                                    ),
+                                    Image.asset(
+                                      ImageAssets.iconDropDown20,
+                                      width: getProportionateScreenWidth(35),
+                                      height: getProportionateScreenHeight(85),
+                                    )
                                   ],
                                 ),
-
                               ),
-                              const SizedBox(width: 20,),
-
-                            ],),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                            ],
+                          ),
                           const SizedBox(
                             height: 44,
                           ),

@@ -13,10 +13,10 @@ class ConfirmPurchase extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     return Scaffold(
-      body: SizedBox(
+      body: Container(
+        padding: EdgeInsets.all(16),
         width: double.infinity,
         child: Column(
-
           children: [
             const SizedBox(height: 30,),
             DefaultContainer(title: 'تاكيد استلام مشتريات',),
@@ -44,7 +44,7 @@ class ConfirmPurchase extends StatelessWidget {
                         validate: () {},
                         onSave: () {},
                         passFun: () {},
-                        color: Colors.white70,
+                        color: Colors.grey,
                         obscureText: false,
                       ),
                     ),
@@ -72,7 +72,7 @@ class ConfirmPurchase extends StatelessWidget {
                         validate: () {},
                         onSave: () {},
                         passFun: () {},
-                        color: Colors.white70,
+                        color: Colors.grey,
                         obscureText: false,
                       ),
                     ),
@@ -100,15 +100,13 @@ class ConfirmPurchase extends StatelessWidget {
                         validate: () {},
                         onSave: () {},
                         passFun: () {},
-                        color: Colors.white70,
+                        color: Colors.grey,
                         obscureText: false,
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(
-                  width: 50,
-                ),
+
               ],
             ),
             SizedBox(height: 30,),
@@ -135,7 +133,7 @@ class ConfirmPurchase extends StatelessWidget {
                         validate: () {},
                         onSave: () {},
                         passFun: () {},
-                        color: Colors.white70,
+                        color: Colors.grey,
                         obscureText: false,
                       ),
                     ),

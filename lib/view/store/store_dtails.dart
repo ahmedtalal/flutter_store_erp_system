@@ -1,12 +1,15 @@
 import 'package:erb_system/controller/controller.dart';
 import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/size_config.dart';
+import 'package:erb_system/view/auth/component/text_fom_feild.dart';
+import 'package:erb_system/view/home/components/botton.dart';
 import 'package:erb_system/view/home/components/default_botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/components/default_table.dart';
 import 'package:erb_system/view/store/fiber_details.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qlevar_router/qlevar_router.dart';
 
 class StoreDetails extends StatelessWidget {
   StoreDetails({Key? key}) : super(key: key);
@@ -63,7 +66,8 @@ class StoreDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
-    var pro = Provider.of<Controller>(context);
+    TextStyle style = TextStyle(fontSize: getProportionateScreenWidth(4));
+
     return SafeArea(
         child: Scaffold(
       body: SizedBox(
@@ -77,6 +81,36 @@ class StoreDetails extends StatelessWidget {
             DefaultContainer(title: 'تفاصيل مخزن مواد خام'),
             const SizedBox(
               height: 50,
+            ),
+            Column(
+              children: [
+                Text(
+                  'البحث',
+                  style: style,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  width: getProportionateScreenWidth(70),
+                  height: 60,
+                  child: DefaultInputForm(
+                    perFix: IconButton(
+                      icon: const Icon(Icons.search),
+                      color: Colors.grey[500],
+                      onPressed: () {},
+                    ),
+                    hint: '',
+                    label: '',
+                    onTab: () {},
+                    validate: () {},
+                    onSave: () {},
+                    passFun: () {},
+                    color: Colors.white70,
+                    obscureText: false,
+                  ),
+                ),
+              ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -98,7 +132,7 @@ class StoreDetails extends StatelessWidget {
                                     title: 'تفاصيل',
                                     color: ColorManager.white,
                                     onTap: () {
-                                      pro.changePage(FiperDetails());
+                                     QR.to('/fiber_details');
                                     },
                                   ),
                                 ),
@@ -162,6 +196,15 @@ class StoreDetails extends StatelessWidget {
                   ],
                 )
               ],
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Botton(
+              color: ColorManager.white,
+              title: 'المزيد',
+              onTap: () {},
+              bgColor: ColorManager.primary,
             ),
           ],
         ),

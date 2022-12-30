@@ -48,13 +48,12 @@ class _LoginState extends State<Login> {
                   onTab: () {},
                   validate: () {},
                   onSave: () {},
+                  suffix: IconButton(icon:Icon(Icons.remove_red_eye) ,onPressed: (){ setState(() {
+                    isVisible = !isVisible;
+                  });},),
                   passFun: () {
-                    setState(() {
-                      isVisible = !isVisible;
-                    });
-                    print(isVisible);
                   },
-                  iconData: Icons.remove_red_eye,
+
                   obscureText: isVisible),
             ),
             const SizedBox(

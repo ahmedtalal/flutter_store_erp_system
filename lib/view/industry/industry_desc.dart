@@ -11,6 +11,7 @@ import 'package:erb_system/view/home/components/default_table.dart';
 import 'package:erb_system/view/home/components/drop_down.dart';
 import 'package:erb_system/view/home/drop_down_par.dart';
 import 'package:flutter/material.dart';
+import 'package:qlevar_router/qlevar_router.dart';
 
 class IndustryDesc extends StatefulWidget {
   const IndustryDesc({Key? key}) : super(key: key);
@@ -26,21 +27,6 @@ class _IndustryDescState extends State<IndustryDesc> {
   int? selectedIndex;
 
   DateTime orderDate = DateTime.now();
-
-  List dataTable = [
-    Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.add,
-              color: Colors.red,
-            )),
-        const Text('اضافه صنف')
-      ],
-    )
-  ];
 
   List data = [
     {
@@ -181,18 +167,22 @@ class _IndustryDescState extends State<IndustryDesc> {
                                               (index) => Column(
                                             children: [
                                               SizedBox(
-                                                  width: getProportionateScreenWidth(45),
+                                                  width: getProportionateScreenWidth(40),
                                                   child: dropDown(
 
 
                                                     const [
                                                       'تفاصيل الوصفة',
-                                                      'تعديل الوصفة'
+                                                      'تعديل الوصفة',
+                                                      'تاكيد امر تصنيع'
                                                     ],
                                                     selectTalab: index == selectedIndex
                                                         ? chose1
                                                         : chose2,
                                                     onchanged: () => (val) {
+                                                      if(val== 'تاكيد امر تصنيع'){
+                                                        QR.to('/ConfirmIndus');
+                                                      }
                                                       setState(() {
                                                         selectedIndex = index;
                                                         chose1 = val;
@@ -212,7 +202,7 @@ class _IndustryDescState extends State<IndustryDesc> {
                                   ),
                                   DefaultTable(
                                     columnData: columnData,
-                                    size: getProportionateScreenWidth(12),
+                                    size: getProportionateScreenWidth(7),
                                     color: ColorManager.second,
                                     rows: data
                                         .map((data) => DataRow(cells: [
@@ -252,6 +242,15 @@ class _IndustryDescState extends State<IndustryDesc> {
                                         .toList(),
                                   ),
                                 ],
+                              ),
+
+                              SizedBox(height: 50,),
+
+                              Botton(
+                                color: ColorManager.white,
+                                title: 'المزيد',
+                                onTap: () {},
+                                bgColor: ColorManager.primary,
                               ),
                             ],
                           ),

@@ -85,7 +85,7 @@ class Stock extends StatelessWidget {
                                     title: 'تفاصيل',
                                     color: ColorManager.white,
                                     onTap: () {
-                                     QR.to('fiber_details');
+                                     QR.to('/store_dtails');
                                     },
                                   ),
                                 ),

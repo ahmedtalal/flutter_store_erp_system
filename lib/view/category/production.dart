@@ -23,19 +23,6 @@ class _ProductionState extends State<Production> {
   String? chose1;
   String? chose2;
   int? selectedIndex;
-  List dataTable = [
-    Row(
-      children: [
-        IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.add,
-              color: Colors.red,
-            )),
-        const Text('اضافه فرع')
-      ],
-    )
-  ];
   List data = [
     {
       "1": "كيلو",
@@ -51,6 +38,7 @@ class _ProductionState extends State<Production> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
     return SafeArea(
         child: Scaffold(
             body: Row(
@@ -89,7 +77,7 @@ class _ProductionState extends State<Production> {
                                                     child: dropDown(
                                                       const [
                                                         'تعديل',
-                                                        'حزف',
+                                                        'حذف',
                                                       ],
                                                       selectTalab:
                                                       index == selectedIndex
@@ -145,7 +133,7 @@ class _ProductionState extends State<Production> {
                                                 ),
 
                                                 Text(
-                                                  'اضافه صنف',
+                                                  'اضافه فرع ',
                                                   style: TextStyle(
                                                     fontSize: getProportionateScreenWidth(5),
                                                     fontWeight: FontWeight.w500,

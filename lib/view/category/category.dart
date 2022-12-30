@@ -4,6 +4,7 @@ import 'package:erb_system/resources/style_manager.dart';
 import 'package:erb_system/size_config.dart';
 import 'package:erb_system/view/auth/component/text_fom_feild.dart';
 import 'package:erb_system/view/home/components/appBar.dart';
+import 'package:erb_system/view/home/components/botton.dart';
 import 'package:erb_system/view/home/components/default_botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/components/default_table.dart';
@@ -188,7 +189,8 @@ class _CategoriesState extends State<Categories> {
                                                   child: dropDown(
                                                     const [
                                                       'تفاصيل',
-                                                      'تعديل',
+                                                      'تاكيد طلب شراء',
+                                                      'تعديل الصنف',
                                                       'تعديل الرصيد'
                                                     ],
                                                     selectTalab: index == selectedIndex
@@ -245,6 +247,16 @@ class _CategoriesState extends State<Categories> {
                                   ),
                                 ],
                               ),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              Botton(
+                                bgColor: Colors.black,
+                                color: Colors.white,
+                                title: 'المزيد',
+                                onTap: () {},
+                              )
+
                             ],
                           ),
                         ),

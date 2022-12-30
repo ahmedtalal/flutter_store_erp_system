@@ -117,6 +117,33 @@ class _IndustryOrderState extends State<IndustryOrder> {
                               const SizedBox(
                                 height: 50,
                               ),
+                              Column(
+                                children: [
+                                  Text(
+                                    ' البحث',
+                                    style: getSemiBoldStyle(color: ColorManager.black),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  SizedBox(
+                                    width: getProportionateScreenWidth(70),
+                                    height: 60,
+                                    child: DefaultInputForm(
+                                      perFix: const Icon(Icons.search),
+                                      hint: '',
+                                      label: '',
+                                      onTab: () {},
+                                      validate: () {},
+                                      onSave: () {},
+                                      passFun: () {},
+                                      color: Colors.white70,
+                                      obscureText: false,
+                                    ),
+                                  ),
+                                ],
+                              ),
+
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -161,7 +188,7 @@ class _IndustryOrderState extends State<IndustryOrder> {
                                               backgroundColor:
                                               MaterialStateProperty.all(Colors.white)),
                                           child: Text(
-                                            '$orderDate',
+                                            "${orderDate.year.toString()}/${orderDate.month.toString().padLeft(2, '0')}/${orderDate.day.toString().padLeft(2, '0')}",
                                             style: const TextStyle(
                                               color: Colors.black,
                                             ),
@@ -263,8 +290,15 @@ class _IndustryOrderState extends State<IndustryOrder> {
                                 ],
                               ),
                               const SizedBox(
-                                height: 30,
+                                height: 50,
                               ),
+                              Botton(
+                                color: ColorManager.white,
+                                title: 'المزيد',
+                                onTap: () {},
+                                bgColor: ColorManager.primary,
+                              ),
+
                             ],
                           ),
                         ),

@@ -1,4 +1,5 @@
 import 'package:erb_system/resources/value_manager.dart';
+import 'package:erb_system/size_config.dart';
 import 'package:flutter/material.dart';
 
 import '../../../color.dart';
@@ -14,7 +15,7 @@ class DefaultInputForm extends StatelessWidget {
       required this.onSave,
       required this.passFun,
       required this.obscureText,
-      this.iconData,
+      this.suffix,
       this.perFix,
       this.color})
       : super(key: key);
@@ -25,35 +26,28 @@ class DefaultInputForm extends StatelessWidget {
   Function() onSave;
   Function() passFun;
   bool obscureText;
-  IconData? iconData;
+  Widget? suffix;
   Color? color = ColorManager.primary;
   Widget? perFix;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: TextStyle(fontSize: getProportionateScreenWidth(4)),
       obscureText: obscureText,
       validator: validate(),
       onSaved: onSave(),
       decoration: InputDecoration(
         hintStyle: const TextStyle(fontSize: 14),
-        contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
         label: Container(
             alignment: Alignment.center,
-            margin: const EdgeInsets.symmetric(horizontal: 9),
             child: Text(
               label,
               textAlign: TextAlign.center,
               style: const TextStyle(color: Colors.white),
             )),
-        suffixIcon: IconButton(
-          icon: Icon(
-            iconData,
-            color: ColorManager.white,
-          ),
-          onPressed: () => passFun(),
-        ),
         prefixIcon: perFix,
+        suffixIcon: suffix,
         filled: true,
         fillColor: color,
         border: OutlineInputBorder(

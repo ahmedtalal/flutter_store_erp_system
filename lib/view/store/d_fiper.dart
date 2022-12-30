@@ -4,6 +4,7 @@ import 'package:erb_system/view/home/components/default_botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/components/default_table.dart';
 import 'package:flutter/material.dart';
+import 'package:qlevar_router/qlevar_router.dart';
 
 class DDetails extends StatelessWidget {
   DDetails({Key? key}) : super(key: key);

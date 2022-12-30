@@ -30,12 +30,14 @@ class DefaultDropDown extends StatefulWidget {
 
 class _DefaultDropDownState extends State<DefaultDropDown> {
   int? selectedItem;
+  int? selectedTap;
 
   @override
   Widget build(BuildContext context) {
     var pro = Provider.of<Controller>(context);
     SizeConfig.init(context);
     return ExpansionTile(
+      initiallyExpanded:selectedTap == widget.index?true:false ,
         trailing: widget.trailing,
         title: Center(
           child:MediaQuery.of(context).size.width <1500?const Text(' '): Text(
@@ -57,7 +59,7 @@ class _DefaultDropDownState extends State<DefaultDropDown> {
                   borderRadius: BorderRadius.circular(AppSize.s15)),
               child: ListTile(
                 onTap: () {
-                  QR.navigator.replaceLast(pro.screen[widget.index][i]);
+                  QR.to(pro.screen[widget.index][i]);
                   // QR.to(pro.screen[widget.index][i],
                   //     pageAlreadyExistAction: PageAlreadyExistAction.Remove);
                   // pro.changePage(pro.screen[widget.index][i]);

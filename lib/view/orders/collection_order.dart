@@ -411,6 +411,39 @@ class _CollectionOrderState extends State<CollectionOrder> {
                                         ),
                                       ),
                                     ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          'العنوان',
+                                          style: style,
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        SizedBox(
+                                          width: MediaQuery.of(context)
+                                              .size
+                                              .width <=
+                                              917
+                                              ? getProportionateScreenWidth(75)
+                                              : getProportionateScreenWidth(43),
+                                          height: 60,
+                                          child: DefaultInputForm(
+                                            hint: '',
+                                            label: '',
+                                            onTab: () {},
+                                            validate: () {},
+                                            onSave: () {},
+                                            passFun: () {},
+                                            color: Colors.white70,
+                                            obscureText: false,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ],
                                 ),
                                 Column(
@@ -426,7 +459,7 @@ class _CollectionOrderState extends State<CollectionOrder> {
                                         ),
                                         SizedBox(
                                           width:
-                                          getProportionateScreenWidth(30),
+                                          getProportionateScreenWidth(40),
                                           height: 60,
                                           child: DefaultInputForm(
                                             hint: '',
@@ -447,7 +480,7 @@ class _CollectionOrderState extends State<CollectionOrder> {
                                     Column(
                                       children: [
                                         Text(
-                                          'رقم الموبيل',
+                                          'رقم الموبيل 1',
                                           style: style,
                                         ),
                                         const SizedBox(
@@ -455,7 +488,32 @@ class _CollectionOrderState extends State<CollectionOrder> {
                                         ),
                                         SizedBox(
                                           width:
-                                          getProportionateScreenWidth(30),
+                                          getProportionateScreenWidth(40),
+                                          height: 60,
+                                          child: DefaultInputForm(
+                                            hint: '',
+                                            label: '',
+                                            onTab: () {},
+                                            validate: () {},
+                                            onSave: () {},
+                                            passFun: () {},
+                                            color: Colors.white70,
+                                            obscureText: false,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          'رقم الموبيل 2',
+                                          style: style,
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        SizedBox(
+                                          width:
+                                          getProportionateScreenWidth(40),
                                           height: 60,
                                           child: DefaultInputForm(
                                             hint: '',

@@ -5,6 +5,7 @@ import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/components/default_table.dart';
 import 'package:erb_system/view/store/d_fiper.dart';
 import 'package:flutter/material.dart';
+import 'package:qlevar_router/qlevar_router.dart';
 
 class D1Details extends StatelessWidget {
   D1Details({Key? key}) : super(key: key);
@@ -42,6 +43,7 @@ class D1Details extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+
             const SizedBox(
               height: 50,
             ),
