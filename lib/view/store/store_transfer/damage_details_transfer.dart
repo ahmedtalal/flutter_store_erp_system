@@ -68,7 +68,7 @@ class _ExchangePartState extends State<ExchangePart> {
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
-
+    TextStyle style = TextStyle(fontSize: getProportionateScreenWidth(5));
     // var format = DateFormat.yMd('ar');
 
     return Scaffold(
@@ -188,6 +188,70 @@ class _ExchangePartState extends State<ExchangePart> {
                       ),
 
                     ],
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width:getProportionateScreenWidth(70),
+                    height: getProportionateScreenHeight(183),
+                    decoration: BoxDecoration(
+                      borderRadius:  BorderRadius.circular(15),
+                      border: Border.all(color: Colors.black,width: 2),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Icon(Icons.more_horiz),
+                            Text('ملحوظات',style: style,),
+                            Icon(Icons.close)
+                          ],),
+                        const Divider(color: Colors.black,thickness: 2,),
+                        TextFormField(
+                          keyboardType: TextInputType.multiline,
+                          maxLines: 5,
+                          decoration: const InputDecoration(
+                              border: InputBorder.none
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 10,),
+                  Container(
+                    width:getProportionateScreenWidth(70),
+                    height: getProportionateScreenHeight(183),
+                    decoration: BoxDecoration(
+                      borderRadius:  BorderRadius.circular(15),
+                      border: Border.all(color: Colors.black,width: 2),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Icon(Icons.more_horiz),
+                            Text('تتبع',style: style,),
+                            Icon(Icons.close)
+                          ],),
+                        const Divider(color: Colors.black,thickness: 2,),
+                        TextFormField(
+                          keyboardType: TextInputType.multiline,
+                          maxLines: 5,
+                          decoration: const InputDecoration(
+                              border: InputBorder.none
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ],
               ),

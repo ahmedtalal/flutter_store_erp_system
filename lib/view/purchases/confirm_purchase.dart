@@ -18,9 +18,9 @@ class ConfirmPurchase extends StatelessWidget {
         child: Column(
 
           children: [
-            SizedBox(height: 30,),
+            const SizedBox(height: 30,),
             DefaultContainer(title: 'تاكيد استلام مشتريات',),
-            SizedBox(height: 30,),
+            const SizedBox(height: 30,),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -170,11 +170,12 @@ class ConfirmPurchase extends StatelessWidget {
                   ],
                 ),
 
-                const SizedBox(height: 20,),
-                Botton(
-                  color: ColorManager.white, title: 'تاكيد استيلام', onTap: () {}, bgColor: ColorManager.black,),
+
               ],
             ),
+            const SizedBox(height: 20,),
+            Botton(
+              color: ColorManager.white, title: 'تاكيد استيلام', onTap: () {}, bgColor: ColorManager.black,),
           ],
         ),
       ),

@@ -29,7 +29,7 @@ class DefaultBotton extends StatelessWidget {
                 MaterialStateProperty.all(const Color(0xff82225E))),
         child: Padding(
           padding: EdgeInsets.only(top: top!,right: right!,left: right!),
-          child: Text(title, style: getSemiBoldStyleAR(color: color)),
+          child: Text(title, style: getSemiBoldStyleAR(color: color,fontSize:getProportionateScreenWidth(4))),
         ));
   }
 }

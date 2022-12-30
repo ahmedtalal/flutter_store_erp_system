@@ -64,7 +64,7 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
     "الاجمالي",
     "السعر",
     "الوحده",
-    "الكميه المرتجعه",
+    "الكميه المطلوبه",
     "اسم الصنف",
   ];
 
@@ -127,8 +127,8 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
                                           MaterialStateProperty.all(Colors.white)),
                                       child: Text(
                                         '$orderDate',
-                                        style: const TextStyle(
-                                          color: Color(0xff82225E),
+                                        style:  TextStyle(
+                                          color: ColorManager.black,
                                         ),
                                       ),
                                     ),
@@ -178,6 +178,7 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
                                       validate: () {},
                                       onSave: () {},
                                       passFun: () {},
+                                      perFix: Icon(Icons.search),
                                       color: Colors.white70,
                                       obscureText: false,
                                     ),
@@ -197,7 +198,7 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
                             children: [
                               DefaultTable(
                                 columnData: columnData,
-                                size: getProportionateScreenWidth(5),
+                                size: getProportionateScreenWidth(15),
                                 color: ColorManager.second,
                                 rows: data
                                     .map((data) => DataRow(cells: [
@@ -220,28 +221,32 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
                                 ]))
                                     .toList(),
                               ),
-                              SizedBox(
-                                width: double.infinity,
-                                child: DataTable(columns: [
-                                  DataColumn(
-                                      label: Padding(
-                                        padding:  EdgeInsets.only(left:getProportionateScreenWidth(140)),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            IconButton(
-                                                onPressed: () {},
-                                                icon: const Icon(
-                                                  Icons.add,
-                                                  color: Colors.red,
-                                                  size: 30,
-                                                )),
-                                            const Text('اضافه صنف',style: TextStyle(fontSize: 25,fontWeight: FontWeight.w500),)
-                                          ],
-                                        ),
-                                      ))
-                                ], rows: []),
-                              )
+                              InkWell(
+                                onTap: (){},
+                                child: Container(
+                                  width:MediaQuery.of(context).size.width<=1209?getProportionateScreenWidth(45): getProportionateScreenWidth(30),
+                                  decoration: BoxDecoration(
+// color: ColorManager.primary,
+                                      border: Border.all(color: ColorManager.primary)
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.add,
+                                        color: ColorManager.primary,
+                                      ),
+
+                                      Text(
+                                        'اضافه صنف',
+                                        style: TextStyle(
+                                            fontSize: getProportionateScreenWidth(5),
+                                            fontWeight: FontWeight.w500),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                           const SizedBox(

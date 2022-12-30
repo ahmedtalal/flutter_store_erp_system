@@ -1,3 +1,4 @@
+import 'package:erb_system/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -10,6 +11,7 @@ class DefaultAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
     String formattedDate = DateFormat('dd/MM/yy').format(now);
 
     return Row(
@@ -18,9 +20,9 @@ class DefaultAppBar extends StatelessWidget {
       children: [
         IconButton(
             onPressed: () {},
-            icon: const Icon(
+            icon:  Icon(
               Icons.notifications,
-              size: 50,
+              size: getProportionateScreenWidth(15),
               color: Color(0xff82225E),
             )),
         Padding(
@@ -28,7 +30,7 @@ class DefaultAppBar extends StatelessWidget {
           child: Text(
             formattedDate,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),
+            style:  TextStyle(fontWeight: FontWeight.bold, fontSize: getProportionateScreenWidth(6)),
           ),
         ),
       ],

@@ -9,6 +9,7 @@ import 'package:erb_system/view/store/mo4_details.dart';
 import 'package:erb_system/view/store/po1_details.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qlevar_router/qlevar_router.dart';
 
 class FiperDetails extends StatelessWidget {
   FiperDetails({Key? key}) : super(key: key);
@@ -115,7 +116,7 @@ class FiperDetails extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 50),
+                  padding: const EdgeInsets.only(top: 80),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: List.generate(
@@ -124,24 +125,24 @@ class FiperDetails extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(bottom: 10),
+                                  padding: MediaQuery.of(context).size.width<=1000? const EdgeInsets.only(bottom: 20): const EdgeInsets.only(bottom: 10),
                                   child: DefaultBotton(
-                                    top:  MediaQuery.of(context).size.width<=500?getProportionateScreenWidth(8):getProportionateScreenWidth(3),
+                                    top:  MediaQuery.of(context).size.width<=1000?getProportionateScreenWidth(8):getProportionateScreenWidth(3),
                                     right: getProportionateScreenWidth(3),
                                     title: 'تفاصيل',
                                     color: ColorManager.white,
                                     onTap: () {
                                       if (data[index]['num_op'] == 'PO1') {
-                                        pro.changePage(PO1Details());
+                                      QR.to('/po1_details');
                                       } else if (data[index]['num_op'] ==
                                           'MO4') {
-                                        pro.changePage(MO4Details());
+                                        QR.to('/mo4_details');
                                       } else if (data[index]['num_op'] ==
                                           'D1') {
-                                        pro.changePage(D1Details());
+                                        QR.to('/d1_fiper');
                                       } else if (data[index]['num_op'] ==
                                           'PO2') {
-                                        pro.changePage(D1Details());
+                                        QR.to('/d1_fiper');
                                       }
                                     },
                                   ),

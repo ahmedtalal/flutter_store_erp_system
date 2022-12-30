@@ -50,8 +50,7 @@ class _CollectionOrderState extends State<CollectionOrder> {
       "4": "100",
       "5": "كيلو",
       "6": "٣٠",
-      "7": "3000",
-      "8": "موظف احمد",
+
     },
     {
       "1": "١/١٢.٢٠٢٢",
@@ -60,20 +59,18 @@ class _CollectionOrderState extends State<CollectionOrder> {
       "4": "100",
       "5": "كيلو",
       "6": "٣٠",
-      "7": "3000",
-      "8": "موظف احمد",
+
     },
   ];
 
-  List<String> columnData = [
-    "صورة الصنف",
-    "التكلفه سعر البيع",
-    "المطلوب",
-    "الرصيد",
-    "فرع الانتاج",
+  List<String> columnData =[
+
+    "صورةالمنتج",
+    "اجمالي سعر البيع",
+    "سعر ",
     "الوحده",
-    "نوع الصنف",
-    "اسم الصنف",
+    "الكميةالمطلوبة",
+    "اسم المنتج",
   ];
   List dataTable = [
     Row(
@@ -267,7 +264,7 @@ class _CollectionOrderState extends State<CollectionOrder> {
                                         child: Text(
                                           '$orderDate',
                                           style: TextStyle(
-                                              color: Color(0xff82225E),
+                                              color: Colors.black,
                                               fontSize:
                                               getProportionateScreenWidth(
                                                   5)),
@@ -293,7 +290,7 @@ class _CollectionOrderState extends State<CollectionOrder> {
                                         child: Text(
                                           '$stateDate',
                                           style: TextStyle(
-                                              color: const Color(0xff82225E),
+                                              color: Colors.black,
                                               fontSize:
                                               getProportionateScreenWidth(
                                                   5)),
@@ -347,7 +344,7 @@ class _CollectionOrderState extends State<CollectionOrder> {
                                             hint: const Text(
                                               "المدينة",
                                               style: TextStyle(
-                                                color: Color(0xff82225E),
+                                                color: Colors.black,
                                               ),
                                             ),
                                             borderRadius:
@@ -402,7 +399,7 @@ class _CollectionOrderState extends State<CollectionOrder> {
                                             hint: const Text(
                                               "المحافظة",
                                               style: TextStyle(
-                                                color: Color(0xff82225E),
+                                                color: Colors.black,
                                               ),
                                             ),
                                             borderRadius:
@@ -485,6 +482,9 @@ class _CollectionOrderState extends State<CollectionOrder> {
                                   child: dropDown(
                                     const [
                                       "طلب جديد",
+                                      "طلب استبدال",
+                                      "طلب صيانة",
+                                      "طلب مرتجع",
                                     ],
                                     selectTalab: typeOrder,
                                     onchanged: () => (val) {
@@ -597,21 +597,13 @@ class _CollectionOrderState extends State<CollectionOrder> {
                                   DefaultTable(
                                     columnData: columnData,
                                     size: getProportionateScreenWidth(6),
-                                    color: ColorManager.second,
+                                    color: ColorManager.primary,
                                     rows: data
                                         .map((data) => DataRow(cells: [
                                       DataCell(Image.asset(
                                         ImageAssets.iconDropDown23,
                                         width: 50,
                                         height: 50,
-                                      )),
-                                      DataCell(Text(
-                                        data['7'],
-                                        style: style,
-                                      )),
-                                      DataCell(Text(
-                                        data['6'],
-                                        style: style,
                                       )),
                                       DataCell(Text(
                                         data['5'],
@@ -808,7 +800,7 @@ class _CollectionOrderState extends State<CollectionOrder> {
                                       child: Text(
                                         '$chargeDate',
                                         style: TextStyle(
-                                            color: const Color(0xff82225E),
+                                            color: Colors.black,
                                             fontSize:
                                             getProportionateScreenWidth(5)),
                                       ),

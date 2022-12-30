@@ -9,6 +9,7 @@ import 'package:erb_system/view/home/drop_down_par.dart';
 import 'package:erb_system/view/store/store_dtails.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qlevar_router/qlevar_router.dart';
 
 class Stock extends StatelessWidget {
   Stock({Key? key}) : super(key: key);
@@ -44,6 +45,7 @@ class Stock extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     var pro = Provider.of<Controller>(context);
+    TextStyle style=TextStyle(fontSize: getProportionateScreenWidth(5));
     return SafeArea(
         child: Scaffold(
       body: Row(
@@ -63,7 +65,7 @@ class Stock extends StatelessWidget {
                     ),
                     Padding(
                       padding: MediaQuery.of(context).size.width <= 500
-                          ? const EdgeInsets.only(top: 180)
+                          ? const EdgeInsets.only(top: 200)
                           : const EdgeInsets.only(top: 200),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -83,13 +85,16 @@ class Stock extends StatelessWidget {
                                     title: 'تفاصيل',
                                     color: ColorManager.white,
                                     onTap: () {
-                                      pro.changePage(StoreDetails());
+                                     QR.to('fiber_details');
                                     },
                                   ),
                                 ),
                               ],
                             )),
                       ),
+                    ),
+                    const SizedBox(
+                      width: 80,
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -107,10 +112,10 @@ class Stock extends StatelessWidget {
                               .map((data) => DataRow(cells: [
 
                             DataCell(Text(
-                              data['last_name'],
+                              data['last_name'],style: style,
                             )),
                             DataCell(Text(
-                              data['first_name'],
+                              data['first_name'],style: style,
                             )),
                           ]))
                               .toList(),

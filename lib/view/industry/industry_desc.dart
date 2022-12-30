@@ -139,10 +139,12 @@ class _IndustryDescState extends State<IndustryDesc> {
                                     width: getProportionateScreenWidth(20),
                                   ),
                                   Container(
-                                    width: getProportionateScreenWidth(70),
+                                    width: getProportionateScreenWidth(50),
                                     height: getProportionateScreenHeight(90),
                                     padding: const EdgeInsets.only(top: 35),
                                     child: dropDown(
+
+
                                       const ['منتج تحت التشيل', 'منتج تام'],
                                       selectTalab: chose,
                                       onchanged: () => (val) {
@@ -150,7 +152,7 @@ class _IndustryDescState extends State<IndustryDesc> {
                                           chose = val;
                                         });
                                       },
-                                      label: 'حاله المنتج',
+                                      label: 'نوع المنتج',
                                       foColor: Colors.white,
                                       bgColor: ColorManager.primary,
                                       dpColor: ColorManager.primary,
@@ -179,11 +181,13 @@ class _IndustryDescState extends State<IndustryDesc> {
                                               (index) => Column(
                                             children: [
                                               SizedBox(
-                                                  width: getProportionateScreenWidth(70),
+                                                  width: getProportionateScreenWidth(45),
                                                   child: dropDown(
+
+
                                                     const [
-                                                      'تاكيد امر الشراء',
-                                                      'ارسال اشعار عند الاستلام'
+                                                      'تفاصيل الوصفة',
+                                                      'تعديل الوصفة'
                                                     ],
                                                     selectTalab: index == selectedIndex
                                                         ? chose1
@@ -208,7 +212,7 @@ class _IndustryDescState extends State<IndustryDesc> {
                                   ),
                                   DefaultTable(
                                     columnData: columnData,
-                                    size: getProportionateScreenWidth(4),
+                                    size: getProportionateScreenWidth(12),
                                     color: ColorManager.second,
                                     rows: data
                                         .map((data) => DataRow(cells: [
@@ -248,15 +252,6 @@ class _IndustryDescState extends State<IndustryDesc> {
                                         .toList(),
                                   ),
                                 ],
-                              ),
-                              const SizedBox(
-                                height: 30,
-                              ),
-                              Botton(
-                                color: ColorManager.white,
-                                title: 'تاكيد',
-                                onTap: () {},
-                                bgColor: ColorManager.black,
                               ),
                             ],
                           ),

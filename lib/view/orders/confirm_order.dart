@@ -51,8 +51,6 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
       "4": "100",
       "5": "كيلو",
       "6": "٣٠",
-      "7": "3000",
-      "8": "موظف احمد",
     },
     {
       "1": "١/١٢.٢٠٢٢",
@@ -61,20 +59,18 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
       "4": "100",
       "5": "كيلو",
       "6": "٣٠",
-      "7": "3000",
-      "8": "موظف احمد",
+
     },
   ];
 
   List<String> columnData = [
-    "صورة الصنف",
-    "التكلفه سعر البيع",
-    "المطلوب",
-    "الرصيد",
-    "فرع الانتاج",
+
+    "صورةالمنتج",
+    "اجمالي سعر البيع",
+    "سعر البيع",
     "الوحده",
-    "نوع الصنف",
-    "اسم الصنف",
+    "الكميةالمطلوبة",
+    "اسم المنتج",
   ];
   List dataTable = [
     Row(
@@ -268,7 +264,7 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
                                         child: Text(
                                           '$orderDate',
                                           style: TextStyle(
-                                              color: Color(0xff82225E),
+                                              color:Colors.black,
                                               fontSize:
                                               getProportionateScreenWidth(
                                                   5)),
@@ -294,7 +290,7 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
                                         child: Text(
                                           '$stateDate',
                                           style: TextStyle(
-                                              color: const Color(0xff82225E),
+                                              color:Colors.black,
                                               fontSize:
                                               getProportionateScreenWidth(
                                                   5)),
@@ -348,7 +344,7 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
                                             hint: const Text(
                                               "المدينة",
                                               style: TextStyle(
-                                                color: Color(0xff82225E),
+                                                color: Colors.black,
                                               ),
                                             ),
                                             borderRadius:
@@ -403,7 +399,7 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
                                             hint: const Text(
                                               "المحافظة",
                                               style: TextStyle(
-                                                color: Color(0xff82225E),
+                                                color: Colors.black,
                                               ),
                                             ),
                                             borderRadius:
@@ -486,6 +482,9 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
                                   child: dropDown(
                                     const [
                                       "طلب جديد",
+                                      "طلب استبدال",
+                                      "طلب صيانة",
+                                      "طلب مرتجع",
                                     ],
                                     selectTalab: typeOrder,
                                     onchanged: () => (val) {
@@ -576,7 +575,7 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
                                   DefaultTable(
                                     columnData: columnData,
                                     size: getProportionateScreenWidth(6),
-                                    color: ColorManager.second,
+                                    color: ColorManager.primary,
                                     rows: data
                                         .map((data) => DataRow(cells: [
                                       DataCell(Image.asset(
@@ -584,12 +583,7 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
                                         width: 50,
                                         height: 50,
                                       )),
-                                      DataCell(Text(
-                                        data['7'],style: style,
-                                      )),
-                                      DataCell(Text(
-                                        data['6'],style: style,
-                                      )),
+
                                       DataCell(Text(
                                         data['5'],style: style,
                                       )),
@@ -608,17 +602,32 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
                                     ]))
                                         .toList(),
                                   ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      IconButton(
-                                          onPressed: () {},
-                                          icon: const Icon(
+                                  InkWell(
+                                    onTap: (){},
+                                    child: Container(
+                                      width:getProportionateScreenWidth(42),
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(Radius.circular(25)),
+                                          border: Border.all(color: ColorManager.primary)
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(
                                             Icons.add,
-                                            color: Colors.red,
-                                          )),
-                                      Text('اضافه منتج',style: style,)
-                                    ],
+                                            color: ColorManager.primary,
+                                          ),
+
+                                          Text(
+                                            'اضافه منتج',
+                                            style: TextStyle(
+                                                fontSize: getProportionateScreenWidth(5),
+                                                fontWeight: FontWeight.w500),
+                                          )
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -773,7 +782,7 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
                                       child: Text(
                                         '$chargeDate',
                                         style: TextStyle(
-                                            color: const Color(0xff82225E),
+                                            color:  Colors.black,
                                             fontSize:
                                             getProportionateScreenWidth(
                                                 5)),
@@ -845,7 +854,9 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Text('ارفاق ايصال الدفع',style: style,),
-                                    Image.asset(ImageAssets.iconDropDown20,width: getProportionateScreenWidth(35),height: getProportionateScreenHeight(85),)
+                                    InkWell(
+                                        onTap: (){},
+                                        child: Image.asset(ImageAssets.iconDropDown20,width: getProportionateScreenWidth(35),height: getProportionateScreenHeight(85),))
                                   ],
                                 ),
 

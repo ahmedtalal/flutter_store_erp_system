@@ -31,7 +31,6 @@ class _TalabatState extends State<Talabat> {
   String? order;
   DateTime orderDate = DateTime.now();
   DateTime stateDate = DateTime.now();
-  TextEditingController _shopSearch = TextEditingController();
   String search = '';
   bool visable = false;
 
@@ -210,12 +209,12 @@ class _TalabatState extends State<Talabat> {
   ];
 
   List<String> columnData1 = [
-    "تكلفة الوحدة",
-    "وحدة القياس",
-    "الكمية",
-    "الطلب",
-    "الحركة",
-    "التاريخ",
+    "صورةالمنتج",
+    "اجماليسعر البيع",
+    "سعر البيع",
+    "الوحده",
+    "الكميةالمطلوبة",
+    "اسم المنتج",
   ];
 
   @override
@@ -246,7 +245,7 @@ class _TalabatState extends State<Talabat> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsets.only(top: 20.0, left: 16, right: 16),
+                          const EdgeInsets.only(top: 20.0, left: 6, right: 6),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -254,7 +253,7 @@ class _TalabatState extends State<Talabat> {
                           Column(
                             children: [
                               Container(
-                                width: MediaQuery.of(context).size.width <= 500
+                                width: MediaQuery.of(context).size.width <= 760
                                     ? getProportionateScreenWidth(65)
                                     : getProportionateScreenWidth(43),
                                 height: getProportionateScreenHeight(90),
@@ -274,7 +273,7 @@ class _TalabatState extends State<Talabat> {
                                 ),
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width <= 500
+                                width: MediaQuery.of(context).size.width <= 760
                                     ? getProportionateScreenWidth(65)
                                     : getProportionateScreenWidth(43),
                                 height: getProportionateScreenHeight(90),
@@ -303,7 +302,7 @@ class _TalabatState extends State<Talabat> {
                                 ),
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width <= 500
+                                width: MediaQuery.of(context).size.width <= 1458
                                     ? getProportionateScreenWidth(65)
                                     : getProportionateScreenWidth(43),
                                 height: getProportionateScreenHeight(90),
@@ -349,7 +348,7 @@ class _TalabatState extends State<Talabat> {
                                   child: Text(
                                     '$orderDate',
                                     style: TextStyle(
-                                        color: Color(0xff82225E),
+                                        color: Colors.black,
                                         fontSize:
                                             getProportionateScreenWidth(5)),
                                   ),
@@ -366,15 +365,15 @@ class _TalabatState extends State<Talabat> {
                                 width: getProportionateScreenWidth(50),
                                 height: 60,
                                 child: ElevatedButton(
-                                  onPressed: () => _selectDate(context),
+                                  onPressed: () => _select1Date(context),
                                   style: ButtonStyle(
                                       backgroundColor:
                                           MaterialStateProperty.all(
                                               Colors.white)),
                                   child: Text(
-                                    '$orderDate',
+                                    '$stateDate',
                                     style: TextStyle(
-                                        color: Color(0xff82225E),
+                                        color: Colors.black,
                                         fontSize:
                                             getProportionateScreenWidth(5)),
                                   ),
@@ -385,7 +384,7 @@ class _TalabatState extends State<Talabat> {
                           Column(
                             children: [
                               Container(
-                                width: MediaQuery.of(context).size.width <= 500
+                                width: MediaQuery.of(context).size.width <= 880
                                     ? getProportionateScreenWidth(75)
                                     : getProportionateScreenWidth(43),
                                 height: getProportionateScreenHeight(50),
@@ -423,7 +422,7 @@ class _TalabatState extends State<Talabat> {
                                       hint: const Text(
                                         "المدينة",
                                         style: TextStyle(
-                                          color: Color(0xff82225E),
+                                          color: Colors.black,
                                         ),
                                       ),
                                       borderRadius: BorderRadius.circular(10),
@@ -435,7 +434,7 @@ class _TalabatState extends State<Talabat> {
                                 ),
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width <= 500
+                                width: MediaQuery.of(context).size.width <= 880
                                     ? getProportionateScreenWidth(75)
                                     : getProportionateScreenWidth(43),
                                 height: getProportionateScreenHeight(50),
@@ -473,7 +472,7 @@ class _TalabatState extends State<Talabat> {
                                       hint: const Text(
                                         "المحافظة",
                                         style: TextStyle(
-                                          color: Color(0xff82225E),
+                                          color: Colors.black,
                                         ),
                                       ),
                                       borderRadius: BorderRadius.circular(10),
@@ -485,7 +484,7 @@ class _TalabatState extends State<Talabat> {
                                 ),
                               ),
                               SizedBox(
-                                width: MediaQuery.of(context).size.width <= 500
+                                width: MediaQuery.of(context).size.width <= 880
                                     ? getProportionateScreenWidth(75)
                                     : getProportionateScreenWidth(43),
                                 height: getProportionateScreenHeight(50),
@@ -523,7 +522,7 @@ class _TalabatState extends State<Talabat> {
                                         hint: const Text(
                                           "عرض",
                                           style: TextStyle(
-                                            color: Color(0xff82225E),
+                                            color: Colors.black,
                                           ),
                                         ),
                                         borderRadius: BorderRadius.circular(10),
@@ -536,7 +535,7 @@ class _TalabatState extends State<Talabat> {
                                 ),
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width <= 500
+                                width: MediaQuery.of(context).size.width <= 880
                                     ? getProportionateScreenWidth(75)
                                     : getProportionateScreenWidth(43),
                                 height: getProportionateScreenHeight(50),
@@ -572,7 +571,7 @@ class _TalabatState extends State<Talabat> {
                                       hint: const Text(
                                         "رقم الهاتف",
                                         style: TextStyle(
-                                          color: Color(0xff82225E),
+                                          color: Colors.black,
                                         ),
                                       ),
                                       borderRadius: BorderRadius.circular(10),
@@ -590,7 +589,7 @@ class _TalabatState extends State<Talabat> {
                               Column(
                                 children: [
                                   Text(
-                                    'اسم العميل',
+                                    'البحث',
                                     style: style,
                                   ),
                                   const SizedBox(
@@ -600,34 +599,11 @@ class _TalabatState extends State<Talabat> {
                                     width: getProportionateScreenWidth(40),
                                     height: 60,
                                     child: DefaultInputForm(
-                                      hint: '',
-                                      label: '',
-                                      onTab: () {},
-                                      validate: () {},
-                                      onSave: () {},
-                                      passFun: () {},
-                                      color: Colors.white70,
-                                      obscureText: false,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                    'رقم الموبيل',
-                                    style: style,
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  SizedBox(
-                                    width: getProportionateScreenWidth(40),
-                                    height: 60,
-                                    child: DefaultInputForm(
+                                      perFix: IconButton(
+                                        icon: const Icon(Icons.search),
+                                        color: Colors.grey[500],
+                                        onPressed: () {},
+                                      ),
                                       hint: '',
                                       label: '',
                                       onTab: () {},
@@ -645,7 +621,7 @@ class _TalabatState extends State<Talabat> {
                           Column(
                             children: [
                               Container(
-                                width: MediaQuery.of(context).size.width <= 500
+                                width: MediaQuery.of(context).size.width <= 710
                                     ? getProportionateScreenWidth(65)
                                     : getProportionateScreenWidth(43),
                                 height: getProportionateScreenHeight(90),
@@ -653,6 +629,9 @@ class _TalabatState extends State<Talabat> {
                                 child: dropDown(
                                   const [
                                     "طلب جديد",
+                                    "طلب استبدال",
+                                    "طلب صيانة",
+                                    "طلب مرتجع",
                                   ],
                                   selectTalab: typeOrder,
                                   onchanged: () => (val) {
@@ -667,7 +646,7 @@ class _TalabatState extends State<Talabat> {
                                 ),
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width <= 500
+                                width: MediaQuery.of(context).size.width <= 710
                                     ? getProportionateScreenWidth(65)
                                     : getProportionateScreenWidth(43),
                                 height: getProportionateScreenHeight(90),
@@ -687,7 +666,7 @@ class _TalabatState extends State<Talabat> {
                                 ),
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width <= 500
+                                width: MediaQuery.of(context).size.width <= 710
                                     ? getProportionateScreenWidth(65)
                                     : getProportionateScreenWidth(43),
                                 height: getProportionateScreenHeight(90),
@@ -715,330 +694,297 @@ class _TalabatState extends State<Talabat> {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 40,
-                      width: getProportionateScreenWidth(50),
-                      child: TextFormField(
-                        controller: _shopSearch,
-                        maxLines: 1,
-                        style: const TextStyle(
-                            fontSize: 16, color: Color(0xff82225E)),
-                        onChanged: (textValue) {
-                          setState(() {
-                            search = textValue;
-                          });
-                        },
-                        decoration: InputDecoration(
-                          fillColor: Colors.grey[100],
-                          filled: true,
-                          hintText: 'البحث',
-                          prefixIcon: IconButton(
-                            icon: const Icon(Icons.search),
-                            color: Colors.grey[500],
-                            onPressed: () {},
-                          ),
-                          suffixIcon: (search == '')
-                              ? null
-                              : GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      _shopSearch =
-                                          TextEditingController(text: '');
-
-                                      search = '';
-                                    });
-                                  },
-                                  child: Icon(Icons.close,
-                                      color: Colors.grey[500])),
-                          focusedBorder: const UnderlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5.0)),
-                              borderSide: BorderSide(color: Color(0xff82225E))),
-                          enabledBorder: const UnderlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5.0)),
-                            borderSide: BorderSide(color: Color(0xff82225E)),
-                          ),
-                        ),
-                      ),
-                    ),
                     const SizedBox(
                       height: 20,
                     ),
-                    DefaultTable(
-                      columnData: dataTable,
-                      color: ColorManager.second,
-                      size: getProportionateScreenWidth(1),
-                      icon: Image.asset(
-                        ImageAssets.iconDropDown32,
-                        width: getProportionateScreenWidth(20),
-                        height: getProportionateScreenWidth(6),
-                      ),
-                      rows: data
-                          .map((data) => DataRow(cells: [
-                                DataCell(Text(
-                                  data['18'],
-                                  style: style,
-                                )),
-                                DataCell(Text(
-                                  data['16'],
-                                  style: style,
-                                )),
-                                DataCell(Text(
-                                  data['15'],
-                                  style: style,
-                                )),
-                                DataCell(Text(
-                                  data['14'],
-                                  style: style,
-                                )),
-                                DataCell(Text(
-                                  data['12'],
-                                  style: style,
-                                )),
-                                DataCell(Text(
-                                  data['11'],
-                                  style: style,
-                                )),
-                                DataCell(Text(
-                                  data['10'],
-                                  style: style,
-                                )),
-                                DataCell(Text(
-                                  data['9'],
-                                  style: style,
-                                )),
-                                DataCell(Text(
-                                  data['8'],
-                                  style: style,
-                                )),
-                                DataCell(Text(
-                                  data['7'],
-                                  style: style,
-                                )),
-                                DataCell(Text(
-                                  data['6'],
-                                  style: style,
-                                )),
-                                DataCell(Text(
-                                  data['5'],
-                                  style: style,
-                                )),
-                                DataCell(
-                                  Container(
-                                      color: const Color(0xff82225E),
-                                      child: Text(
-                                        'تم الشحن',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize:
-                                                getProportionateScreenWidth(5)),
-                                      )),
-                                ),
-                                DataCell(
-                                  Column(
-                                    children: [
-                                      Text(
-                                        'مستعمل',
-                                        style: style,
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        DefaultTable(
+                          columnData: dataTable,
+                          color: ColorManager.primary,
+                          size: getProportionateScreenWidth(0.2),
+                          icon: Image.asset(
+                            ImageAssets.iconDropDown32,
+                            width: getProportionateScreenWidth(20),
+                            height: getProportionateScreenWidth(6),
+                          ),
+                          rows: data
+                              .map((data) => DataRow(cells: [
+                                    DataCell(Text(
+                                      data['18'],
+                                      style: style,
+                                    )),
+                                    DataCell(Text(
+                                      data['16'],
+                                      style: style,
+                                    )),
+                                    DataCell(Text(
+                                      data['15'],
+                                      style: style,
+                                    )),
+                                    DataCell(Text(
+                                      data['14'],
+                                      style: style,
+                                    )),
+                                    DataCell(Text(
+                                      data['12'],
+                                      style: style,
+                                    )),
+                                    DataCell(Text(
+                                      data['11'],
+                                      style: style,
+                                    )),
+                                    DataCell(Text(
+                                      data['10'],
+                                      style: style,
+                                    )),
+                                    DataCell(Text(
+                                      data['9'],
+                                      style: style,
+                                    )),
+                                    DataCell(Text(
+                                      data['8'],
+                                      style: style,
+                                    )),
+                                    DataCell(Text(
+                                      data['7'],
+                                      style: style,
+                                    )),
+                                    DataCell(Text(
+                                      data['6'],
+                                      style: style,
+                                    )),
+                                    DataCell(Text(
+                                      data['5'],
+                                      style: style,
+                                    )),
+                                    DataCell(
+                                      Container(
+                                          color: const Color(0xff82225E),
+                                          child: Text(
+                                            'تم الشحن',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize:
+                                                    getProportionateScreenWidth(
+                                                        5)),
+                                          )),
+                                    ),
+                                    DataCell(
+                                      Column(
+                                        children: [
+                                          Text(
+                                            'مستعمل',
+                                            style: style,
+                                          ),
+                                          Icon(
+                                            Icons.notifications,
+                                            color: const Color(0xff82225E),
+                                            size:
+                                                getProportionateScreenWidth(4),
+                                          )
+                                        ],
                                       ),
-                                      Icon(
-                                        Icons.notifications,
-                                        color: Color(0xff82225E),
-                                        size: getProportionateScreenWidth(4),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                DataCell(Text(
-                                  data['2'],
-                                  style: style,
-                                )),
-                                DataCell(
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        '0',
-                                      ),
-                                      Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                    ),
+                                    DataCell(Text(
+                                      data['2'],
+                                      style: style,
+                                    )),
+                                    DataCell(
+                                      Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-                                          InkWell(
-                                            child: Image.asset(
-                                              ImageAssets.iconDropDown29,
-                                              width: 20,
-                                              height: 20,
-                                            ),
-                                            onTap: () {},
+                                          const Text(
+                                            '0',
                                           ),
-                                          Image.asset(
-                                            ImageAssets.iconDropDown28,
-                                            width: 20,
-                                            height: 30,
-                                          ),
-                                          InkWell(
-                                            child: Image.asset(
-                                              ImageAssets.iconDropDown27,
-                                              width: 20,
-                                              height: 30,
-                                            ),
-                                            onTap: () {
-                                              setState(() {
-                                                visable = !visable;
-                                              });
-                                            },
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ]))
-                          .toList(),
-                    ),
-                    visable
-                        ? Padding(
-                            padding: const EdgeInsets.only(top: 32.0),
-                            child: Stack(children: [
-                              Positioned(
-                                right: width / 6,
-                                child: CircleAvatar(
-                                    backgroundColor: Colors.black,
-                                    radius: 50,
-                                    child: InkWell(
-                                        onTap: () {
-                                          setState(() {
-                                            visable = false;
-                                          });
-                                        },
-                                        child: const Icon(
-                                          Icons.clear,
-                                          size: 100,
-                                          color: Colors.white,
-                                        ))),
-                              ),
-                              Center(
-                                child: Container(
-                                    width: 700,
-                                    height: 600,
-                                    decoration: const BoxDecoration(
-                                        color: Color(0xff82225E),
-                                        borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(400.0),
-                                          topRight: Radius.circular(400.0),
-                                          bottomLeft: Radius.circular(400.0),
-                                          bottomRight: Radius.circular(400.0),
-                                        ))),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 128.0),
-                                child: Center(
-                                  child: Container(
-                                    width: 600,
-                                    height: 450,
-                                    decoration: const BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(300.0),
-                                          topRight: Radius.circular(300.0),
-                                          bottomLeft: Radius.circular(350.0),
-                                          bottomRight: Radius.circular(350.0),
-                                        )),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            SizedBox(
-                                              width:
-                                                  getProportionateScreenWidth(
-                                                      30),
-                                              child: DefaultInputForm(
-                                                hint: '',
-                                                label: '',
-                                                onTab: () {},
-                                                validate: () {},
-                                                onSave: () {},
-                                                passFun: () {},
-                                                obscureText: false,
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              width: 15,
-                                            ),
-                                            const Text(
-                                              'رقم الطلب',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 18),
-                                            ),
-                                          ],
-                                        ),
-                                        DefaultTable(
-                                          columnData: columnData1,
-                                          size: getProportionateScreenWidth(5),
-                                          color: ColorManager.primary,
-                                          rows: data1
-                                              .map((data) => DataRow(cells: [
-                                                    DataCell(Text(
-                                                      data['6'],
-                                                    )),
-                                                    DataCell(Text(
-                                                      data['5'],
-                                                    )),
-                                                    DataCell(Text(
-                                                      data['4'],
-                                                    )),
-                                                    DataCell(Text(
-                                                      data['3'],
-                                                    )),
-                                                    DataCell(Text(
-                                                      data['2'],
-                                                    )),
-                                                    DataCell(Text(
-                                                      data['1'],
-                                                    )),
-                                                  ]))
-                                              .toList(),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 200.0),
-                                          child: Row(
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             children: [
-                                              Image.asset(
-                                                ImageAssets.iconDropDown29,
-                                                width: 100,
-                                                height: 100,
+                                              InkWell(
+                                                child: Image.asset(
+                                                  ImageAssets.iconDropDown29,
+                                                  width: 20,
+                                                  height: 20,
+                                                ),
+                                                onTap: () {},
                                               ),
                                               Image.asset(
                                                 ImageAssets.iconDropDown28,
-                                                width: 100,
-                                                height: 100,
+                                                width: 20,
+                                                height: 30,
+                                              ),
+                                              InkWell(
+                                                child: Image.asset(
+                                                  ImageAssets.iconDropDown27,
+                                                  width: 20,
+                                                  height: 30,
+                                                ),
+                                                onTap: () {
+                                                  setState(() {
+                                                    visable = !visable;
+                                                  });
+                                                },
                                               ),
                                             ],
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                  ]))
+                              .toList(),
+                        ),
+                        visable
+                            ? Padding(
+                          padding: const EdgeInsets.only(top: 32.0),
+                          child: Stack(children: [
+                            Positioned(
+                              right: width / 6,
+                              child: CircleAvatar(
+                                  backgroundColor: Colors.black,
+                                  radius: 50,
+                                  child: InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          visable = false;
+                                        });
+                                      },
+                                      child: const Icon(
+                                        Icons.clear,
+                                        size: 100,
+                                        color: Colors.white,
+                                      ))),
+                            ),
+                            Center(
+                              child: Container(
+                                  width: 700,
+                                  height: 600,
+                                  decoration: const BoxDecoration(
+                                      color: Color(0xff82225E),
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(400.0),
+                                        topRight: Radius.circular(400.0),
+                                        bottomLeft: Radius.circular(400.0),
+                                        bottomRight: Radius.circular(400.0),
+                                      ))),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 128.0),
+                              child: Center(
+                                child: Container(
+                                  width: 600,
+                                  height: 450,
+                                  decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(300.0),
+                                        topRight: Radius.circular(300.0),
+                                        bottomLeft: Radius.circular(350.0),
+                                        bottomRight: Radius.circular(350.0),
+                                      )),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.center,
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          SizedBox(
+                                            width:
+                                            getProportionateScreenWidth(
+                                                30),
+                                            child: DefaultInputForm(
+                                              hint: '',
+                                              label: '',
+                                              onTab: () {},
+                                              validate: () {},
+                                              onSave: () {},
+                                              passFun: () {},
+                                              obscureText: false,
+                                            ),
                                           ),
-                                        )
-                                      ],
-                                    ),
+                                          const SizedBox(
+                                            width: 15,
+                                          ),
+                                          const Text(
+                                            'رقم الطلب',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18),
+                                          ),
+                                        ],
+                                      ),
+                                      DefaultTable(
+                                        columnData: columnData1,
+                                        size: getProportionateScreenWidth(5),
+                                        color: ColorManager.primary,
+                                        rows: data1
+                                            .map((data) => DataRow(cells: [
+                                          DataCell(Text(
+                                            data['6'],
+                                            style: style,
+                                          )),
+                                          DataCell(Text(
+                                            data['5'],
+                                            style: style,
+                                          )),
+                                          DataCell(Text(
+                                            data['4'],
+                                            style: style,
+                                          )),
+                                          DataCell(Text(
+                                            data['3'],
+                                            style: style,
+                                          )),
+                                          DataCell(Text(
+                                            data['2'],
+                                            style: style,
+                                          )),
+                                          DataCell(Text(
+                                            data['1'],
+                                            style: style,
+                                          )),
+                                        ]))
+                                            .toList(),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 200.0),
+                                        child: Row(
+                                          children: [
+                                            Image.asset(
+                                              ImageAssets.iconDropDown29,
+                                              width: 100,
+                                              height: 100,
+                                            ),
+                                            Image.asset(
+                                              ImageAssets.iconDropDown28,
+                                              width: 100,
+                                              height: 100,
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
                                   ),
                                 ),
                               ),
-                            ]),
-                          )
-                        : Container(),
+                            ),
+                          ]),
+                        )
+                            : Container(),
+                      ],
+                    ),
                     const SizedBox(
                       height: 100,
                     )

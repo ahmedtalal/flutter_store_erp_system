@@ -10,6 +10,8 @@ import 'package:erb_system/view/home/components/drop_down.dart';
 import 'package:erb_system/view/home/drop_down_par.dart';
 import 'package:flutter/material.dart';
 
+import '../../size_config.dart';
+
 class Nyotins extends StatefulWidget {
   const Nyotins({Key? key}) : super(key: key);
 
@@ -38,100 +40,102 @@ class _NyotinsState extends State<Nyotins> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
+
     return SafeArea(
         child: Scaffold(
-      body:Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-              flex: 5,
-              child: Stack(
-                children: [
-                  SizedBox(
-                    width: double.infinity,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const SizedBox(
-                            height: 50,
-                          ),
-                          DefaultContainer(title: 'وحدات القياس'),
-                          const SizedBox(
-                            height: 50,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 71),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: List.generate(
-                                      data.length,
-                                          (index) => Column(
-                                        children: [
-                                          SizedBox(
-                                              width: 200,
-                                              child: dropDown(
-                                                const [
-                                                  'تعديل',
-                                                  'حزف',
-                                                ],
-                                                selectTalab: index == selectedIndex
-                                                    ? chose1
-                                                    : chose2,
-                                                onchanged: () => (val) {
-                                                  setState(() {
-                                                    selectedIndex = index;
-                                                    chose1 = val;
-                                                  });
-                                                },
-                                                label: 'خيارات',
-                                                foColor: Colors.white,
-                                                bgColor: ColorManager.primary,
-                                                dpColor: ColorManager.primary,
-                                              )),
-                                          const SizedBox(
-                                            height: 10,
-                                          )
-                                        ],
-                                      )),
+            body:Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                    flex: 5,
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                          width: double.infinity,
+                          child: SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const SizedBox(
+                                  height: 50,
                                 ),
-                              ),
-                              DefaultTable(
-                                columnData: columnData,
-                                size: 90,
-                                color: Colors.grey.shade800,
-                                rows: data
-                                    .map((data) => DataRow(cells: [
-                                  DataCell(Text(
-                                    data['1'],
-                                  )),
-                                ]))
-                                    .toList(),
-                              ),
-                            ],
+                                DefaultContainer(title: 'وحدات القياس'),
+                                const SizedBox(
+                                  height: 50,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 71),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: List.generate(
+                                            data.length,
+                                                (index) => Column(
+                                              children: [
+                                                SizedBox(
+                                                    width: getProportionateScreenWidth(40),
+                                                    child: dropDown(
+                                                      const [
+                                                        'تعديل',
+                                                        'حذف',
+                                                      ],
+                                                      selectTalab: index == selectedIndex
+                                                          ? chose1
+                                                          : chose2,
+                                                      onchanged: () => (val) {
+                                                        setState(() {
+                                                          selectedIndex = index;
+                                                          chose1 = val;
+                                                        });
+                                                      },
+                                                      label: 'خيارات',
+                                                      foColor: Colors.white,
+                                                      bgColor: ColorManager.primary,
+                                                      dpColor: ColorManager.primary,
+                                                    )),
+                                                const SizedBox(
+                                                  height: 10,
+                                                )
+                                              ],
+                                            )),
+                                      ),
+                                    ),
+                                    DefaultTable(
+                                      columnData: columnData,
+                                      size:getProportionateScreenWidth(30),
+                                      color: Colors.grey.shade800,
+                                      rows: data
+                                          .map((data) => DataRow(cells: [
+                                        DataCell(Text(
+                                          data['1'],
+                                        )),
+                                      ]))
+                                          .toList(),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  DefaultAppBar()
-                ],
-              )),
-          Expanded(
-              flex: 1,
-              child: Container(
-                  padding: const EdgeInsets.only(top: 20),
-                  decoration: BoxDecoration(
-                    color: ColorManager.primary,
-                  ),
-                  child: DropDownList())),
-        ],
-      )
+                        ),
+                        DefaultAppBar()
+                      ],
+                    )),
+                Expanded(
+                    flex: 1,
+                    child: Container(
+                        padding: const EdgeInsets.only(top: 20),
+                        decoration: BoxDecoration(
+                          color: ColorManager.primary,
+                        ),
+                        child: DropDownList())),
+              ],
+            )
 
 
-    ));
+        ));
   }
 }

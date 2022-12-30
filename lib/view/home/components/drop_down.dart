@@ -37,15 +37,16 @@ class dropDown extends StatelessWidget {
           child: Container(
         width: double.infinity,
         height: 55,
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 5),
         decoration: BoxDecoration(
             color: bgColor, borderRadius: BorderRadius.circular(radius)),
         child: Center(
           child: DropdownButtonHideUnderline(
             child: DropdownButton<String>(
-              icon: const Icon(
+              icon:  Icon(
                 Icons.arrow_drop_down_outlined,
                 color: Colors.white,
+                size: getProportionateScreenWidth(6),
               ),
               items: items
                   .map((e) => DropdownMenuItem(

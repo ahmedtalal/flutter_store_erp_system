@@ -14,6 +14,7 @@ import 'package:erb_system/view/store/store_transfer/transfer_fiber_details.dart
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
+import 'package:qlevar_router/qlevar_router.dart';
 
 
 
@@ -271,10 +272,10 @@ class _StoreTransferState extends State<StoreTransfer> {
                                     pro.changePage(FiperTransferDetails());
                                   } else if (val ==
                                       'صرف جزء تالف') {
-                                    pro.changePage(ExchangePart());
+                                    QR.to('/ExchangePart');
                                   } else if (val ==
                                       'تعديل الرصيد') {
-                                    pro.changePage(ModificationBalance());
+                                  QR.to('/balance_modification');
                                   }else if (val ==
                                       'تحويل الي مواد خام') {
                                     pro.changePage(ModificationBalance());

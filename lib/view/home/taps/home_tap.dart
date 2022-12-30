@@ -111,11 +111,20 @@ class _HomeTapState extends State<HomeTap> {
     "الفئه",
     "اسم الشركة او المندوب",
   ];
+  List<String> columnData2 = [
+    "المطلوب للطلبات",
+    "وحده القياس",
+    "الحد الادني",
+    "الكميه المتاحه",
+    "النوع",
+    "الصنف",
+
+  ];
 
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
-    TextStyle style = TextStyle(fontSize: getProportionateScreenWidth(5));
+    TextStyle style = TextStyle(fontSize: getProportionateScreenWidth(4));
     return SizedBox(
       width: double.maxFinite,
       height: double.maxFinite,
@@ -167,11 +176,11 @@ class _HomeTapState extends State<HomeTap> {
                                 ),
                                 Image.asset(image[index],
                                     width:
-                                        MediaQuery.of(context).size.width <= 500
+                                        MediaQuery.of(context).size.width <= 600
                                             ? getProportionateScreenWidth(40)
                                             : getProportionateScreenWidth(80),
                                     height:
-                                        MediaQuery.of(context).size.width <= 500
+                                        MediaQuery.of(context).size.width <= 600
                                             ? getProportionateScreenHeight(40)
                                             : getProportionateScreenHeight(80))
                               ],
@@ -197,7 +206,7 @@ class _HomeTapState extends State<HomeTap> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(bottom: 10),
+                                  padding:  MediaQuery.of(context).size.width <= 776? const EdgeInsets.only(top: 10,bottom: 10):const EdgeInsets.only(top: 5),
                                   child: DefaultBotton(
                                     top:
                                         MediaQuery.of(context).size.width <= 500
@@ -247,7 +256,7 @@ class _HomeTapState extends State<HomeTap> {
               color: ColorManager.white,
               title: 'المزيد',
               onTap: () {},
-              bgColor: ColorManager.black,
+              bgColor: ColorManager.primary,
             ),
             const SizedBox(
               height: 30,
@@ -268,7 +277,7 @@ class _HomeTapState extends State<HomeTap> {
                         (index) => Column(
                               children: [
                                 SizedBox(
-                                    width: getProportionateScreenWidth(70),
+                                    width:  MediaQuery.of(context).size.width <= 1207? getProportionateScreenWidth(70):getProportionateScreenWidth(50),
                                     child: dropDown(
                                       const [
                                         'تاكيد امر الشراء',
@@ -296,8 +305,8 @@ class _HomeTapState extends State<HomeTap> {
                   ),
                 ),
                 DefaultTable(
-                  columnData: columnData,
-                  size: getProportionateScreenWidth(10),
+                  columnData: columnData2,
+                  size: getProportionateScreenWidth(3),
                   color: ColorManager.second,
                   rows: data
                       .map((data) => DataRow(cells: [
@@ -317,6 +326,14 @@ class _HomeTapState extends State<HomeTap> {
                               data['phone'],
                               style: style,
                             )),
+                    DataCell(Text(
+                      data['phone'],
+                      style: style,
+                    )),
+                    DataCell(Text(
+                      data['phone'],
+                      style: style,
+                    )),
                           ]))
                       .toList(),
                 ),
@@ -325,7 +342,16 @@ class _HomeTapState extends State<HomeTap> {
             const SizedBox(
               height: 30,
             ),
-            DefaultContainer(title: "حساب المندوبين والشركات"),
+            Botton(
+              color: ColorManager.white,
+              title: 'المزيد',
+              onTap: () {},
+              bgColor: ColorManager.primary,
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            DefaultContainer(title: "حساب المندوبين وشركات الشحن"),
             const SizedBox(
               height: 30,
             ),
@@ -383,7 +409,17 @@ class _HomeTapState extends State<HomeTap> {
                           ]))
                       .toList(),
                 ),
+
               ],
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Botton(
+              color: ColorManager.white,
+              title: 'المزيد',
+              onTap: () {},
+              bgColor: ColorManager.primary,
             ),
           ],
         ),

@@ -2,7 +2,6 @@ import 'package:erb_system/size_config.dart';
 import 'package:erb_system/view/auth/component/text_fom_feild.dart';
 import 'package:erb_system/view/home/components/botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../resources/color_manger.dart';
@@ -12,12 +11,12 @@ import '../../../resources/style_manager.dart';
 
 
 
-class ModificationBalance extends StatefulWidget {
+class transfer_to_under_work extends StatefulWidget {
   @override
-  State<ModificationBalance> createState() => _ModificationBalanceState();
+  State<transfer_to_under_work> createState() => _transfer_to_under_workState();
 }
 
-class _ModificationBalanceState extends State<ModificationBalance> {
+class _transfer_to_under_workState extends State<transfer_to_under_work> {
   DateTime now = DateTime.now();
   String? categoryValue;
 
@@ -34,35 +33,6 @@ class _ModificationBalanceState extends State<ModificationBalance> {
   String? numLine1;
   String? typeOrder;
   String? order;
-  DateTime orderDate = DateTime.now();
-  DateTime stateDate = DateTime.now();
-
-
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? pickedDate = await showDatePicker(
-        context: context,
-        initialDate: orderDate,
-        firstDate: DateTime(2015),
-        lastDate: DateTime(2050));
-    if (pickedDate != null && pickedDate != orderDate) {
-      setState(() {
-        orderDate = pickedDate;
-      });
-    }
-  }
-
-  Future<void> _select1Date(BuildContext context) async {
-    final DateTime? pickedDate = await showDatePicker(
-        context: context,
-        initialDate: stateDate,
-        firstDate: DateTime(1980),
-        lastDate: DateTime(2050));
-    if (pickedDate != null && pickedDate != stateDate) {
-      setState(() {
-        stateDate = pickedDate;
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +42,7 @@ class _ModificationBalanceState extends State<ModificationBalance> {
     // var format = DateFormat.yMd('ar');
 
     return Scaffold(
-      body: SizedBox(
+      body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: SingleChildScrollView(
@@ -81,7 +51,7 @@ class _ModificationBalanceState extends State<ModificationBalance> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 64,),
-              DefaultContainer(title: 'تعديل الرصيد'),
+              DefaultContainer(title: 'تحويل الي مواد خام'),
               const SizedBox(height: 64,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -90,7 +60,7 @@ class _ModificationBalanceState extends State<ModificationBalance> {
                   Column(
                     children: [
                       Text(
-                        'الفرق',
+                        'كمية المحول',
                         style: getSemiBoldStyle(color: ColorManager.black),
                       ),
                       const SizedBox(
@@ -112,10 +82,11 @@ class _ModificationBalanceState extends State<ModificationBalance> {
                       ),
                     ],
                   ),
+
                   Column(
                     children: [
                       Text(
-                        'الرصيد الجديد',
+                        'الرصيد ',
                         style: getSemiBoldStyle(color: ColorManager.black),
                       ),
                       const SizedBox(
@@ -125,13 +96,13 @@ class _ModificationBalanceState extends State<ModificationBalance> {
                         width: getProportionateScreenWidth(50),
                         height: 60,
                         child: DefaultInputForm(
-                          hint: '',
+                          hint: 'رصيد',
                           label: '',
                           onTab: () {},
                           validate: () {},
                           onSave: () {},
                           passFun: () {},
-                          color: Colors.white70,
+                          color: Colors.grey,
                           obscureText: false,
                         ),
                       ),
@@ -140,7 +111,7 @@ class _ModificationBalanceState extends State<ModificationBalance> {
                   Column(
                     children: [
                       Text(
-                        'الرصيد',
+                        'اسم الصنف',
                         style: getSemiBoldStyle(color: ColorManager.black),
                       ),
                       const SizedBox(
@@ -151,12 +122,12 @@ class _ModificationBalanceState extends State<ModificationBalance> {
                         height: 60,
                         child: DefaultInputForm(
                           hint: '',
-                          label: '',
+                          label: 'الخامات',
                           onTab: () {},
                           validate: () {},
                           onSave: () {},
                           passFun: () {},
-                          color: Colors.white70,
+                          color: Colors.grey,
                           obscureText: false,
                         ),
                       ),
@@ -165,7 +136,7 @@ class _ModificationBalanceState extends State<ModificationBalance> {
                   Column(
                     children: [
                       Text(
-                        ' اسم الصنف',
+                        '  مخزن',
                         style: getSemiBoldStyle(color: ColorManager.black),
                       ),
                       const SizedBox(
@@ -175,13 +146,13 @@ class _ModificationBalanceState extends State<ModificationBalance> {
                         width: getProportionateScreenWidth(50),
                         height: 60,
                         child: DefaultInputForm(
-                          hint: '',
+                          hint: 'منتجات تحت التشغيل',
                           label: '',
                           onTab: () {},
                           validate: () {},
                           onSave: () {},
                           passFun: () {},
-                          color: Colors.white70,
+                          color: Colors.grey,
                           obscureText: false,
                         ),
                       ),
@@ -189,7 +160,7 @@ class _ModificationBalanceState extends State<ModificationBalance> {
                       Column(
                         children: [
                           Text(
-                            'المخزن',
+                            'الرصيد المتبقي',
                             style: getSemiBoldStyle(color: ColorManager.black),
                           ),
                           const SizedBox(
@@ -199,13 +170,13 @@ class _ModificationBalanceState extends State<ModificationBalance> {
                             width: getProportionateScreenWidth(50),
                             height: 60,
                             child: DefaultInputForm(
-                              hint: '',
+                              hint: 'رصيد',
                               label: '',
                               onTab: () {},
                               validate: () {},
                               onSave: () {},
                               passFun: () {},
-                              color: Colors.white70,
+                              color: Colors.grey,
                               obscureText: false,
                             ),
                           ),
@@ -214,71 +185,76 @@ class _ModificationBalanceState extends State<ModificationBalance> {
 
                     ],
                   ),
-
                 ],
               ),
               Row(
-               mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
-                    width:getProportionateScreenWidth(70),
-                    height: getProportionateScreenHeight(183),
-                    decoration: BoxDecoration(
-                      borderRadius:  BorderRadius.circular(15),
-                      border: Border.all(color: Colors.black,width: 2),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Column(
+                    children: [
+                      Container(
+                        width:getProportionateScreenWidth(70),
+                        height: getProportionateScreenHeight(183),
+                        decoration: BoxDecoration(
+                          borderRadius:  BorderRadius.circular(15),
+                          border: Border.all(color: Colors.black,width: 2),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Icon(Icons.more_horiz),
-                            Text('ملحوظات',style: style,),
-                            Icon(Icons.close)
-                          ],),
-                        const Divider(color: Colors.black,thickness: 2,),
-                        TextFormField(
-                          keyboardType: TextInputType.multiline,
-                          maxLines: 5,
-                          decoration: const InputDecoration(
-                              border: InputBorder.none
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 10,),
-                  Container(
-                    width:getProportionateScreenWidth(70),
-                    height: getProportionateScreenHeight(183),
-                    decoration: BoxDecoration(
-                      borderRadius:  BorderRadius.circular(15),
-                      border: Border.all(color: Colors.black,width: 2),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(Icons.more_horiz),
+                                Text('ملحوظات',style: style,),
+                                Icon(Icons.close)
+                              ],),
+                            const Divider(color: Colors.black,thickness: 2,),
+                            TextFormField(
+                              keyboardType: TextInputType.multiline,
+                              maxLines: 5,
+                              decoration: const InputDecoration(
+                                  border: InputBorder.none
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 10,),
+                      Container(
+                        width:getProportionateScreenWidth(70),
+                        height: getProportionateScreenHeight(183),
+                        decoration: BoxDecoration(
+                          borderRadius:  BorderRadius.circular(15),
+                          border: Border.all(color: Colors.black,width: 2),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Icon(Icons.more_horiz),
-                            Text('تتبع',style: style,),
-                            Icon(Icons.close)
-                          ],),
-                        const Divider(color: Colors.black,thickness: 2,),
-                        TextFormField(
-                          keyboardType: TextInputType.multiline,
-                          maxLines: 5,
-                          decoration: const InputDecoration(
-                              border: InputBorder.none
-                          ),
-                        )
-                      ],
-                    ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(Icons.more_horiz),
+                                Text('تتبع',style: style,),
+                                Icon(Icons.close)
+                              ],),
+                            const Divider(color: Colors.black,thickness: 2,),
+                            TextFormField(
+                              keyboardType: TextInputType.multiline,
+                              maxLines: 5,
+                              decoration: const InputDecoration(
+                                  border: InputBorder.none
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
+
                 ],
               ),
               const SizedBox(height: 64,),

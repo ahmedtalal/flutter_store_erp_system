@@ -49,8 +49,7 @@ class _AddOrderState extends State<AddOrder> {
       "4": "100",
       "5": "كيلو",
       "6": "٣٠",
-      "7": "3000",
-      "8": "موظف احمد",
+
     },
     {
       "1": "١/١٢.٢٠٢٢",
@@ -59,33 +58,18 @@ class _AddOrderState extends State<AddOrder> {
       "4": "100",
       "5": "كيلو",
       "6": "٣٠",
-      "7": "3000",
-      "8": "موظف احمد",
+
     },
   ];
 
   List<String> columnData = [
-    "صورة الصنف",
-    "التكلفه سعر البيع",
-    "المطلوب",
-    "الرصيد",
-    "فرع الانتاج",
+
+    "صورةالمنتج",
+    "اجمالي سعر البيع",
+    "سعر البيع",
     "الوحده",
-    "نوع الصنف",
-    "اسم الصنف",
-  ];
-  List dataTable = [
-    Row(
-      children: [
-        IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.add,
-              color: Colors.red,
-            )),
-        const Text('اضافه منتج')
-      ],
-    )
+    "الكميةالمطلوبة",
+    "اسم المنتج",
   ];
 
   Future<void> _selectDate(BuildContext context) async {
@@ -97,32 +81,6 @@ class _AddOrderState extends State<AddOrder> {
     if (pickedDate != null && pickedDate != orderDate) {
       setState(() {
         orderDate = pickedDate;
-      });
-    }
-  }
-
-  Future<void> _select1Date(BuildContext context) async {
-    final DateTime? pickedDate = await showDatePicker(
-        context: context,
-        initialDate: stateDate,
-        firstDate: DateTime(1980),
-        lastDate: DateTime(2050));
-    if (pickedDate != null && pickedDate != stateDate) {
-      setState(() {
-        stateDate = pickedDate;
-      });
-    }
-  }
-
-  Future<void> _select2Date(BuildContext context) async {
-    final DateTime? pickedDate = await showDatePicker(
-        context: context,
-        initialDate: chargeDate,
-        firstDate: DateTime(2015),
-        lastDate: DateTime(2050));
-    if (pickedDate != null && pickedDate != chargeDate) {
-      setState(() {
-        chargeDate = pickedDate;
       });
     }
   }
@@ -164,10 +122,10 @@ class _AddOrderState extends State<AddOrder> {
                                   children: [
                                     Container(
                                       width:
-                                          MediaQuery.of(context).size.width <=
-                                                  500
-                                              ? getProportionateScreenWidth(65)
-                                              : getProportionateScreenWidth(43),
+                                      MediaQuery.of(context).size.width <=
+                                          1461
+                                          ? getProportionateScreenWidth(65)
+                                          : getProportionateScreenWidth(43),
                                       height: getProportionateScreenHeight(90),
                                       padding: const EdgeInsets.only(top: 35),
                                       child: dropDown(
@@ -190,10 +148,10 @@ class _AddOrderState extends State<AddOrder> {
                                     ),
                                     Container(
                                       width:
-                                          MediaQuery.of(context).size.width <=
-                                                  500
-                                              ? getProportionateScreenWidth(65)
-                                              : getProportionateScreenWidth(43),
+                                      MediaQuery.of(context).size.width <=
+                                          1461
+                                          ? getProportionateScreenWidth(65)
+                                          : getProportionateScreenWidth(43),
                                       height: getProportionateScreenHeight(90),
                                       padding: const EdgeInsets.only(top: 35),
                                       child: dropDown(
@@ -221,10 +179,10 @@ class _AddOrderState extends State<AddOrder> {
                                     ),
                                     Container(
                                       width:
-                                          MediaQuery.of(context).size.width <=
-                                                  500
-                                              ? getProportionateScreenWidth(65)
-                                              : getProportionateScreenWidth(43),
+                                      MediaQuery.of(context).size.width <=
+                                          1461
+                                          ? getProportionateScreenWidth(65)
+                                          : getProportionateScreenWidth(43),
                                       height: getProportionateScreenHeight(90),
                                       padding: const EdgeInsets.only(top: 35),
                                       child: dropDown(
@@ -263,20 +221,20 @@ class _AddOrderState extends State<AddOrder> {
                                         onPressed: () => _selectDate(context),
                                         style: ButtonStyle(
                                             backgroundColor:
-                                                MaterialStateProperty.all(
-                                                    Colors.white)),
+                                            MaterialStateProperty.all(
+                                                Colors.white)),
                                         child: Text(
                                           '$orderDate',
                                           style: TextStyle(
-                                              color: Color(0xff82225E),
+                                              color: Colors.black,
                                               fontSize:
-                                                  getProportionateScreenWidth(
-                                                      5)),
+                                              getProportionateScreenWidth(
+                                                  5)),
                                         ),
                                       ),
                                     ),
                                     Container(
-                                      width: MediaQuery.of(context).size.width <= 500
+                                      width: MediaQuery.of(context).size.width <= 660
                                           ? getProportionateScreenWidth(52)
                                           : getProportionateScreenWidth(43),
                                       height: getProportionateScreenHeight(90),
@@ -304,10 +262,10 @@ class _AddOrderState extends State<AddOrder> {
                                   children: [
                                     Container(
                                       width:
-                                          MediaQuery.of(context).size.width <=
-                                                  500
-                                              ? getProportionateScreenWidth(75)
-                                              : getProportionateScreenWidth(43),
+                                      MediaQuery.of(context).size.width <=
+                                          917
+                                          ? getProportionateScreenWidth(75)
+                                          : getProportionateScreenWidth(43),
                                       height: getProportionateScreenHeight(50),
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 10),
@@ -316,7 +274,7 @@ class _AddOrderState extends State<AddOrder> {
                                               width: 3,
                                               color: const Color(0xff82225E)),
                                           borderRadius:
-                                              BorderRadius.circular(10)),
+                                          BorderRadius.circular(10)),
                                       child: Center(
                                         child: DropdownButtonHideUnderline(
                                           child: DropdownButton<String>(
@@ -327,14 +285,14 @@ class _AddOrderState extends State<AddOrder> {
                                               "الكل",
                                             ]
                                                 .map((e) => DropdownMenuItem(
-                                                      value: e,
-                                                      child: Text(
-                                                        e,
-                                                        style: const TextStyle(
-                                                            color:
-                                                                Colors.black),
-                                                      ),
-                                                    ))
+                                              value: e,
+                                              child: Text(
+                                                e,
+                                                style: const TextStyle(
+                                                    color:
+                                                    Colors.black),
+                                              ),
+                                            ))
                                                 .toList(),
                                             value: city,
                                             onChanged: (val) {
@@ -345,11 +303,11 @@ class _AddOrderState extends State<AddOrder> {
                                             hint: const Text(
                                               "المدينة",
                                               style: TextStyle(
-                                                color: Color(0xff82225E),
+                                                color:Colors.black,
                                               ),
                                             ),
                                             borderRadius:
-                                                BorderRadius.circular(10),
+                                            BorderRadius.circular(10),
                                             dropdownColor: Colors.white,
                                             style: const TextStyle(
                                                 color: Color(0xff82225E)),
@@ -359,10 +317,10 @@ class _AddOrderState extends State<AddOrder> {
                                     ),
                                     Container(
                                       width:
-                                          MediaQuery.of(context).size.width <=
-                                                  500
-                                              ? getProportionateScreenWidth(75)
-                                              : getProportionateScreenWidth(43),
+                                      MediaQuery.of(context).size.width <=
+                                          917
+                                          ? getProportionateScreenWidth(75)
+                                          : getProportionateScreenWidth(43),
                                       height: getProportionateScreenHeight(50),
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 10),
@@ -371,7 +329,7 @@ class _AddOrderState extends State<AddOrder> {
                                               width: 3,
                                               color: const Color(0xff82225E)),
                                           borderRadius:
-                                              BorderRadius.circular(10)),
+                                          BorderRadius.circular(10)),
                                       child: Center(
                                         child: DropdownButtonHideUnderline(
                                           child: DropdownButton<String>(
@@ -382,14 +340,14 @@ class _AddOrderState extends State<AddOrder> {
                                               "الكل",
                                             ]
                                                 .map((e) => DropdownMenuItem(
-                                                      value: e,
-                                                      child: Text(
-                                                        e,
-                                                        style: const TextStyle(
-                                                            color:
-                                                                Colors.black),
-                                                      ),
-                                                    ))
+                                              value: e,
+                                              child: Text(
+                                                e,
+                                                style: const TextStyle(
+                                                    color:
+                                                    Colors.black),
+                                              ),
+                                            ))
                                                 .toList(),
                                             value: governorate,
                                             onChanged: (val) {
@@ -400,11 +358,11 @@ class _AddOrderState extends State<AddOrder> {
                                             hint: const Text(
                                               "المحافظة",
                                               style: TextStyle(
-                                                color: Color(0xff82225E),
+                                                color:Colors.black,
                                               ),
                                             ),
                                             borderRadius:
-                                                BorderRadius.circular(10),
+                                            BorderRadius.circular(10),
                                             dropdownColor: Colors.white,
                                             style: const TextStyle(
                                                 color: Color(0xff82225E)),
@@ -427,7 +385,7 @@ class _AddOrderState extends State<AddOrder> {
                                         ),
                                         SizedBox(
                                           width:
-                                              getProportionateScreenWidth(30),
+                                          getProportionateScreenWidth(30),
                                           height: 60,
                                           child: DefaultInputForm(
                                             hint: '',
@@ -456,7 +414,7 @@ class _AddOrderState extends State<AddOrder> {
                                         ),
                                         SizedBox(
                                           width:
-                                              getProportionateScreenWidth(30),
+                                          getProportionateScreenWidth(30),
                                           height: 60,
                                           child: DefaultInputForm(
                                             hint: '',
@@ -475,14 +433,17 @@ class _AddOrderState extends State<AddOrder> {
                                 ),
                                 Container(
                                   width:
-                                      MediaQuery.of(context).size.width <= 500
-                                          ? getProportionateScreenWidth(65)
-                                          : getProportionateScreenWidth(43),
+                                  MediaQuery.of(context).size.width <= 720
+                                      ? getProportionateScreenWidth(65)
+                                      : getProportionateScreenWidth(43),
                                   height: getProportionateScreenHeight(90),
                                   padding: const EdgeInsets.only(top: 35),
                                   child: dropDown(
                                     const [
                                       "طلب جديد",
+                                      "طلب استبدال",
+                                      "طلب صيانة",
+                                      "طلب مرتجع",
                                     ],
                                     selectTalab: typeOrder,
                                     onchanged: () => (val) {
@@ -502,101 +463,102 @@ class _AddOrderState extends State<AddOrder> {
                           const SizedBox(
                             height: 20,
                           ),
-                         Row(
-                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                           children: [
-                             Container(
-                               width:getProportionateScreenWidth(70),
-                               height: getProportionateScreenHeight(183),
-                               decoration: BoxDecoration(
-                                 borderRadius:  BorderRadius.circular(15),
-                                 border: Border.all(color: Colors.black,width: 2),
-                               ),
-                               child: Column(
-                                 mainAxisAlignment: MainAxisAlignment.start,
-                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                 children: [
-                                   Row(
-                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                     children: [
-                                     Icon(Icons.more_horiz),
-                                     Text('ملحوظات',style: style,),
-                                     Icon(Icons.close)
-                                   ],),
-                                   const Divider(color: Colors.black,thickness: 2,),
-                                   TextFormField(
-                                     keyboardType: TextInputType.multiline,
-                                     maxLines: 5,
-                                     decoration: const InputDecoration(
-                                       border: InputBorder.none
-                                     ),
-                                   )
-                                 ],
-                               ),
-                             ),
-                             Column(children: [
-                               DefaultTable(
-                                 columnData: columnData,
-                                 size: getProportionateScreenWidth(5),
-                                 color: ColorManager.second,
-                                 rows: data
-                                     .map((data) => DataRow(cells: [
-                                   DataCell(Image.asset(
-                                     'assets/images/23.png',
-                                     width: 50,
-                                     height: 50,
-                                   )),
-                                   DataCell(Text(
-                                     data['7'],
-                                     style: style,
-                                   )),
-                                   DataCell(Text(
-                                     data['6'],
-                                     style: style,
-                                   )),
-                                   DataCell(Text(
-                                     data['5'],
-                                     style: style,
-                                   )),
-                                   DataCell(Text(
-                                     data['4'],
-                                     style: style,
-                                   )),
-                                   DataCell(Text(
-                                     data['3'],
-                                     style: style,
-                                   )),
-                                   DataCell(Text(
-                                     data['2'],
-                                     style: style,
-                                   )),
-                                   DataCell(Text(
-                                     data['1'],
-                                     style: style,
-                                   )),
-                                 ]))
-                                     .toList(),
-                               ),
-                               Row(
-                                 mainAxisAlignment: MainAxisAlignment.center,
-                                 children: [
-                                   IconButton(
-                                       onPressed: () {},
-                                       icon: Icon(
-                                         Icons.add,
-                                         color: ColorManager.primary,
-                                       )),
-                                   Text(
-                                     'اضافه صنف',
-                                     style: TextStyle(
-                                         fontSize: getProportionateScreenWidth(5),
-                                         fontWeight: FontWeight.w500),
-                                   )
-                                 ],
-                               ),
-                             ],),
-                           ],
-                         ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Container(
+                                width:getProportionateScreenWidth(70),
+                                height: getProportionateScreenHeight(193),
+                                decoration: BoxDecoration(
+                                  borderRadius:  BorderRadius.circular(15),
+                                  border: Border.all(color: Colors.black,width: 2),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Icon(Icons.more_horiz),
+                                        Text('ملحوظات',style: style,),
+                                        Icon(Icons.close)
+                                      ],),
+                                    const Divider(color: Colors.black,thickness: 2,),
+                                    TextFormField(
+                                      keyboardType: TextInputType.multiline,
+                                      maxLines: 5,
+                                      decoration: const InputDecoration(
+                                          border: InputBorder.none
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Column(children: [
+                                DefaultTable(
+                                  columnData: columnData,
+                                  size: getProportionateScreenWidth(5),
+                                  color: ColorManager.primary,
+                                  rows: data
+                                      .map((data) => DataRow(cells: [
+                                    DataCell(Image.asset(
+                                      'assets/images/23.png',
+                                      width: 50,
+                                      height: 50,
+                                    )),
+
+                                    DataCell(Text(
+                                      data['5'],
+                                      style: style,
+                                    )),
+                                    DataCell(Text(
+                                      data['4'],
+                                      style: style,
+                                    )),
+                                    DataCell(Text(
+                                      data['3'],
+                                      style: style,
+                                    )),
+                                    DataCell(Text(
+                                      data['2'],
+                                      style: style,
+                                    )),
+                                    DataCell(Text(
+                                      data['1'],
+                                      style: style,
+                                    )),
+                                  ]))
+                                      .toList(),
+                                ),
+                                InkWell(
+                                  onTap: (){},
+                                  child: Container(
+                                    decoration: BoxDecoration(
+// color: ColorManager.primary,
+                                        border: Border.all(color: ColorManager.primary)
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.add,
+                                          color: ColorManager.primary,
+                                        ),
+
+                                        Text(
+                                          'اضافه صنف',
+                                          style: TextStyle(
+                                              fontSize: getProportionateScreenWidth(5),
+                                              fontWeight: FontWeight.w500),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],),
+                            ],
+                          ),
                           const SizedBox(
                             height: 20,
                           ),
@@ -605,7 +567,7 @@ class _AddOrderState extends State<AddOrder> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                width: MediaQuery.of(context).size.width <= 500
+                                width: MediaQuery.of(context).size.width <= 708
                                     ? getProportionateScreenWidth(65)
                                     : getProportionateScreenWidth(43),
                                 height: getProportionateScreenHeight(90),
@@ -632,8 +594,8 @@ class _AddOrderState extends State<AddOrder> {
                               Column(
                                 children: [
                                   Text(
-                                    'صافي القيمة',
-                                    style: style
+                                      'صافي القيمة',
+                                      style: style
                                   ),
                                   const SizedBox(
                                     height: 10,
@@ -682,7 +644,7 @@ class _AddOrderState extends State<AddOrder> {
                               Column(
                                 children: [
                                   Text(
-                                    'اجمالى الفاتورة',
+                                      'اجمالى الفاتورة',
                                       style: style
                                   ),
                                   const SizedBox(
@@ -707,7 +669,7 @@ class _AddOrderState extends State<AddOrder> {
                               Column(
                                 children: [
                                   Text(
-                                    'مصاريف الشحن', style: style
+                                      'مصاريف الشحن', style: style
                                   ),
                                   const SizedBox(
                                     height: 10,
@@ -733,28 +695,28 @@ class _AddOrderState extends State<AddOrder> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                            Container(
-                              width:getProportionateScreenWidth(35) ,
-                              height:getProportionateScreenHeight(132) ,
-                              decoration: BoxDecoration(
-                                  border: Border.all(
+                              Container(
+                                width:getProportionateScreenWidth(35) ,
+                                height:getProportionateScreenHeight(132) ,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
                                       color: Colors.black,
                                       width: 2,
-                                  )
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                   Text('ارفاق ايصال الدفع',style: style,),
-                                  Image.asset(ImageAssets.iconDropDown20,width: getProportionateScreenWidth(35),height: getProportionateScreenHeight(85),)
-                                ],
-                              ),
+                                    )
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text('ارفاق ايصال الدفع',style: style,),
+                                    Image.asset(ImageAssets.iconDropDown20,width: getProportionateScreenWidth(35),height: getProportionateScreenHeight(85),)
+                                  ],
+                                ),
 
-                            ),
+                              ),
                               const SizedBox(width: 20,),
 
-                          ],),
+                            ],),
                           const SizedBox(
                             height: 44,
                           ),

@@ -29,20 +29,6 @@ class _IndustrySpecialAdditionState extends State<IndustrySpecialAddition> {
 
   DateTime orderDate = DateTime.now();
 
-  List dataTable = [
-    Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.add,
-              color: Colors.red,
-            )),
-        const Text('اضافه صنف')
-      ],
-    )
-  ];
 
   List data = [
     {
@@ -64,156 +50,151 @@ class _IndustrySpecialAdditionState extends State<IndustrySpecialAddition> {
     "اسم الاضافه",
   ];
 
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? pickedDate = await showDatePicker(
-        context: context,
-        initialDate: orderDate,
-        firstDate: DateTime(2015),
-        lastDate: DateTime(2050));
-    if (pickedDate != null && pickedDate != orderDate) {
-      setState(() {
-        orderDate = pickedDate;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     TextStyle style = TextStyle(fontSize: getProportionateScreenWidth(4));
     return SafeArea(
         child: Scaffold(
-      body:
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-              flex: 5,
-              child: Stack(
-                children: [
-                  SizedBox(
-                    width: double.infinity,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const SizedBox(
-                            height: 50,
-                          ),
-                          DefaultContainer(title: 'الاضافات الخاصه للتصنيع'),
-                          const SizedBox(
-                            height: 50,
-                          ),
-
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          body:
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                  flex: 5,
+                  child: Stack(
+                    children: [
+                      SizedBox(
+                        width: double.infinity,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: List.generate(
-                                      data.length,
-                                          (index) => Column(
-                                        children: [
-                                          SizedBox(
-                                              width: getProportionateScreenWidth(70),
-                                              child: dropDown(
-                                                const [
-                                                  'تعديل ',
-                                                  'حذف ',
-                                                ],
-                                                selectTalab: index == selectedIndex
-                                                    ? chose1
-                                                    : chose2,
-                                                onchanged: () => (val) {
-                                                  setState(() {
-                                                    selectedIndex = index;
-                                                    chose1 = val;
-                                                  });
-                                                },
-                                                label: 'خيارات',
-                                                foColor: Colors.white,
-                                                bgColor: ColorManager.primary,
-                                                dpColor: ColorManager.primary,
-                                              )),
-                                          const SizedBox(
-                                            height: 10,
-                                          )
-                                        ],
-                                      )),
-                                ),
+                              const SizedBox(
+                                height: 50,
                               ),
-                              Column(
-                                children: [
-                                  DefaultTable(
-                                    columnData: columnData,
-                                    size: getProportionateScreenWidth(4),
-                                    color: ColorManager.second,
-                                    rows: data
-                                        .map((data) => DataRow(cells: [
+                              DefaultContainer(title: 'الاضافات الخاصه للتصنيع'),
+                              const SizedBox(
+                                height: 50,
+                              ),
 
-                                      DataCell(Text(
-                                        data['3'],
-                                        style: style,
-                                      )),
-                                      DataCell(Text(
-                                        data['2'],
-                                        style: style,
-                                      )),
-                                      DataCell(Text(
-                                        data['1'],
-                                        style: style,
-                                      )),
-                                    ]))
-                                        .toList(),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: List.generate(
+                                          data.length,
+                                              (index) => Column(
+                                            children: [
+                                              SizedBox(
+                                                  width: getProportionateScreenWidth(45),
+                                                  child: dropDown(
+                                                    const [
+                                                      'تعديل ',
+                                                      'حذف ',
+                                                    ],
+                                                    selectTalab: index == selectedIndex
+                                                        ? chose1
+                                                        : chose2,
+                                                    onchanged: () => (val) {
+                                                      setState(() {
+                                                        selectedIndex = index;
+                                                        chose1 = val;
+                                                      });
+                                                    },
+                                                    label: 'خيارات',
+                                                    foColor: Colors.white,
+                                                    bgColor: ColorManager.primary,
+                                                    dpColor: ColorManager.primary,
+                                                  )),
+                                              const SizedBox(
+                                                height: 10,
+                                              )
+                                            ],
+                                          )),
+                                    ),
                                   ),
-                                  SizedBox(
-                                    child: DataTable(columns: [
-                                      DataColumn(
-                                          label: Padding(
-                                            padding:  EdgeInsets.only(left:getProportionateScreenWidth(1)),
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                IconButton(
-                                                    onPressed: () {},
-                                                    icon: const Icon(
-                                                      Icons.add,
-                                                      color: Colors.red,
-                                                    )),
-                                                const Text('اضافه صنف',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),)
-                                              ],
-                                            ),
-                                          ))
-                                    ], rows: []),
-                                  )
+                                  Column(
+                                    children: [
+                                      DefaultTable(
+                                        columnData: columnData,
+                                        size: getProportionateScreenWidth(80),
+                                        color: ColorManager.second,
+                                        rows: data
+                                            .map((data) => DataRow(cells: [
+
+                                          DataCell(Text(
+                                            data['3'],
+                                            style: style,
+                                          )),
+                                          DataCell(Text(
+                                            data['2'],
+                                            style: style,
+                                          )),
+                                          DataCell(Text(
+                                            data['1'],
+                                            style: style,
+                                          )),
+                                        ]))
+                                            .toList(),
+                                      ),
+                                      SizedBox(height: 10,),
+                                      InkWell(
+                                        onTap: (){},
+                                        child: Container(
+                                          width:getProportionateScreenWidth(42),
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.all(Radius.circular(25)),
+                                              border: Border.all(color: ColorManager.primary)
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Icon(
+                                                Icons.add,
+                                                color: ColorManager.primary,
+                                              ),
+
+                                              Text(
+                                                'اضافه منتج',
+                                                style: TextStyle(
+                                                    fontSize: getProportionateScreenWidth(5),
+                                                    fontWeight: FontWeight.w500),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ],
+                              ),
+                              const SizedBox(
+                                height: 30,
                               ),
                             ],
                           ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                        ],
+                        ),
+                      ),                 DefaultAppBar()
+                    ],
+                  )),
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                      padding: const EdgeInsets.only(top: 20),
+                      decoration: BoxDecoration(
+                        color: ColorManager.primary,
                       ),
-                    ),
-                  ),                 DefaultAppBar()
-                ],
-              )),
-          Expanded(
-              flex: 1,
-              child: Container(
-                  padding: const EdgeInsets.only(top: 20),
-                  decoration: BoxDecoration(
-                    color: ColorManager.primary,
-                  ),
-                  child: DropDownList())),
-        ],
-      ),
+                      child: DropDownList())),
+            ],
+          ),
 
 
 
-    ));
+        ));
   }
 }

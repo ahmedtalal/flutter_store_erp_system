@@ -89,7 +89,7 @@ class _ConfirmIndusState extends State<ConfirmIndus> {
                                           validate: () {},
                                           onSave: () {},
                                           passFun: () {},
-                                          color: Colors.white70,
+                                          color: Colors.grey,
                                           obscureText: false,
                                         ),
                                       ),
@@ -149,7 +149,7 @@ class _ConfirmIndusState extends State<ConfirmIndus> {
                                           onSave: () {},
                                           passFun: () {},
                                           perFix: const Icon(Icons.search),
-                                          color: Colors.grey,
+                                          color: Colors.white70,
                                           obscureText: false,
                                         ),
                                       ),
@@ -159,11 +159,13 @@ class _ConfirmIndusState extends State<ConfirmIndus> {
                                     width: getProportionateScreenWidth(20),
                                   ),
                                   Container(
-                                    width: getProportionateScreenWidth(70),
+                                    width: getProportionateScreenWidth(41),
                                     height: getProportionateScreenHeight(90),
                                     padding: const EdgeInsets.only(top: 35),
                                     child: dropDown(
-                                      const ['منتج تحت التشغيل', 'منتج تام'],
+
+
+                                      const ['منتج التشغيل', 'منتج تام'],
                                       selectTalab: chose1,
                                       onchanged: () => (val) {
                                         setState(() {
@@ -210,7 +212,7 @@ class _ConfirmIndusState extends State<ConfirmIndus> {
                                           child: Text(
                                             '$orderDate',
                                             style: const TextStyle(
-                                              color: Color(0xff82225E),
+                                              color: Colors.black,
                                             ),
                                           ),
                                         ),
@@ -240,7 +242,7 @@ class _ConfirmIndusState extends State<ConfirmIndus> {
                                           onSave: () {},
                                           passFun: () {},
                                           perFix: const Icon(Icons.search),
-                                          color: Colors.grey,
+                                          color: Colors.white70,
                                           obscureText: false,
                                         ),
                                       ),
@@ -250,11 +252,13 @@ class _ConfirmIndusState extends State<ConfirmIndus> {
                                     width: getProportionateScreenWidth(20),
                                   ),
                                   Container(
-                                    width: getProportionateScreenWidth(70),
+                                    width: getProportionateScreenWidth(40),
                                     height: getProportionateScreenHeight(90),
                                     padding: const EdgeInsets.only(top: 35),
                                     child: dropDown(
-                                      const ['تم التصنيع', 'في التصنيع'],
+
+
+                                      const ['تم الانتهاء', 'في التصنيع'],
                                       selectTalab: chose2,
                                       onchanged: () => (val) {
                                         setState(() {

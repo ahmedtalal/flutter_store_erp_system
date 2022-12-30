@@ -71,11 +71,6 @@ class Controller with ChangeNotifier {
     [
       '/AddOrderv',
       '/Talabat',
-      '/ConfirmOrder',
-      '/LoadOrder',
-      '/OrderMaintenance',
-      '/CollectionOrder',
-      '/CollectionOrderDetails',
     ]
   ];
 

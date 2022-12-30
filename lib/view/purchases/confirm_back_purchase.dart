@@ -108,7 +108,7 @@ class _ConfirmBackPurchasesState extends State<ConfirmBackPurchases> {
                               const SizedBox(
                                 height: 50,
                               ),
-                              DefaultContainer(title: 'تاكيد مرتجع فاتوره شراء'),
+                              DefaultContainer(title: 'تاكيد مرتجع فاتوره مشتريات'),
                               const SizedBox(
                                 height: 50,
                               ),
@@ -120,7 +120,7 @@ class _ConfirmBackPurchasesState extends State<ConfirmBackPurchases> {
                                     children: [
                                       Text(
                                         'التاريخ',
-                                        style: getSemiBoldStyle(color: ColorManager.black),
+                                        style: getSemiBoldStyle(color: ColorManager.black,fontSize: getProportionateScreenWidth(5)),
                                       ),
                                       const SizedBox(
                                         height: 10,
@@ -135,8 +135,8 @@ class _ConfirmBackPurchasesState extends State<ConfirmBackPurchases> {
                                               MaterialStateProperty.all(Colors.white)),
                                           child: Text(
                                             '$orderDate',
-                                            style: const TextStyle(
-                                              color: Color(0xff82225E),
+                                            style:  TextStyle(
+                                              color: ColorManager.black,
                                             ),
                                           ),
                                         ),
@@ -171,7 +171,7 @@ class _ConfirmBackPurchasesState extends State<ConfirmBackPurchases> {
                                     children: [
                                       Text(
                                         'اسم المورد',
-                                        style: getSemiBoldStyle(color: ColorManager.black),
+                                        style: getSemiBoldStyle(color: ColorManager.black,fontSize: getProportionateScreenWidth(5)),
                                       ),
                                       const SizedBox(
                                         height: 10,
@@ -198,8 +198,8 @@ class _ConfirmBackPurchasesState extends State<ConfirmBackPurchases> {
                                   Column(
                                     children: [
                                       Text(
-                                        'اسم الفاتوره',
-                                        style: getSemiBoldStyle(color: ColorManager.black),
+                                        'رقم الفاتوره',
+                                        style: getSemiBoldStyle(color: ColorManager.black,fontSize: getProportionateScreenWidth(5)),
                                       ),
                                       const SizedBox(
                                         height: 10,
@@ -230,7 +230,7 @@ class _ConfirmBackPurchasesState extends State<ConfirmBackPurchases> {
                               ),
                               DefaultTable(
                                 columnData: columnData,
-                                size: getProportionateScreenWidth(5),
+                                size: getProportionateScreenWidth(15),
                                 color: ColorManager.second,
                                 rows: data
                                     .map((data) => DataRow(cells: [
@@ -291,7 +291,7 @@ class _ConfirmBackPurchasesState extends State<ConfirmBackPurchases> {
                                     children: [
                                       Text(
                                         'الشحن',
-                                        style: getSemiBoldStyle(color: ColorManager.black),
+                                        style: getSemiBoldStyle(color: ColorManager.black,fontSize: getProportionateScreenWidth(5)),
                                       ),
                                       const SizedBox(
                                         height: 10,
@@ -319,7 +319,7 @@ class _ConfirmBackPurchasesState extends State<ConfirmBackPurchases> {
                                     children: [
                                       Text(
                                         'المبلغ المتبقي',
-                                        style: getSemiBoldStyle(color: ColorManager.black),
+                                        style: getSemiBoldStyle(color: ColorManager.black,fontSize: getProportionateScreenWidth(5)),
                                       ),
                                       const SizedBox(
                                         height: 10,
@@ -347,7 +347,7 @@ class _ConfirmBackPurchasesState extends State<ConfirmBackPurchases> {
                                     children: [
                                       Text(
                                         'المبلغ المرتجع',
-                                        style: getSemiBoldStyle(color: ColorManager.black),
+                                        style: getSemiBoldStyle(color: ColorManager.black,fontSize: getProportionateScreenWidth(5)),
                                       ),
                                       const SizedBox(
                                         height: 10,

@@ -74,7 +74,7 @@ class _IndustryOrderState extends State<IndustryOrder> {
     "حاله التصنيع",
     "تاريخ الانتهاء",
     "تاريخ الطلب",
-    "الموجع",
+    "المرجع",
   ];
 
   Future<void> _selectDate(BuildContext context) async {
@@ -122,10 +122,11 @@ class _IndustryOrderState extends State<IndustryOrder> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
-                                    width: getProportionateScreenWidth(70),
+                                    width: getProportionateScreenWidth(40),
                                     height: getProportionateScreenHeight(90),
                                     padding: const EdgeInsets.only(top: 35),
                                     child: dropDown(
+
                                       const ['تم الانتهاء', 'في التصنيع'],
                                       selectTalab: chose,
                                       onchanged: () => (val) {
@@ -162,7 +163,7 @@ class _IndustryOrderState extends State<IndustryOrder> {
                                           child: Text(
                                             '$orderDate',
                                             style: const TextStyle(
-                                              color: Color(0xff82225E),
+                                              color: Colors.black,
                                             ),
                                           ),
                                         ),
@@ -189,13 +190,14 @@ class _IndustryOrderState extends State<IndustryOrder> {
                                               (index) => Column(
                                             children: [
                                               SizedBox(
-                                                  width: getProportionateScreenWidth(70),
+                                                  width: getProportionateScreenWidth(40),
                                                   child: dropDown(
                                                     const [
                                                       'تعديل الامر',
                                                       'الغاء الامر',
                                                       'تفاصيل الامر',
                                                     ],
+
                                                     selectTalab: index == selectedIndex
                                                         ? chose1
                                                         : chose2,

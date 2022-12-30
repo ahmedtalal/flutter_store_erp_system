@@ -1,3 +1,4 @@
+import 'package:erb_system/resources/assets_manager.dart';
 import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/resources/style_manager.dart';
 import 'package:erb_system/size_config.dart';
@@ -26,6 +27,8 @@ class _AddCatState extends State<AddCat> {
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
+    TextStyle style = TextStyle(fontSize: getProportionateScreenWidth(4));
+
     return SafeArea(
         child: Scaffold(
       body:Row(
@@ -52,8 +55,35 @@ class _AddCatState extends State<AddCat> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    width:getProportionateScreenWidth(35) ,
+                                    height:getProportionateScreenHeight(132) ,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: Colors.black,
+                                          width: 2,
+                                        )
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text('ارفاق ايصال الدفع',style: style,),
+                                        InkWell(
+                                            onTap: (){},
+                                            child: Image.asset(ImageAssets.iconDropDown20,width: getProportionateScreenWidth(35),height: getProportionateScreenHeight(85),))
+                                      ],
+                                    ),
+
+                                  ),
+                                  const SizedBox(width: 20,),
+
+                                ],),
                               Container(
-                                width: getProportionateScreenWidth(60),
+                                width: getProportionateScreenWidth(40),
                                 height: 80,
                                 padding: const EdgeInsets.only(top: 35),
                                 child: dropDown(
@@ -74,11 +104,11 @@ class _AddCatState extends State<AddCat> {
                                 width: 50,
                               ),
                               Container(
-                                width: getProportionateScreenWidth(70),
+                                width: getProportionateScreenWidth(40),
                                 height: 80,
                                 padding: const EdgeInsets.only(top: 35),
                                 child: dropDown(
-                                  const ['مواد خام', 'منتج تحت التشغيل', "منتج تام"],
+                                  const ['مواد خام', 'منتج التشغيل', "منتج تام"],
                                   selectTalab: chose2,
                                   onchanged: () => (val) {
                                     setState(() {
@@ -225,7 +255,7 @@ class _AddCatState extends State<AddCat> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                width: 200,
+                                width: getProportionateScreenWidth(40),
                                 height: 80,
                                 padding: const EdgeInsets.only(top: 35),
                                 child: dropDown(

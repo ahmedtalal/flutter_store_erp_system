@@ -64,205 +64,206 @@ class _CategoriesState extends State<Categories> {
     TextStyle style=TextStyle(fontSize: getProportionateScreenWidth(5));
     return SafeArea(
         child: Scaffold(
-      body:Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-              flex: 5,
-              child: Stack(
-                children: [
-                  SizedBox(
-                    width: double.infinity,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const SizedBox(
-                            height: 50,
-                          ),
-                          DefaultContainer(title: 'الاصناف'),
-                          const SizedBox(
-                            height: 50,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+          body:Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                  flex: 5,
+                  child: Stack(
+                    children: [
+                      SizedBox(
+                        width: double.infinity,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Column(
+                              const SizedBox(
+                                height: 50,
+                              ),
+                              DefaultContainer(title: 'الاصناف'),
+                              const SizedBox(
+                                height: 50,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    'فرع الانتاج',
-                                    style: getSemiBoldStyle(color: ColorManager.black,fontSize: getProportionateScreenWidth(5)),
+                                  Column(
+                                    children: [
+                                      Text(
+                                        'فرع الانتاج',
+                                        style: getSemiBoldStyle(color: ColorManager.black,fontSize: getProportionateScreenWidth(5)),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      SizedBox(
+                                        width: getProportionateScreenWidth(60),
+                                        height: 60,
+                                        child: DefaultInputForm(
+                                          hint: '',
+                                          label: '',
+                                          onTab: () {},
+                                          validate: () {},
+                                          onSave: () {},
+                                          passFun: () {},
+                                          color: Colors.white70,
+                                          obscureText: false,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                   const SizedBox(
-                                    height: 10,
+                                    width: 50,
                                   ),
-                                  SizedBox(
-                                    width: getProportionateScreenWidth(60),
-                                    height: 60,
-                                    child: DefaultInputForm(
-                                      hint: '',
-                                      label: '',
-                                      onTab: () {},
-                                      validate: () {},
-                                      onSave: () {},
-                                      passFun: () {},
-                                      color: Colors.white70,
-                                      obscureText: false,
+                                  Container(
+                                    width: getProportionateScreenWidth(41),
+                                    height: 80,
+                                    padding: const EdgeInsets.only(top: 35),
+                                    child: dropDown(
+
+                                      const ['مواد خام', 'منتج التشغيل', "منتج تام"],
+                                      selectTalab: chose,
+                                      onchanged: () => (val) {
+                                        setState(() {
+                                          chose = val;
+                                        });
+                                      },
+                                      label: 'نوع الصنف',
+                                      foColor: Colors.white,
+                                      bgColor: ColorManager.primary,
+                                      dpColor: ColorManager.primary,
                                     ),
+                                  ),
+                                  const SizedBox(
+                                    width: 50,
+                                  ),
+                                  Column(
+                                    children: [
+                                      Text(
+                                        'بحث',
+                                        style: getSemiBoldStyle(color: ColorManager.black,fontSize: getProportionateScreenWidth(5)),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      SizedBox(
+                                        width: getProportionateScreenWidth(60),
+                                        height: 60,
+                                        child: DefaultInputForm(
+                                          perFix: const Icon(Icons.search),
+                                          hint: '',
+                                          label: '',
+                                          onTab: () {},
+                                          validate: () {},
+                                          onSave: () {},
+                                          passFun: () {},
+                                          color: Colors.white70,
+                                          obscureText: false,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    width: 20,
                                   ),
                                 ],
                               ),
                               const SizedBox(
-                                width: 50,
+                                height: 90,
                               ),
-                              Container(
-                                width: getProportionateScreenWidth(70),
-                                height: 80,
-                                padding: const EdgeInsets.only(top: 35),
-                                child: dropDown(
-                                  const ['مواد خام', 'منتج تحت التشغيل', "منتج تام"],
-                                  selectTalab: chose,
-                                  onchanged: () => (val) {
-                                    setState(() {
-                                      chose = val;
-                                    });
-                                  },
-                                  label: 'نوع الصنف',
-                                  foColor: Colors.white,
-                                  bgColor: ColorManager.primary,
-                                  dpColor: ColorManager.primary,
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 50,
-                              ),
-                              Column(
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Text(
-                                    'بحث',
-                                    style: getSemiBoldStyle(color: ColorManager.black,fontSize: getProportionateScreenWidth(5)),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  SizedBox(
-                                    width: getProportionateScreenWidth(60),
-                                    height: 60,
-                                    child: DefaultInputForm(
-                                      perFix: const Icon(Icons.search),
-                                      hint: '',
-                                      label: '',
-                                      onTab: () {},
-                                      validate: () {},
-                                      onSave: () {},
-                                      passFun: () {},
-                                      color: Colors.white70,
-                                      obscureText: false,
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 71),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: List.generate(
+                                          data.length,
+                                              (index) => Column(
+                                            children: [
+                                              SizedBox(
+                                                  width: getProportionateScreenWidth(41),
+                                                  child: dropDown(
+                                                    const [
+                                                      'تفاصيل',
+                                                      'تعديل',
+                                                      'تعديل الرصيد'
+                                                    ],
+                                                    selectTalab: index == selectedIndex
+                                                        ? chose1
+                                                        : chose2,
+                                                    onchanged: () => (val) {
+                                                      setState(() {
+                                                        selectedIndex = index;
+                                                        chose1 = val;
+                                                      });
+                                                    },
+                                                    label: 'خيارات',
+                                                    foColor: Colors.white,
+                                                    bgColor: ColorManager.primary,
+                                                    dpColor: ColorManager.primary,
+                                                  )),
+                                              const SizedBox(
+                                                height: 10,
+                                              )
+                                            ],
+                                          )),
                                     ),
                                   ),
-                                ],
-                              ),
-                              const SizedBox(
-                                width: 20,
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 90,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 71),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: List.generate(
-                                      data.length,
-                                          (index) => Column(
-                                        children: [
-                                          SizedBox(
-                                              width: getProportionateScreenWidth(70),
-                                              child: dropDown(
-                                                const [
-                                                  'مواد خام',
-                                                  'منتج تحت التشغيل',
-                                                  'منتج تام'
-                                                ],
-                                                selectTalab: index == selectedIndex
-                                                    ? chose1
-                                                    : chose2,
-                                                onchanged: () => (val) {
-                                                  setState(() {
-                                                    selectedIndex = index;
-                                                    chose1 = val;
-                                                  });
-                                                },
-                                                label: 'نوع الصنف',
-                                                foColor: Colors.white,
-                                                bgColor: ColorManager.primary,
-                                                dpColor: ColorManager.primary,
-                                              )),
-                                          const SizedBox(
-                                            height: 10,
-                                          )
-                                        ],
+                                  DefaultTable(
+                                    columnData: columnData,
+                                    size: getProportionateScreenWidth(15),
+                                    color: ColorManager.second,
+                                    rows: data
+                                        .map((data) => DataRow(cells: [
+                                      DataCell(Image.asset(ImageAssets.iconDropDown23,width: 50,height: 50,)),
+                                      DataCell(Text(
+                                        data['7'],style: style,
                                       )),
-                                ),
-                              ),
-                              DefaultTable(
-                                columnData: columnData,
-                                size: getProportionateScreenWidth(5),
-                                color: ColorManager.second,
-                                rows: data
-                                    .map((data) => DataRow(cells: [
-                                  DataCell(Image.asset(ImageAssets.iconDropDown23,width: 50,height: 50,)),
-                                  DataCell(Text(
-                                    data['7'],style: style,
-                                  )),
-                                  DataCell(Text(
-                                    data['6'],style: style,
-                                  )),
-                                  DataCell(Text(
-                                    data['5'],style: style,
-                                  )),
-                                  DataCell(Text(
-                                    data['4'],style: style,
-                                  )),
-                                  DataCell(Text(
-                                    data['3'],style: style,
-                                  )),
-                                  DataCell(Text(
-                                    data['2'],style: style,
-                                  )),
-                                  DataCell(Text(
-                                    data['1'],style: style,
-                                  )),
-                                ]))
-                                    .toList(),
+                                      DataCell(Text(
+                                        data['6'],style: style,
+                                      )),
+                                      DataCell(Text(
+                                        data['5'],style: style,
+                                      )),
+                                      DataCell(Text(
+                                        data['4'],style: style,
+                                      )),
+                                      DataCell(Text(
+                                        data['3'],style: style,
+                                      )),
+                                      DataCell(Text(
+                                        data['2'],style: style,
+                                      )),
+                                      DataCell(Text(
+                                        data['1'],style: style,
+                                      )),
+                                    ]))
+                                        .toList(),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
-                  DefaultAppBar()
-                ],
-              )),
-          Expanded(
-              flex: 1,
-              child: Container(
-                  padding: const EdgeInsets.only(top: 20),
-                  decoration: BoxDecoration(
-                    color: ColorManager.primary,
-                  ),
-                  child: DropDownList())),
-        ],
-      ),
+                      DefaultAppBar()
+                    ],
+                  )),
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                      padding: const EdgeInsets.only(top: 20),
+                      decoration: BoxDecoration(
+                        color: ColorManager.primary,
+                      ),
+                      child: DropDownList())),
+            ],
+          ),
 
 
-    ));
+        ));
   }
 }

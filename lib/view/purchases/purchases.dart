@@ -15,6 +15,7 @@ import 'package:erb_system/view/purchases/confirm_purchase.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
+import 'package:qlevar_router/qlevar_router.dart';
 
 class Purchases extends StatefulWidget {
   const Purchases({Key? key}) : super(key: key);
@@ -159,8 +160,8 @@ class _PurchasesState extends State<Purchases> {
                                           MaterialStateProperty.all(Colors.white)),
                                       child: Text(
                                         '$orderDate',
-                                        style: const TextStyle(
-                                          color: Color(0xff82225E),
+                                        style:  TextStyle(
+                                          color: ColorManager.black,
                                         ),
                                       ),
                                     ),
@@ -210,6 +211,7 @@ class _PurchasesState extends State<Purchases> {
                                       validate: () {},
                                       onSave: () {},
                                       passFun: () {},
+                                      perFix: Icon(Icons.search),
                                       color: Colors.white70,
                                       obscureText: false,
                                     ),
@@ -242,16 +244,15 @@ class _PurchasesState extends State<Purchases> {
                                                   'تفاصيل',
                                                   'تاكيد استيلام',
                                                   'تاكيد مرتجع',
-                                                  'الغاء',
                                                 ],
                                                 selectTalab: index == selectedIndex
                                                     ? chose1
                                                     : chose2,
                                                 onchanged: () => (val) {
                                                   if(val == 'تاكيد استيلام'){
-                                                    pro.changePage(const ConfirmPurchase());
+                                                    QR.to( '/confirm_purchase');
                                                   }else if(val == 'تاكيد مرتجع'){
-                                                    pro.changePage(ConfirmBackPurchases());
+                                                    QR.to( '/confirm_back_purchase');
                                                   }
                                                   setState(() {
                                                     selectedIndex = index;
