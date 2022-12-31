@@ -26,6 +26,9 @@ class Controller with ChangeNotifier {
       '/Talabat',
       '/companies_representatives',
       '/required_list',
+      '/order_sources',
+      '/shipping_methods',
+      '/shipping_lines',
     ]
   ];
 

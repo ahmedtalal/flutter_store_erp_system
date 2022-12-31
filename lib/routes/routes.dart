@@ -30,6 +30,8 @@ import 'package:erb_system/view/orders/companies_representatives.dart'
     deferred as companies_representatives;
 import 'package:erb_system/view/orders/confirm_order.dart'
     deferred as ConfirmOrder;
+import 'package:erb_system/view/orders/list _product/order_sources.dart'
+    deferred as order_sources;
 import 'package:erb_system/view/orders/list _product/required_list.dart'
     deferred as required_list;
 import 'package:erb_system/view/orders/list _product/shipping_lines.dart'
@@ -446,6 +448,13 @@ class Routes {
       builder: () => CollectionOrderDetails.CollectionOrderDetails(),
       middleware: [
         DefferedLoader(CollectionOrderDetails.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/order_sources',
+      builder: () => order_sources.OrderSources(),
+      middleware: [
+        DefferedLoader(order_sources.loadLibrary),
       ],
     ),
   ];

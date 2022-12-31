@@ -1,6 +1,7 @@
 import 'package:erb_system/merge_table/merge_table.dart';
 import 'package:erb_system/merge_table/src/datas/m_row.dart';
 import 'package:erb_system/merge_table/src/merge_table.dart';
+import 'package:erb_system/view/home/components/botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/components/default_row.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,8 @@ class _account_statementState extends State<account_statement> {
   String? chose;
   String? chose1;
   String? chose2;
+  String? chose3;
+  bool isVisible = false;
   int? selectedIndex;
   String? state;
   DateTime orderDate = DateTime.now();
@@ -180,6 +183,39 @@ class _account_statementState extends State<account_statement> {
                       Column(
                         children: [
                           Text(
+                            'حساب شركه الشحن اليومي',
+                            style: getSemiBoldStyle(
+                                color: ColorManager.black,
+                                fontSize: getProportionateScreenWidth(5)),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            width: getProportionateScreenWidth(50),
+                            height: 60,
+                            child: DefaultInputForm(
+                              controller: controller2,
+                              hint: '',
+                              label: '',
+                              onTab: () {},
+                              validate: () {},
+                              onSave: () => (val) {
+                                print(val);
+                              },
+                              passFun: () {},
+                              color: Colors.white70,
+                              obscureText: false,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        width: getProportionateScreenWidth(20),
+                      ),
+                      Column(
+                        children: [
+                          Text(
                             'المبلغ المتبقي',
                             style: getSemiBoldStyle(
                                 color: ColorManager.black,
@@ -249,7 +285,9 @@ class _account_statementState extends State<account_statement> {
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 10),
+                        padding: MediaQuery.of(context).size.width <= 800
+                            ? const EdgeInsets.only(top: 20)
+                            : const EdgeInsets.only(top: 60),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: List.generate(
@@ -259,7 +297,12 @@ class _account_statementState extends State<account_statement> {
                                       SizedBox(
                                           width:
                                               getProportionateScreenWidth(40),
-                                          height: 20,
+                                          height: MediaQuery.of(context)
+                                                      .size
+                                                      .width <=
+                                                  800
+                                              ? 7
+                                              : 30,
                                           child: dropDown(
                                             const [
                                               'تحصيل',
@@ -269,6 +312,11 @@ class _account_statementState extends State<account_statement> {
                                                 ? chose1
                                                 : chose2,
                                             onchanged: () => (val) {
+                                              if (val == 'تحصيل') {
+                                                setState(() {
+                                                  isVisible = true;
+                                                });
+                                              }
                                               setState(() {
                                                 selectedIndex = index;
                                                 chose1 = val;
@@ -289,39 +337,100 @@ class _account_statementState extends State<account_statement> {
                       const SizedBox(
                         width: 32,
                       ),
-                      SizedBox(
-                        width: getProportionateScreenWidth(250),
-                        child: MergeTable(
-                          borderColor: Colors.black,
-                          alignment: MergeTableAlignment.center,
-                          columns: [
-                            MMergedColumns(
-                              header: "الطلبات",
-                              columns: columnData,
+                      Stack(
+                        children: [
+                          SizedBox(
+                            width: getProportionateScreenWidth(250),
+                            child: MergeTable(
+                              borderColor: Colors.black,
+                              alignment: MergeTableAlignment.center,
+                              columns: [
+                                MMergedColumns(
+                                  header: "الطلبات",
+                                  columns: columnData,
+                                ),
+                              ],
+                              rows: data
+                                  .map(
+                                    (e) => [
+                                      MMergedRows([
+                                        Text(
+                                          e['5'],
+                                          style: style,
+                                        ),
+                                        Text(
+                                          e['4'],
+                                          style: style,
+                                        ),
+                                        Text(e['3'], style: style),
+                                        Text(e['2'], style: style),
+                                        Text(e['1'], style: style),
+                                      ]),
+                                    ],
+                                  )
+                                  .toList(),
+                              color: ColorManager.second,
+                              size: getProportionateScreenWidth(5),
                             ),
-                          ],
-                          rows: data
-                              .map(
-                                (e) => [
-                                  MMergedRows([
-                                    Text(
-                                      e['5'],
-                                      style: style,
-                                    ),
-                                    Text(
-                                      e['4'],
-                                      style: style,
-                                    ),
-                                    Text(e['3'], style: style),
-                                    Text(e['2'], style: style),
-                                    Text(e['1'], style: style),
-                                  ]),
-                                ],
-                              )
-                              .toList(),
-                          color: ColorManager.second,
-                          size: getProportionateScreenWidth(5),
-                        ),
+                          ),
+                          isVisible
+                              ? Container(
+                                  width: getProportionateScreenWidth(200),
+                                  color: Colors.white,
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          SizedBox(
+                                              width:
+                                                  getProportionateScreenWidth(
+                                                      40),
+                                              height: MediaQuery.of(context)
+                                                          .size
+                                                          .width <=
+                                                      800
+                                                  ? 7
+                                                  : 30,
+                                              child: dropDown(
+                                                const [
+                                                  'خزينه المصنع',
+                                                  'البنك الاهلي',
+                                                  'فودافون كاش',
+                                                  'بنك مصر',
+                                                ],
+                                                selectTalab: chose3,
+                                                onchanged: () => (val) {
+                                                  if (val == 'تحصيل') {
+                                                    setState(() {
+                                                      isVisible = true;
+                                                    });
+                                                  }
+                                                  setState(() {
+                                                    chose3 = val;
+                                                  });
+                                                },
+                                                label: "اختيار الخزينه",
+                                                foColor: Colors.white,
+                                                bgColor: ColorManager.primary,
+                                                dpColor: ColorManager.primary,
+                                              )),
+                                        ],
+                                      ),
+                                      Botton(
+                                        bgColor: Colors.black,
+                                        color: Colors.white,
+                                        title: 'تاكيد تحصيل',
+                                        onTap: () {},
+                                      )
+                                    ],
+                                  ),
+                                )
+                              : Container()
+                        ],
                       ),
                     ],
                   )
@@ -329,7 +438,7 @@ class _account_statementState extends State<account_statement> {
               ),
             ),
           ),
-          DefaultRow(),
+          const DefaultRow(),
         ],
       ),
     );

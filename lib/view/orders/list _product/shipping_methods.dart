@@ -1,3 +1,6 @@
+import 'package:erb_system/view/home/components/appBar.dart';
+import 'package:erb_system/view/home/components/default_container.dart';
+import 'package:erb_system/view/home/drop_down_par.dart';
 import 'package:flutter/material.dart';
 
 import '../../../resources/color_manger.dart';
@@ -14,6 +17,9 @@ class ShippingMethods extends StatefulWidget {
 
 class _ShippingMethodsState extends State<ShippingMethods> {
   String? chose;
+  String? chose1;
+  String? chose2;
+  int? selectedIndex;
   String? state;
   DateTime orderDate = DateTime.now();
 
@@ -30,84 +36,151 @@ class _ShippingMethodsState extends State<ShippingMethods> {
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
+    TextStyle style = TextStyle(fontSize: getProportionateScreenWidth(5));
     return Scaffold(
-      body: SizedBox(
-        width: double.infinity,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Center(
-                child: Container(
-                  width: getProportionateScreenWidth(200),
-                  height: getProportionateScreenHeight(60),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: const Color(0xff82225E),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'طرق الشحن',
-                      style: TextStyle(color: Colors.white, fontSize: 30),
+        body: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+            flex: 5,
+            child: Stack(
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const SizedBox(
+                          height: 32,
+                        ),
+                        DefaultContainer(
+                          title: 'طرق الشحن',
+                        ),
+                        const SizedBox(
+                          height: 32,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 55),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: List.generate(
+                                    data.length,
+                                    (index) => Column(
+                                          children: [
+                                            SizedBox(
+                                                width:
+                                                    getProportionateScreenWidth(
+                                                        40),
+                                                height: 36,
+                                                child: dropDown(
+                                                  const [
+                                                    'تعديل',
+                                                    'حذف',
+                                                  ],
+                                                  selectTalab:
+                                                      index == selectedIndex
+                                                          ? chose1
+                                                          : chose2,
+                                                  onchanged: () => (val) {
+                                                    setState(() {
+                                                      selectedIndex = index;
+                                                      chose1 = val;
+                                                    });
+                                                  },
+                                                  label: 'خيارات',
+                                                  foColor: Colors.white,
+                                                  bgColor: ColorManager.primary,
+                                                  dpColor: ColorManager.primary,
+                                                )),
+                                            const SizedBox(
+                                              height: 10,
+                                            )
+                                          ],
+                                        )),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 32,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  width: getProportionateScreenWidth(200),
+                                  child: DefaultTable(
+                                    color: ColorManager.second,
+                                    columnData: columnData,
+                                    rows: data
+                                        .map((data) => DataRow(cells: [
+                                              DataCell(Text(
+                                                data['2'],
+                                                style: style,
+                                              )),
+                                              DataCell(Text(
+                                                data['1'],
+                                                style: style,
+                                              )),
+                                            ]))
+                                        .toList(),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 32,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        InkWell(
+                          onTap: () {},
+                          child: Container(
+                            width: getProportionateScreenWidth(45),
+                            decoration: BoxDecoration(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(25)),
+                                border:
+                                    Border.all(color: ColorManager.primary)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.add,
+                                  color: ColorManager.primary,
+                                ),
+                                Text(
+                                  'اضافه طريقة ',
+                                  style: TextStyle(
+                                    fontSize: getProportionateScreenWidth(5),
+                                    fontWeight: FontWeight.w500,
+                                    // color: ColorManager.primary
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 32,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: getProportionateScreenWidth(59),
-                    height: getProportionateScreenHeight(50),
-                    child: dropDown(
-                      const [
-                        'تحصيل',
-                        'رفض استالم',
-                      ],
-                      bgColor: ColorManager.primary,
-                      dpColor: ColorManager.primary,
-                      selectTalab: chose,
-                      foColor: Colors.white,
-                      label: 'خيارات',
-                      onchanged: () => (val) {
-                        setState(() {
-                          chose = val;
-                        });
-                      },
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 32,
-                  ),
-                  Column(
-                    children: [
-                      SizedBox(
-                        width: getProportionateScreenWidth(200),
-                        child: DefaultTable(
-                          color: ColorManager.second,
-                          columnData: columnData,
-                          rows: data
-                              .map((data) => DataRow(cells: [
-                                    DataCell(Text(
-                                      data['2'],
-                                    )),
-                                    DataCell(Text(
-                                      data['1'],
-                                    )),
-                                  ]))
-                              .toList(),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              )
-            ],
-          ),
-        ),
-      ),
-    );
+                DefaultAppBar()
+              ],
+            )),
+        Expanded(
+            flex: 1,
+            child: Container(
+                padding: const EdgeInsets.only(top: 20),
+                decoration: BoxDecoration(
+                  color: ColorManager.primary,
+                ),
+                child: DropDownList())),
+      ],
+    ));
   }
 }
