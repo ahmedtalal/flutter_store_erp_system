@@ -17,6 +17,8 @@ import 'package:erb_system/view/industry/industry_desc.dart'
     deferred as IndustryDesc;
 import 'package:erb_system/view/industry/spechial_add_indus.dart'
     deferred as IndustrySpecialAddition;
+import 'package:erb_system/view/orders/account_statement.dart'
+    deferred as account_statement;
 import 'package:erb_system/view/orders/add_company.dart'
     deferred as add_company;
 import 'package:erb_system/view/orders/add_orders.dart' deferred as AddOrderv;
@@ -356,6 +358,14 @@ class Routes {
       builder: () => AddOrderv.AddOrder(),
       middleware: [
         DefferedLoader(AddOrderv.loadLibrary),
+      ],
+    ),
+
+    QRoute(
+      path: '/account_statement',
+      builder: () => account_statement.account_statement(),
+      middleware: [
+        DefferedLoader(account_statement.loadLibrary),
       ],
     ),
     QRoute(

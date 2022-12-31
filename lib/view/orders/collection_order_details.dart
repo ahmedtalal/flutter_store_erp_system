@@ -20,7 +20,15 @@ class CollectionOrderDetails extends StatefulWidget {
 class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
   DateTime now = DateTime.now();
   String? categoryValue;
-
+  TextEditingController controller1 = TextEditingController();
+  TextEditingController controller2 = TextEditingController();
+  TextEditingController controller3 = TextEditingController();
+  TextEditingController controller4 = TextEditingController();
+  TextEditingController controller5 = TextEditingController();
+  TextEditingController controller6 = TextEditingController();
+  TextEditingController controller7 = TextEditingController();
+  TextEditingController controller8 = TextEditingController();
+  TextEditingController controller9 = TextEditingController();
   // DateTime _dateTime = DateTime.now();
   String? selectTalab;
   String? stateTalab;
@@ -434,6 +442,7 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                             passFun: () {},
                                             color: Colors.white70,
                                             obscureText: false,
+                                            controller: controller1,
                                           ),
                                         ),
                                       ],
@@ -455,6 +464,7 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                               getProportionateScreenWidth(40),
                                           height: 60,
                                           child: DefaultInputForm(
+                                            controller: controller2,
                                             hint: '',
                                             label: '',
                                             onTab: () {},
@@ -480,6 +490,7 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                               getProportionateScreenWidth(40),
                                           height: 60,
                                           child: DefaultInputForm(
+                                            controller: controller3,
                                             hint: '',
                                             label: '',
                                             onTab: () {},
@@ -696,6 +707,7 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                     width: getProportionateScreenWidth(50),
                                     height: 60,
                                     child: DefaultInputForm(
+                                      controller: controller4,
                                       hint: '',
                                       label: '',
                                       onTab: () {},
@@ -746,6 +758,7 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                     width: getProportionateScreenWidth(50),
                                     height: 60,
                                     child: DefaultInputForm(
+                                      controller: controller5,
                                       hint: '',
                                       label: '',
                                       onTab: () {},
@@ -793,6 +806,7 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                     width: getProportionateScreenWidth(50),
                                     height: 60,
                                     child: DefaultInputForm(
+                                      controller: controller6,
                                       hint: '',
                                       label: '',
                                       onTab: () {},
@@ -840,6 +854,7 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                     width: getProportionateScreenWidth(50),
                                     height: 60,
                                     child: DefaultInputForm(
+                                      controller: controller7,
                                       hint: '',
                                       label: '',
                                       onTab: () {},
@@ -858,6 +873,7 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                     width: getProportionateScreenWidth(50),
                                     height: 60,
                                     child: DefaultInputForm(
+                                      controller: controller9,
                                       hint: '',
                                       label: '',
                                       onTab: () {},
@@ -907,6 +923,7 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                 width: getProportionateScreenWidth(50),
                                 height: 60,
                                 child: DefaultInputForm(
+                                  controller: controller8,
                                   hint: '',
                                   label: '',
                                   onTab: () {},

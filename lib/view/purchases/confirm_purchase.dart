@@ -7,7 +7,12 @@ import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:flutter/material.dart';
 
 class ConfirmPurchase extends StatelessWidget {
-  const ConfirmPurchase({Key? key}) : super(key: key);
+  ConfirmPurchase({Key? key}) : super(key: key);
+  TextEditingController controller1 = TextEditingController();
+  TextEditingController controller2 = TextEditingController();
+  TextEditingController controller3 = TextEditingController();
+  TextEditingController controller4 = TextEditingController();
+  TextEditingController controller5 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +23,15 @@ class ConfirmPurchase extends StatelessWidget {
         width: double.infinity,
         child: Column(
           children: [
-            const SizedBox(height: 30,),
-            DefaultContainer(title: 'تاكيد استلام مشتريات',),
-            const SizedBox(height: 30,),
+            const SizedBox(
+              height: 30,
+            ),
+            DefaultContainer(
+              title: 'تاكيد استلام مشتريات',
+            ),
+            const SizedBox(
+              height: 30,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,7 +40,9 @@ class ConfirmPurchase extends StatelessWidget {
                   children: [
                     Text(
                       'اجمالي الفاتوره',
-                      style: getSemiBoldStyle(color: ColorManager.black,fontSize: getProportionateScreenWidth(5)),
+                      style: getSemiBoldStyle(
+                          color: ColorManager.black,
+                          fontSize: getProportionateScreenWidth(5)),
                     ),
                     const SizedBox(
                       height: 10,
@@ -38,6 +51,7 @@ class ConfirmPurchase extends StatelessWidget {
                       width: getProportionateScreenWidth(60),
                       height: 60,
                       child: DefaultInputForm(
+                        controller: controller1,
                         hint: '',
                         label: '',
                         onTab: () {},
@@ -57,7 +71,9 @@ class ConfirmPurchase extends StatelessWidget {
                   children: [
                     Text(
                       'الكميه المطلوبه',
-                      style: getSemiBoldStyle(color: ColorManager.black,fontSize: getProportionateScreenWidth(5)),
+                      style: getSemiBoldStyle(
+                          color: ColorManager.black,
+                          fontSize: getProportionateScreenWidth(5)),
                     ),
                     const SizedBox(
                       height: 10,
@@ -66,6 +82,7 @@ class ConfirmPurchase extends StatelessWidget {
                       width: getProportionateScreenWidth(60),
                       height: 60,
                       child: DefaultInputForm(
+                        controller: controller2,
                         hint: '',
                         label: '',
                         onTab: () {},
@@ -85,7 +102,9 @@ class ConfirmPurchase extends StatelessWidget {
                   children: [
                     Text(
                       'اسم المورد',
-                      style: getSemiBoldStyle(color: ColorManager.black,fontSize: getProportionateScreenWidth(5)),
+                      style: getSemiBoldStyle(
+                          color: ColorManager.black,
+                          fontSize: getProportionateScreenWidth(5)),
                     ),
                     const SizedBox(
                       height: 10,
@@ -94,6 +113,7 @@ class ConfirmPurchase extends StatelessWidget {
                       width: getProportionateScreenWidth(60),
                       height: 60,
                       child: DefaultInputForm(
+                        controller: controller3,
                         hint: '',
                         label: '',
                         onTab: () {},
@@ -106,10 +126,11 @@ class ConfirmPurchase extends StatelessWidget {
                     ),
                   ],
                 ),
-
               ],
             ),
-            SizedBox(height: 30,),
+            SizedBox(
+              height: 30,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -118,7 +139,9 @@ class ConfirmPurchase extends StatelessWidget {
                   children: [
                     Text(
                       'المبلغ المستحق',
-                      style: getSemiBoldStyle(color: ColorManager.black,fontSize: getProportionateScreenWidth(5)),
+                      style: getSemiBoldStyle(
+                          color: ColorManager.black,
+                          fontSize: getProportionateScreenWidth(5)),
                     ),
                     const SizedBox(
                       height: 10,
@@ -127,6 +150,7 @@ class ConfirmPurchase extends StatelessWidget {
                       width: getProportionateScreenWidth(60),
                       height: 60,
                       child: DefaultInputForm(
+                        controller: controller4,
                         hint: '',
                         label: '',
                         onTab: () {},
@@ -146,7 +170,9 @@ class ConfirmPurchase extends StatelessWidget {
                   children: [
                     Text(
                       'الكميه المستلمه',
-                      style: getSemiBoldStyle(color: ColorManager.black,fontSize: getProportionateScreenWidth(5)),
+                      style: getSemiBoldStyle(
+                          color: ColorManager.black,
+                          fontSize: getProportionateScreenWidth(5)),
                     ),
                     const SizedBox(
                       height: 10,
@@ -155,6 +181,7 @@ class ConfirmPurchase extends StatelessWidget {
                       width: getProportionateScreenWidth(60),
                       height: 60,
                       child: DefaultInputForm(
+                        controller: controller5,
                         hint: '',
                         label: '',
                         onTab: () {},
@@ -167,13 +194,17 @@ class ConfirmPurchase extends StatelessWidget {
                     ),
                   ],
                 ),
-
-
               ],
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             Botton(
-              color: ColorManager.white, title: 'تاكيد استيلام', onTap: () {}, bgColor: ColorManager.black,),
+              color: ColorManager.white,
+              title: 'تاكيد استيلام',
+              onTap: () {},
+              bgColor: ColorManager.black,
+            ),
           ],
         ),
       ),

@@ -6,7 +6,9 @@ import 'package:erb_system/view/home/components/default_row.dart';
 import 'package:flutter/material.dart';
 
 class AddCompany extends StatelessWidget {
-  const AddCompany({Key? key}) : super(key: key);
+  AddCompany({Key? key}) : super(key: key);
+  TextEditingController controller1 = TextEditingController();
+  TextEditingController controller2 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +39,7 @@ class AddCompany extends StatelessWidget {
                             style: style,
                           ),
                           DefaultInputForm(
+                            controller: controller1,
                             hint: '',
                             label: '',
                             onTab: () {},
@@ -60,6 +63,7 @@ class AddCompany extends StatelessWidget {
                             style: style,
                           ),
                           DefaultInputForm(
+                            controller: controller2,
                             hint: '',
                             label: '',
                             onTab: () {},

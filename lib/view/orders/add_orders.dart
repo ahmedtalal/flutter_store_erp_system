@@ -1,11 +1,10 @@
 import 'package:erb_system/resources/assets_manager.dart';
 import 'package:erb_system/resources/color_manger.dart';
-import 'package:erb_system/resources/style_manager.dart';
 import 'package:erb_system/view/home/components/appBar.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/drop_down_par.dart';
-
 import 'package:flutter/material.dart';
+
 import '../../size_config.dart';
 import '../auth/component/text_fom_feild.dart';
 import '../home/components/botton.dart';
@@ -20,7 +19,14 @@ class AddOrder extends StatefulWidget {
 class _AddOrderState extends State<AddOrder> {
   DateTime now = DateTime.now();
   String? categoryValue;
-
+  TextEditingController controller1 = TextEditingController();
+  TextEditingController controller2 = TextEditingController();
+  TextEditingController controller3 = TextEditingController();
+  TextEditingController controller4 = TextEditingController();
+  TextEditingController controller5 = TextEditingController();
+  TextEditingController controller6 = TextEditingController();
+  TextEditingController controller7 = TextEditingController();
+  TextEditingController controller8 = TextEditingController();
   // DateTime _dateTime = DateTime.now();
   String? selectTalab;
   String? stateTalab;
@@ -119,10 +125,10 @@ class _AddOrderState extends State<AddOrder> {
                                   children: [
                                     Container(
                                       width:
-                                      MediaQuery.of(context).size.width <=
-                                          1461
-                                          ? getProportionateScreenWidth(65)
-                                          : getProportionateScreenWidth(43),
+                                          MediaQuery.of(context).size.width <=
+                                                  1461
+                                              ? getProportionateScreenWidth(65)
+                                              : getProportionateScreenWidth(43),
                                       height: getProportionateScreenHeight(90),
                                       padding: const EdgeInsets.only(top: 35),
                                       child: dropDown(
@@ -145,10 +151,10 @@ class _AddOrderState extends State<AddOrder> {
                                     ),
                                     Container(
                                       width:
-                                      MediaQuery.of(context).size.width <=
-                                          1461
-                                          ? getProportionateScreenWidth(65)
-                                          : getProportionateScreenWidth(43),
+                                          MediaQuery.of(context).size.width <=
+                                                  1461
+                                              ? getProportionateScreenWidth(65)
+                                              : getProportionateScreenWidth(43),
                                       height: getProportionateScreenHeight(90),
                                       padding: const EdgeInsets.only(top: 35),
                                       child: dropDown(
@@ -176,10 +182,10 @@ class _AddOrderState extends State<AddOrder> {
                                     ),
                                     Container(
                                       width:
-                                      MediaQuery.of(context).size.width <=
-                                          1461
-                                          ? getProportionateScreenWidth(65)
-                                          : getProportionateScreenWidth(43),
+                                          MediaQuery.of(context).size.width <=
+                                                  1461
+                                              ? getProportionateScreenWidth(65)
+                                              : getProportionateScreenWidth(43),
                                       height: getProportionateScreenHeight(90),
                                       padding: const EdgeInsets.only(top: 35),
                                       child: dropDown(
@@ -218,24 +224,24 @@ class _AddOrderState extends State<AddOrder> {
                                         onPressed: () => _selectDate(context),
                                         style: ButtonStyle(
                                             backgroundColor:
-                                            MaterialStateProperty.all(
-                                                Colors.white)),
+                                                MaterialStateProperty.all(
+                                                    Colors.white)),
                                         child: Text(
                                           "${orderDate.year.toString()}/${orderDate.month.toString().padLeft(2, '0')}/${orderDate.day.toString().padLeft(2, '0')}",
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontSize:
-                                              getProportionateScreenWidth(
-                                                  5)),
+                                                  getProportionateScreenWidth(
+                                                      5)),
                                         ),
                                       ),
                                     ),
                                     Container(
                                       width:
-                                      MediaQuery.of(context).size.width <=
-                                          660
-                                          ? getProportionateScreenWidth(52)
-                                          : getProportionateScreenWidth(43),
+                                          MediaQuery.of(context).size.width <=
+                                                  660
+                                              ? getProportionateScreenWidth(52)
+                                              : getProportionateScreenWidth(43),
                                       height: getProportionateScreenHeight(90),
                                       padding: const EdgeInsets.only(top: 35),
                                       child: dropDown(
@@ -257,14 +263,14 @@ class _AddOrderState extends State<AddOrder> {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Container(
                                       width:
-                                      MediaQuery.of(context).size.width <=
-                                          917
-                                          ? getProportionateScreenWidth(75)
-                                          : getProportionateScreenWidth(43),
+                                          MediaQuery.of(context).size.width <=
+                                                  917
+                                              ? getProportionateScreenWidth(75)
+                                              : getProportionateScreenWidth(43),
                                       height: getProportionateScreenHeight(50),
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 10),
@@ -273,7 +279,7 @@ class _AddOrderState extends State<AddOrder> {
                                               width: 3,
                                               color: const Color(0xff82225E)),
                                           borderRadius:
-                                          BorderRadius.circular(10)),
+                                              BorderRadius.circular(10)),
                                       child: Center(
                                         child: DropdownButtonHideUnderline(
                                           child: DropdownButton<String>(
@@ -284,14 +290,14 @@ class _AddOrderState extends State<AddOrder> {
                                               "الكل",
                                             ]
                                                 .map((e) => DropdownMenuItem(
-                                              value: e,
-                                              child: Text(
-                                                e,
-                                                style: const TextStyle(
-                                                    color:
-                                                    Colors.black),
-                                              ),
-                                            ))
+                                                      value: e,
+                                                      child: Text(
+                                                        e,
+                                                        style: const TextStyle(
+                                                            color:
+                                                                Colors.black),
+                                                      ),
+                                                    ))
                                                 .toList(),
                                             value: city,
                                             onChanged: (val) {
@@ -306,7 +312,7 @@ class _AddOrderState extends State<AddOrder> {
                                               ),
                                             ),
                                             borderRadius:
-                                            BorderRadius.circular(10),
+                                                BorderRadius.circular(10),
                                             dropdownColor: Colors.white,
                                             style: const TextStyle(
                                                 color: Color(0xff82225E)),
@@ -319,10 +325,10 @@ class _AddOrderState extends State<AddOrder> {
                                     ),
                                     Container(
                                       width:
-                                      MediaQuery.of(context).size.width <=
-                                          917
-                                          ? getProportionateScreenWidth(75)
-                                          : getProportionateScreenWidth(43),
+                                          MediaQuery.of(context).size.width <=
+                                                  917
+                                              ? getProportionateScreenWidth(75)
+                                              : getProportionateScreenWidth(43),
                                       height: getProportionateScreenHeight(50),
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 10),
@@ -331,7 +337,7 @@ class _AddOrderState extends State<AddOrder> {
                                               width: 3,
                                               color: const Color(0xff82225E)),
                                           borderRadius:
-                                          BorderRadius.circular(10)),
+                                              BorderRadius.circular(10)),
                                       child: Center(
                                         child: DropdownButtonHideUnderline(
                                           child: DropdownButton<String>(
@@ -342,14 +348,14 @@ class _AddOrderState extends State<AddOrder> {
                                               "الكل",
                                             ]
                                                 .map((e) => DropdownMenuItem(
-                                              value: e,
-                                              child: Text(
-                                                e,
-                                                style: const TextStyle(
-                                                    color:
-                                                    Colors.black),
-                                              ),
-                                            ))
+                                                      value: e,
+                                                      child: Text(
+                                                        e,
+                                                        style: const TextStyle(
+                                                            color:
+                                                                Colors.black),
+                                                      ),
+                                                    ))
                                                 .toList(),
                                             value: governorate,
                                             onChanged: (val) {
@@ -364,7 +370,7 @@ class _AddOrderState extends State<AddOrder> {
                                               ),
                                             ),
                                             borderRadius:
-                                            BorderRadius.circular(10),
+                                                BorderRadius.circular(10),
                                             dropdownColor: Colors.white,
                                             style: const TextStyle(
                                                 color: Color(0xff82225E)),
@@ -375,7 +381,6 @@ class _AddOrderState extends State<AddOrder> {
                                     const SizedBox(
                                       height: 5,
                                     ),
-
                                   ],
                                 ),
                                 Column(
@@ -391,9 +396,10 @@ class _AddOrderState extends State<AddOrder> {
                                         ),
                                         SizedBox(
                                           width:
-                                          getProportionateScreenWidth(40),
+                                              getProportionateScreenWidth(40),
                                           height: 60,
                                           child: DefaultInputForm(
+                                            controller: controller1,
                                             hint: '',
                                             label: '',
                                             onTab: () {},
@@ -420,9 +426,10 @@ class _AddOrderState extends State<AddOrder> {
                                         ),
                                         SizedBox(
                                           width:
-                                          getProportionateScreenWidth(40),
+                                              getProportionateScreenWidth(40),
                                           height: 60,
                                           child: DefaultInputForm(
+                                            controller: controller2,
                                             hint: '',
                                             label: '',
                                             onTab: () {},
@@ -445,9 +452,10 @@ class _AddOrderState extends State<AddOrder> {
                                         ),
                                         SizedBox(
                                           width:
-                                          getProportionateScreenWidth(40),
+                                              getProportionateScreenWidth(40),
                                           height: 60,
                                           child: DefaultInputForm(
+                                            controller: controller3,
                                             hint: '',
                                             label: '',
                                             onTab: () {},
@@ -464,9 +472,9 @@ class _AddOrderState extends State<AddOrder> {
                                 ),
                                 Container(
                                   width:
-                                  MediaQuery.of(context).size.width <= 720
-                                      ? getProportionateScreenWidth(65)
-                                      : getProportionateScreenWidth(43),
+                                      MediaQuery.of(context).size.width <= 720
+                                          ? getProportionateScreenWidth(65)
+                                          : getProportionateScreenWidth(43),
                                   height: getProportionateScreenHeight(90),
                                   padding: const EdgeInsets.only(top: 35),
                                   child: dropDown(
@@ -503,7 +511,7 @@ class _AddOrderState extends State<AddOrder> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15),
                                   border:
-                                  Border.all(color: Colors.black, width: 2),
+                                      Border.all(color: Colors.black, width: 2),
                                 ),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -511,7 +519,7 @@ class _AddOrderState extends State<AddOrder> {
                                   children: [
                                     Row(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         const Icon(Icons.more_horiz),
                                         Text(
@@ -542,61 +550,64 @@ class _AddOrderState extends State<AddOrder> {
                                     color: ColorManager.primary,
                                     rows: data
                                         .map((data) => DataRow(cells: [
-                                      DataCell(Image.asset(
-                                        'assets/images/23.png',
-                                        width: 50,
-                                        height: 50,
-                                      )),
-                                      DataCell(Text(
-                                        data['5'],
-                                        style: style,
-                                      )),
-                                      DataCell(Text(
-                                        data['4'],
-                                        style: style,
-                                      )),
-                                      DataCell(Text(
-                                        data['3'],
-                                        style: style,
-                                      )),
-                                      DataCell(Text(
-                                        data['2'],
-                                        style: style,
-                                      )),
-                                      DataCell(Text(
-                                        data['1'],
-                                        style: style,
-                                      )),
-                                    ]))
+                                              DataCell(Image.asset(
+                                                'assets/images/23.png',
+                                                width: 50,
+                                                height: 50,
+                                              )),
+                                              DataCell(Text(
+                                                data['5'],
+                                                style: style,
+                                              )),
+                                              DataCell(Text(
+                                                data['4'],
+                                                style: style,
+                                              )),
+                                              DataCell(Text(
+                                                data['3'],
+                                                style: style,
+                                              )),
+                                              DataCell(Text(
+                                                data['2'],
+                                                style: style,
+                                              )),
+                                              DataCell(Text(
+                                                data['1'],
+                                                style: style,
+                                              )),
+                                            ]))
                                         .toList(),
-                                  ),                                        const SizedBox(
+                                  ),
+                                  const SizedBox(
                                     height: 5,
                                   ),
-
                                   InkWell(
-                                    onTap: (){},
+                                    onTap: () {},
                                     child: Container(
-                                      width:getProportionateScreenWidth(42),
+                                      width: getProportionateScreenWidth(42),
                                       decoration: BoxDecoration(
-                                          borderRadius: const BorderRadius.all(Radius.circular(25)),
-                                          border: Border.all(color: ColorManager.primary)
-                                      ),
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(25)),
+                                          border: Border.all(
+                                              color: ColorManager.primary)),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: [
                                           Icon(
                                             Icons.add,
                                             color: ColorManager.primary,
                                           ),
-
                                           Text(
                                             'اضافه صنف ',
                                             style: TextStyle(
-                                              fontSize: getProportionateScreenWidth(5),
+                                              fontSize:
+                                                  getProportionateScreenWidth(
+                                                      5),
                                               fontWeight: FontWeight.w500,
                                               // color: ColorManager.primary
-
                                             ),
                                           )
                                         ],
@@ -649,6 +660,7 @@ class _AddOrderState extends State<AddOrder> {
                                     width: getProportionateScreenWidth(50),
                                     height: 60,
                                     child: DefaultInputForm(
+                                      controller: controller4,
                                       hint: '',
                                       label: '',
                                       onTab: () {},
@@ -674,6 +686,7 @@ class _AddOrderState extends State<AddOrder> {
                                     width: getProportionateScreenWidth(50),
                                     height: 60,
                                     child: DefaultInputForm(
+                                      controller: controller5,
                                       hint: '',
                                       label: '',
                                       onTab: () {},
@@ -696,6 +709,7 @@ class _AddOrderState extends State<AddOrder> {
                                     width: getProportionateScreenWidth(50),
                                     height: 60,
                                     child: DefaultInputForm(
+                                      controller: controller6,
                                       hint: '',
                                       label: '',
                                       onTab: () {},
@@ -718,6 +732,7 @@ class _AddOrderState extends State<AddOrder> {
                                     width: getProportionateScreenWidth(50),
                                     height: 60,
                                     child: DefaultInputForm(
+                                      controller: controller6,
                                       hint: '',
                                       label: '',
                                       onTab: () {},
@@ -745,37 +760,37 @@ class _AddOrderState extends State<AddOrder> {
                                     height: 5,
                                   ),
                                   SizedBox(
-                                    width: MediaQuery.of(context)
-                                        .size
-                                        .width <=
-                                        917
-                                        ? getProportionateScreenWidth(75)
-                                        : getProportionateScreenWidth(63),
+                                    width:
+                                        MediaQuery.of(context).size.width <= 917
+                                            ? getProportionateScreenWidth(75)
+                                            : getProportionateScreenWidth(63),
                                     height: 100,
                                     child: TextFormField(
                                       maxLines: 5,
                                       decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                          borderSide: BorderSide(color: ColorManager.primary)
-                                        )
-                                      ),
+                                          border: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color:
+                                                      ColorManager.primary))),
                                     ),
                                   ),
                                 ],
                               ),
-                              const SizedBox(width: 20,),
+                              const SizedBox(
+                                width: 20,
+                              ),
                               Container(
                                 width: getProportionateScreenWidth(35),
                                 height: getProportionateScreenHeight(132),
                                 decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: Colors.black,
-                                      width: 2,
-                                    )),
+                                  color: Colors.black,
+                                  width: 2,
+                                )),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Text(
                                       'ارفاق ايصال الدفع',

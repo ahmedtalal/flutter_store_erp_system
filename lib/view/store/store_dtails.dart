@@ -1,4 +1,3 @@
-import 'package:erb_system/controller/controller.dart';
 import 'package:erb_system/resources/assets_manager.dart';
 import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/size_config.dart';
@@ -7,9 +6,7 @@ import 'package:erb_system/view/home/components/botton.dart';
 import 'package:erb_system/view/home/components/default_botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/components/default_table.dart';
-import 'package:erb_system/view/store/fiber_details.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:qlevar_router/qlevar_router.dart';
 
 class StoreDetails extends StatelessWidget {
@@ -51,6 +48,7 @@ class StoreDetails extends StatelessWidget {
       "verified": "2000"
     },
   ];
+  TextEditingController controller1 = TextEditingController();
 
   List<String> columnData = [
     "التكلفة االجمالية",
@@ -98,6 +96,7 @@ class StoreDetails extends StatelessWidget {
                       width: getProportionateScreenWidth(70),
                       height: 60,
                       child: DefaultInputForm(
+                        controller: controller1,
                         perFix: IconButton(
                           icon: const Icon(Icons.search),
                           color: Colors.grey[500],
@@ -119,7 +118,9 @@ class StoreDetails extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: MediaQuery.of(context).size.width<=500? const EdgeInsets.only(top: 60):const EdgeInsets.only(top: 65),
+                      padding: MediaQuery.of(context).size.width <= 500
+                          ? const EdgeInsets.only(top: 60)
+                          : const EdgeInsets.only(top: 65),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: List.generate(
@@ -128,14 +129,20 @@ class StoreDetails extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.only(bottom: 10),
+                                      padding:
+                                          const EdgeInsets.only(bottom: 10),
                                       child: DefaultBotton(
-                                        top:  MediaQuery.of(context).size.width<=500?getProportionateScreenWidth(8):getProportionateScreenWidth(3),
+                                        top: MediaQuery.of(context)
+                                                    .size
+                                                    .width <=
+                                                500
+                                            ? getProportionateScreenWidth(8)
+                                            : getProportionateScreenWidth(3),
                                         right: getProportionateScreenWidth(3),
                                         title: 'تفاصيل',
                                         color: ColorManager.white,
                                         onTap: () {
-                                         QR.to('/fiber_details');
+                                          QR.to('/fiber_details');
                                         },
                                       ),
                                     ),
@@ -229,7 +236,9 @@ class StoreDetails extends StatelessWidget {
                       child: Image.asset(ImageAssets.iconDropDown2)),
                 ),
               ),
-              SizedBox(width: 5,),
+              SizedBox(
+                width: 5,
+              ),
               Container(
                 width: 50,
                 height: 50,

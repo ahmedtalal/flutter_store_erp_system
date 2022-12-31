@@ -5,7 +5,6 @@ import 'package:erb_system/size_config.dart';
 import 'package:erb_system/view/auth/component/text_fom_feild.dart';
 import 'package:erb_system/view/home/components/appBar.dart';
 import 'package:erb_system/view/home/components/botton.dart';
-import 'package:erb_system/view/home/components/default_botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/components/drop_down.dart';
 import 'package:erb_system/view/home/drop_down_par.dart';
@@ -23,6 +22,10 @@ class _AddCatState extends State<AddCat> {
   String? chose1;
   String? chose2;
   String? chose3;
+  TextEditingController controller1 = TextEditingController();
+  TextEditingController controller2 = TextEditingController();
+  TextEditingController controller3 = TextEditingController();
+  TextEditingController controller4 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,7 @@ class _AddCatState extends State<AddCat> {
 
     return SafeArea(
         child: Scaffold(
-      body:Row(
+      body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
@@ -59,29 +62,42 @@ class _AddCatState extends State<AddCat> {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Container(
-                                    width:getProportionateScreenWidth(35) ,
-                                    height:getProportionateScreenHeight(132) ,
+                                    width: getProportionateScreenWidth(35),
+                                    height: getProportionateScreenHeight(132),
                                     decoration: BoxDecoration(
                                         border: Border.all(
-                                          color: Colors.black,
-                                          width: 2,
-                                        )
-                                    ),
+                                      color: Colors.black,
+                                      width: 2,
+                                    )),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        Text('ارفاق ايصال الدفع',style: style,),
+                                        Text(
+                                          'ارفاق ايصال الدفع',
+                                          style: style,
+                                        ),
                                         InkWell(
-                                            onTap: (){},
-                                            child: Image.asset(ImageAssets.iconDropDown20,width: getProportionateScreenWidth(35),height: getProportionateScreenHeight(85),))
+                                            onTap: () {},
+                                            child: Image.asset(
+                                              ImageAssets.iconDropDown20,
+                                              width:
+                                                  getProportionateScreenWidth(
+                                                      35),
+                                              height:
+                                                  getProportionateScreenHeight(
+                                                      85),
+                                            ))
                                       ],
                                     ),
-
                                   ),
-                                  const SizedBox(width: 20,),
-
-                                ],),
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                ],
+                              ),
                               Container(
                                 width: getProportionateScreenWidth(40),
                                 height: 80,
@@ -108,7 +124,11 @@ class _AddCatState extends State<AddCat> {
                                 height: 80,
                                 padding: const EdgeInsets.only(top: 35),
                                 child: dropDown(
-                                  const ['مواد خام', 'منتج التشغيل', "منتج تام"],
+                                  const [
+                                    'مواد خام',
+                                    'منتج التشغيل',
+                                    "منتج تام"
+                                  ],
                                   selectTalab: chose2,
                                   onchanged: () => (val) {
                                     setState(() {
@@ -128,7 +148,10 @@ class _AddCatState extends State<AddCat> {
                                 children: [
                                   Text(
                                     'الاسم',
-                                    style: getSemiBoldStyle(color: ColorManager.black,fontSize: getProportionateScreenWidth(5)),
+                                    style: getSemiBoldStyle(
+                                        color: ColorManager.black,
+                                        fontSize:
+                                            getProportionateScreenWidth(5)),
                                   ),
                                   const SizedBox(
                                     height: 10,
@@ -137,6 +160,7 @@ class _AddCatState extends State<AddCat> {
                                     width: getProportionateScreenWidth(60),
                                     height: 60,
                                     child: DefaultInputForm(
+                                      controller: controller1,
                                       hint: '',
                                       label: '',
                                       onTab: () {},
@@ -165,7 +189,10 @@ class _AddCatState extends State<AddCat> {
                                 children: [
                                   Text(
                                     'الحد الادني للمخزون',
-                                    style: getSemiBoldStyle(color: ColorManager.black,fontSize: getProportionateScreenWidth(5)),
+                                    style: getSemiBoldStyle(
+                                        color: ColorManager.black,
+                                        fontSize:
+                                            getProportionateScreenWidth(5)),
                                   ),
                                   const SizedBox(
                                     height: 10,
@@ -174,6 +201,7 @@ class _AddCatState extends State<AddCat> {
                                     width: getProportionateScreenWidth(60),
                                     height: 60,
                                     child: DefaultInputForm(
+                                      controller: controller2,
                                       hint: '',
                                       label: '',
                                       onTab: () {},
@@ -193,7 +221,10 @@ class _AddCatState extends State<AddCat> {
                                 children: [
                                   Text(
                                     'الرصيد الافتتاحي',
-                                    style: getSemiBoldStyle(color: ColorManager.black,fontSize: getProportionateScreenWidth(5)),
+                                    style: getSemiBoldStyle(
+                                        color: ColorManager.black,
+                                        fontSize:
+                                            getProportionateScreenWidth(5)),
                                   ),
                                   const SizedBox(
                                     height: 10,
@@ -202,6 +233,7 @@ class _AddCatState extends State<AddCat> {
                                     width: getProportionateScreenWidth(60),
                                     height: 60,
                                     child: DefaultInputForm(
+                                      controller: controller3,
                                       hint: '',
                                       label: '',
                                       onTab: () {},
@@ -221,7 +253,10 @@ class _AddCatState extends State<AddCat> {
                                 children: [
                                   Text(
                                     'السعر',
-                                    style: getSemiBoldStyle(color: ColorManager.black,fontSize: getProportionateScreenWidth(5)),
+                                    style: getSemiBoldStyle(
+                                        color: ColorManager.black,
+                                        fontSize:
+                                            getProportionateScreenWidth(5)),
                                   ),
                                   const SizedBox(
                                     height: 10,
@@ -230,6 +265,7 @@ class _AddCatState extends State<AddCat> {
                                     width: getProportionateScreenWidth(60),
                                     height: 60,
                                     child: DefaultInputForm(
+                                      controller: controller4,
                                       hint: '',
                                       label: '',
                                       onTab: () {},
@@ -259,7 +295,12 @@ class _AddCatState extends State<AddCat> {
                                 height: 80,
                                 padding: const EdgeInsets.only(top: 35),
                                 child: dropDown(
-                                  const ['مفروشات', 'منتجات شاطئ', "اثاث", "ديكور"],
+                                  const [
+                                    'مفروشات',
+                                    'منتجات شاطئ',
+                                    "اثاث",
+                                    "ديكور"
+                                  ],
                                   selectTalab: chose3,
                                   onchanged: () => (val) {
                                     setState(() {
@@ -281,7 +322,11 @@ class _AddCatState extends State<AddCat> {
                             height: 100,
                           ),
                           Botton(
-                            color: ColorManager.white, title: 'اضافه', onTap: () {}, bgColor: ColorManager.black,),
+                            color: ColorManager.white,
+                            title: 'اضافه',
+                            onTap: () {},
+                            bgColor: ColorManager.black,
+                          ),
                         ],
                       ),
                     ),
@@ -299,8 +344,6 @@ class _AddCatState extends State<AddCat> {
                   child: DropDownList())),
         ],
       ),
-
-
     ));
   }
 }

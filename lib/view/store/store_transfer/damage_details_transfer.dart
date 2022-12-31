@@ -7,13 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qlevar_router/qlevar_router.dart';
 
-
 import '../../../resources/color_manger.dart';
-
 import '../../../resources/style_manager.dart';
-
-
-
 
 class ExchangePart extends StatefulWidget {
   @override
@@ -23,6 +18,10 @@ class ExchangePart extends StatefulWidget {
 class _ExchangePartState extends State<ExchangePart> {
   DateTime now = DateTime.now();
   String? categoryValue;
+  TextEditingController controller1 = TextEditingController();
+  TextEditingController controller2 = TextEditingController();
+  TextEditingController controller3 = TextEditingController();
+  TextEditingController controller4 = TextEditingController();
 
   // DateTime _dateTime = DateTime.now();
   String? selectTalab;
@@ -39,7 +38,6 @@ class _ExchangePartState extends State<ExchangePart> {
   String? order;
   DateTime orderDate = DateTime.now();
   DateTime stateDate = DateTime.now();
-
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
@@ -84,9 +82,13 @@ class _ExchangePartState extends State<ExchangePart> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 64,),
+                  const SizedBox(
+                    height: 64,
+                  ),
                   DefaultContainer(title: 'صرف جزء تالف'),
-                  const SizedBox(height: 64,),
+                  const SizedBox(
+                    height: 64,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -104,6 +106,7 @@ class _ExchangePartState extends State<ExchangePart> {
                             width: getProportionateScreenWidth(50),
                             height: 60,
                             child: DefaultInputForm(
+                              controller: controller1,
                               hint: '',
                               label: '',
                               onTab: () {},
@@ -129,6 +132,7 @@ class _ExchangePartState extends State<ExchangePart> {
                             width: getProportionateScreenWidth(50),
                             height: 60,
                             child: DefaultInputForm(
+                              controller: controller2,
                               hint: '',
                               label: '',
                               onTab: () {},
@@ -154,6 +158,7 @@ class _ExchangePartState extends State<ExchangePart> {
                             width: getProportionateScreenWidth(50),
                             height: 60,
                             child: DefaultInputForm(
+                              controller: controller3,
                               hint: '',
                               label: '',
                               onTab: () {},
@@ -164,12 +169,12 @@ class _ExchangePartState extends State<ExchangePart> {
                               obscureText: false,
                             ),
                           ),
-
                           Column(
                             children: [
                               Text(
                                 'المخزن',
-                                style: getSemiBoldStyle(color: ColorManager.black),
+                                style:
+                                    getSemiBoldStyle(color: ColorManager.black),
                               ),
                               const SizedBox(
                                 height: 10,
@@ -178,6 +183,7 @@ class _ExchangePartState extends State<ExchangePart> {
                                 width: getProportionateScreenWidth(50),
                                 height: 60,
                                 child: DefaultInputForm(
+                                  controller: controller4,
                                   hint: '',
                                   label: '',
                                   onTab: () {},
@@ -190,7 +196,6 @@ class _ExchangePartState extends State<ExchangePart> {
                               ),
                             ],
                           ),
-
                         ],
                       ),
                     ],
@@ -199,11 +204,11 @@ class _ExchangePartState extends State<ExchangePart> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        width:getProportionateScreenWidth(70),
+                        width: getProportionateScreenWidth(70),
                         height: getProportionateScreenHeight(183),
                         decoration: BoxDecoration(
-                          borderRadius:  BorderRadius.circular(15),
-                          border: Border.all(color: Colors.black,width: 2),
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(color: Colors.black, width: 2),
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -213,27 +218,35 @@ class _ExchangePartState extends State<ExchangePart> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Icon(Icons.more_horiz),
-                                Text('ملحوظات',style: style,),
+                                Text(
+                                  'ملحوظات',
+                                  style: style,
+                                ),
                                 Icon(Icons.close)
-                              ],),
-                            const Divider(color: Colors.black,thickness: 2,),
+                              ],
+                            ),
+                            const Divider(
+                              color: Colors.black,
+                              thickness: 2,
+                            ),
                             TextFormField(
                               keyboardType: TextInputType.multiline,
                               maxLines: 5,
                               decoration: const InputDecoration(
-                                  border: InputBorder.none
-                              ),
+                                  border: InputBorder.none),
                             )
                           ],
                         ),
                       ),
-                      const SizedBox(width: 10,),
+                      const SizedBox(
+                        width: 10,
+                      ),
                       Container(
-                        width:getProportionateScreenWidth(70),
+                        width: getProportionateScreenWidth(70),
                         height: getProportionateScreenHeight(183),
                         decoration: BoxDecoration(
-                          borderRadius:  BorderRadius.circular(15),
-                          border: Border.all(color: Colors.black,width: 2),
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(color: Colors.black, width: 2),
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -243,26 +256,36 @@ class _ExchangePartState extends State<ExchangePart> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Icon(Icons.more_horiz),
-                                Text('تتبع',style: style,),
+                                Text(
+                                  'تتبع',
+                                  style: style,
+                                ),
                                 Icon(Icons.close)
-                              ],),
-                            const Divider(color: Colors.black,thickness: 2,),
+                              ],
+                            ),
+                            const Divider(
+                              color: Colors.black,
+                              thickness: 2,
+                            ),
                             TextFormField(
                               keyboardType: TextInputType.multiline,
                               maxLines: 5,
                               decoration: const InputDecoration(
-                                  border: InputBorder.none
-                              ),
+                                  border: InputBorder.none),
                             )
                           ],
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 64,),
+                  const SizedBox(
+                    height: 64,
+                  ),
                   Botton(
                     bgColor: Colors.black,
-                    color: Colors.white, title: 'صرف تالف', onTap: () {  },
+                    color: Colors.white,
+                    title: 'صرف تالف',
+                    onTap: () {},
                   )
                 ],
               ),
@@ -285,7 +308,9 @@ class _ExchangePartState extends State<ExchangePart> {
                       child: Image.asset(ImageAssets.iconDropDown2)),
                 ),
               ),
-              SizedBox(width: 5,),
+              SizedBox(
+                width: 5,
+              ),
               Container(
                 width: 50,
                 height: 50,

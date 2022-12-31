@@ -3,7 +3,6 @@ import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/size_config.dart';
 import 'package:erb_system/view/auth/component/text_fom_feild.dart';
 import 'package:erb_system/view/home/components/botton.dart';
-import 'package:erb_system/view/home/components/default_botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/components/default_table.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +26,7 @@ class CatDetails extends StatelessWidget {
       "5": "مرتفع",
     },
   ];
+  TextEditingController controller1 = TextEditingController();
 
   List<String> columnData = [
     "تقييم السعر",
@@ -70,6 +70,7 @@ class CatDetails extends StatelessWidget {
                       width: getProportionateScreenWidth(70),
                       height: 60,
                       child: DefaultInputForm(
+                        controller: controller1,
                         perFix: IconButton(
                           icon: const Icon(Icons.search),
                           color: Colors.grey[500],
@@ -96,9 +97,9 @@ class CatDetails extends StatelessWidget {
                       color: ColorManager.second,
                       rows: data
                           .map((data) => DataRow(cells: [
-                        DataCell(Text(
-                          data['5'],
-                        )),
+                                DataCell(Text(
+                                  data['5'],
+                                )),
                                 DataCell(Text(
                                   data['4'],
                                 )),
@@ -145,7 +146,9 @@ class CatDetails extends StatelessWidget {
                       child: Image.asset(ImageAssets.iconDropDown2)),
                 ),
               ),
-              const SizedBox(width: 5,),
+              const SizedBox(
+                width: 5,
+              ),
               Container(
                 width: 50,
                 height: 50,

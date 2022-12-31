@@ -10,6 +10,8 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool isVisible = true;
+  TextEditingController controller1 = TextEditingController();
+  TextEditingController controller2 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,7 @@ class _LoginState extends State<Login> {
             SizedBox(
               width: 380,
               child: DefaultInputForm(
+                  controller: controller1,
                   hint: 'Username',
                   label: 'Username',
                   onTab: () {},
@@ -43,17 +46,21 @@ class _LoginState extends State<Login> {
             SizedBox(
               width: 380,
               child: DefaultInputForm(
+                  controller: controller2,
                   hint: 'Password',
                   label: 'Password',
                   onTab: () {},
                   validate: () {},
                   onSave: () {},
-                  suffix: IconButton(icon:Icon(Icons.remove_red_eye) ,onPressed: (){ setState(() {
-                    isVisible = !isVisible;
-                  });},),
-                  passFun: () {
-                  },
-
+                  suffix: IconButton(
+                    icon: Icon(Icons.remove_red_eye),
+                    onPressed: () {
+                      setState(() {
+                        isVisible = !isVisible;
+                      });
+                    },
+                  ),
+                  passFun: () {},
                   obscureText: isVisible),
             ),
             const SizedBox(

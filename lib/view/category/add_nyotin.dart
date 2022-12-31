@@ -17,7 +17,7 @@ class AddNyotin extends StatefulWidget {
 
 class _AddNyotinState extends State<AddNyotin> {
   DateTime now = DateTime.now();
-
+  TextEditingController controller1 = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -57,6 +57,7 @@ class _AddNyotinState extends State<AddNyotin> {
                                     width: 200,
                                     height: 60,
                                     child: DefaultInputForm(
+                                      controller: controller1,
                                       hint: '',
                                       label: '',
                                       onTab: () {},

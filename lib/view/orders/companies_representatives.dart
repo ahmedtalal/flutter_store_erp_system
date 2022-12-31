@@ -19,6 +19,9 @@ class companies_representatives extends StatefulWidget {
 
 class _companies_representativesState extends State<companies_representatives> {
   String? chose;
+  String? chose1;
+  String? chose2;
+  int? selectedIndex;
 
   List data = [
     {"1": "aramex", "2": "شركة", "3": "٦٠٠٠", "4": "٥", "5": "٪١٠ "},
@@ -69,23 +72,50 @@ class _companies_representativesState extends State<companies_representatives> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            dropDown(
-                              const [
-                                'كشف حساب',
-                                'تعديل شركة الشحن',
-                                'تحصيل االجمالي',
-                              ],
-                              bgColor: ColorManager.primary,
-                              dpColor: ColorManager.primary,
-                              selectTalab: chose,
-                              foColor: Colors.white,
-                              width: getProportionateScreenWidth(65),
-                              label: 'خيارات',
-                              onchanged: () => (val) {
-                                setState(() {
-                                  chose = val;
-                                });
-                              },
+                            Padding(
+                              padding: const EdgeInsets.only(top: 71),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: List.generate(
+                                    data.length,
+                                    (index) => Column(
+                                          children: [
+                                            SizedBox(
+                                                width:
+                                                    getProportionateScreenWidth(
+                                                        55),
+                                                child: dropDown(
+                                                  const [
+                                                    'كشف حساب',
+                                                    'تعديل شركه الشحن',
+                                                    'تحصيل الاجمالي',
+                                                    'تحصيل شركه الشحن اليومي',
+                                                  ],
+                                                  selectTalab:
+                                                      index == selectedIndex
+                                                          ? chose1
+                                                          : chose2,
+                                                  onchanged: () => (val) {
+                                                    if (val == 'كشف حساب') {
+                                                      QR.to(
+                                                          '/account_statement');
+                                                    }
+                                                    setState(() {
+                                                      selectedIndex = index;
+                                                      chose1 = val;
+                                                    });
+                                                  },
+                                                  label: 'خيارات',
+                                                  foColor: Colors.white,
+                                                  bgColor: ColorManager.primary,
+                                                  dpColor: ColorManager.primary,
+                                                )),
+                                            const SizedBox(
+                                              height: 10,
+                                            )
+                                          ],
+                                        )),
+                              ),
                             ),
                             Column(
                               children: [

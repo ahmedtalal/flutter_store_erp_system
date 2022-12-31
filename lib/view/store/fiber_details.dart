@@ -1,5 +1,4 @@
 import 'package:erb_system/controller/controller.dart';
-import 'package:erb_system/resources/assets_manager.dart';
 import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/resources/style_manager.dart';
 import 'package:erb_system/size_config.dart';
@@ -8,9 +7,6 @@ import 'package:erb_system/view/home/components/default_botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/components/default_row.dart';
 import 'package:erb_system/view/home/components/default_table.dart';
-import 'package:erb_system/view/store/d1_fiper.dart';
-import 'package:erb_system/view/store/mo4_details.dart';
-import 'package:erb_system/view/store/po1_details.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qlevar_router/qlevar_router.dart';
@@ -99,6 +95,8 @@ class FiperDetails extends StatelessWidget {
     "التاريخ",
   ];
 
+  TextEditingController controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
@@ -133,6 +131,7 @@ class FiperDetails extends StatelessWidget {
                       width: getProportionateScreenWidth(70),
                       height: 60,
                       child: DefaultInputForm(
+                        controller: controller,
                         perFix: const Icon(Icons.search),
                         hint: '',
                         label: '',

@@ -18,6 +18,8 @@ class Talabat extends StatefulWidget {
 class _TalabatState extends State<Talabat> {
   DateTime now = DateTime.now();
   String? categoryValue;
+  TextEditingController controller = TextEditingController();
+  TextEditingController controller1 = TextEditingController();
 
   // DateTime _dateTime = DateTime.now();
   String? selectTalab;
@@ -602,6 +604,7 @@ class _TalabatState extends State<Talabat> {
                                     width: getProportionateScreenWidth(40),
                                     height: 60,
                                     child: DefaultInputForm(
+                                      controller: controller,
                                       perFix: IconButton(
                                         icon: const Icon(Icons.search),
                                         color: Colors.grey[500],
@@ -1001,6 +1004,7 @@ class _TalabatState extends State<Talabat> {
                                                     onSave: () {},
                                                     passFun: () {},
                                                     obscureText: false,
+                                                    controller: controller1,
                                                   ),
                                                 ),
                                                 const SizedBox(

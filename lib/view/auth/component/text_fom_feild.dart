@@ -2,7 +2,6 @@ import 'package:erb_system/resources/value_manager.dart';
 import 'package:erb_system/size_config.dart';
 import 'package:flutter/material.dart';
 
-import '../../../color.dart';
 import '../../../resources/color_manger.dart';
 
 class DefaultInputForm extends StatelessWidget {
@@ -15,12 +14,14 @@ class DefaultInputForm extends StatelessWidget {
       required this.onSave,
       required this.passFun,
       required this.obscureText,
+      required this.controller,
       this.suffix,
       this.perFix,
       this.color})
       : super(key: key);
   String hint;
   String label;
+  TextEditingController controller;
   Function() onTab;
   Function() validate;
   Function() onSave;
@@ -33,6 +34,7 @@ class DefaultInputForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       style: TextStyle(fontSize: getProportionateScreenWidth(4)),
       obscureText: obscureText,
       validator: validate(),

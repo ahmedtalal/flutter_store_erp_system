@@ -6,11 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../resources/color_manger.dart';
-
 import '../../../resources/style_manager.dart';
-
-
-
 
 class transfer_to_under_work extends StatefulWidget {
   @override
@@ -20,6 +16,11 @@ class transfer_to_under_work extends StatefulWidget {
 class _transfer_to_under_workState extends State<transfer_to_under_work> {
   DateTime now = DateTime.now();
   String? categoryValue;
+  TextEditingController controller1 = TextEditingController();
+  TextEditingController controller2 = TextEditingController();
+  TextEditingController controller3 = TextEditingController();
+  TextEditingController controller4 = TextEditingController();
+  TextEditingController controller5 = TextEditingController();
 
   // DateTime _dateTime = DateTime.now();
   String? selectTalab;
@@ -51,9 +52,13 @@ class _transfer_to_under_workState extends State<transfer_to_under_work> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 64,),
+              const SizedBox(
+                height: 64,
+              ),
               DefaultContainer(title: 'تحويل الي منتج تحت التشغيل '),
-              const SizedBox(height: 64,),
+              const SizedBox(
+                height: 64,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -71,6 +76,7 @@ class _transfer_to_under_workState extends State<transfer_to_under_work> {
                         width: getProportionateScreenWidth(50),
                         height: 60,
                         child: DefaultInputForm(
+                          controller: controller1,
                           hint: '',
                           label: '',
                           onTab: () {},
@@ -83,7 +89,6 @@ class _transfer_to_under_workState extends State<transfer_to_under_work> {
                       ),
                     ],
                   ),
-
                   Column(
                     children: [
                       Text(
@@ -97,6 +102,7 @@ class _transfer_to_under_workState extends State<transfer_to_under_work> {
                         width: getProportionateScreenWidth(50),
                         height: 60,
                         child: DefaultInputForm(
+                          controller: controller2,
                           hint: 'رصيد',
                           label: '',
                           onTab: () {},
@@ -122,6 +128,7 @@ class _transfer_to_under_workState extends State<transfer_to_under_work> {
                         width: getProportionateScreenWidth(50),
                         height: 60,
                         child: DefaultInputForm(
+                          controller: controller3,
                           hint: '',
                           label: 'الخامات',
                           onTab: () {},
@@ -147,6 +154,7 @@ class _transfer_to_under_workState extends State<transfer_to_under_work> {
                         width: getProportionateScreenWidth(50),
                         height: 60,
                         child: DefaultInputForm(
+                          controller: controller4,
                           hint: 'منتجات تحت التشغيل',
                           label: '',
                           onTab: () {},
@@ -157,7 +165,6 @@ class _transfer_to_under_workState extends State<transfer_to_under_work> {
                           obscureText: false,
                         ),
                       ),
-
                       Column(
                         children: [
                           Text(
@@ -171,6 +178,7 @@ class _transfer_to_under_workState extends State<transfer_to_under_work> {
                             width: getProportionateScreenWidth(50),
                             height: 60,
                             child: DefaultInputForm(
+                              controller: controller5,
                               hint: 'رصيد',
                               label: '',
                               onTab: () {},
@@ -183,7 +191,6 @@ class _transfer_to_under_workState extends State<transfer_to_under_work> {
                           ),
                         ],
                       ),
-
                     ],
                   ),
                 ],
@@ -195,11 +202,11 @@ class _transfer_to_under_workState extends State<transfer_to_under_work> {
                   Column(
                     children: [
                       Container(
-                        width:getProportionateScreenWidth(70),
+                        width: getProportionateScreenWidth(70),
                         height: getProportionateScreenHeight(183),
                         decoration: BoxDecoration(
-                          borderRadius:  BorderRadius.circular(15),
-                          border: Border.all(color: Colors.black,width: 2),
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(color: Colors.black, width: 2),
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -209,27 +216,35 @@ class _transfer_to_under_workState extends State<transfer_to_under_work> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Icon(Icons.more_horiz),
-                                Text('ملحوظات',style: style,),
+                                Text(
+                                  'ملحوظات',
+                                  style: style,
+                                ),
                                 Icon(Icons.close)
-                              ],),
-                            const Divider(color: Colors.black,thickness: 2,),
+                              ],
+                            ),
+                            const Divider(
+                              color: Colors.black,
+                              thickness: 2,
+                            ),
                             TextFormField(
                               keyboardType: TextInputType.multiline,
                               maxLines: 5,
                               decoration: const InputDecoration(
-                                  border: InputBorder.none
-                              ),
+                                  border: InputBorder.none),
                             )
                           ],
                         ),
                       ),
-                      const SizedBox(height: 10,),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       Container(
-                        width:getProportionateScreenWidth(70),
+                        width: getProportionateScreenWidth(70),
                         height: getProportionateScreenHeight(183),
                         decoration: BoxDecoration(
-                          borderRadius:  BorderRadius.circular(15),
-                          border: Border.all(color: Colors.black,width: 2),
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(color: Colors.black, width: 2),
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -239,29 +254,38 @@ class _transfer_to_under_workState extends State<transfer_to_under_work> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Icon(Icons.more_horiz),
-                                Text('تتبع',style: style,),
+                                Text(
+                                  'تتبع',
+                                  style: style,
+                                ),
                                 Icon(Icons.close)
-                              ],),
-                            const Divider(color: Colors.black,thickness: 2,),
+                              ],
+                            ),
+                            const Divider(
+                              color: Colors.black,
+                              thickness: 2,
+                            ),
                             TextFormField(
                               keyboardType: TextInputType.multiline,
                               maxLines: 5,
                               decoration: const InputDecoration(
-                                  border: InputBorder.none
-                              ),
+                                  border: InputBorder.none),
                             )
                           ],
                         ),
                       ),
                     ],
                   ),
-
                 ],
               ),
-              const SizedBox(height: 64,),
+              const SizedBox(
+                height: 64,
+              ),
               Botton(
                 bgColor: Colors.black,
-                color: Colors.white, title: 'صرف تالف', onTap: () {  },
+                color: Colors.white,
+                title: 'صرف تالف',
+                onTap: () {},
               )
             ],
           ),
