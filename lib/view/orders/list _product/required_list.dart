@@ -223,7 +223,9 @@ class _RequiredListState extends State<RequiredList> {
                                       (index) => Column(
                                             children: [
                                               SizedBox(
-                                                  width: 200,
+                                                  width:
+                                                      getProportionateScreenWidth(
+                                                          50),
                                                   child: dropDown(
                                                     const [
                                                       'تأكيد امرالتصنيع',
