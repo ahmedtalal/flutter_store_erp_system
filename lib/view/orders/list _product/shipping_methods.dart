@@ -1,12 +1,9 @@
-
 import 'package:flutter/material.dart';
-import 'package:merge_table/merge_table.dart';
 
 import '../../../resources/color_manger.dart';
 import '../../../size_config.dart';
 import '../../../view/home/components/default_table.dart';
 import '../../../view/home/components/drop_down.dart';
-
 
 class ShippingMethods extends StatefulWidget {
   ShippingMethods({Key? key}) : super(key: key);
@@ -19,7 +16,6 @@ class _ShippingMethodsState extends State<ShippingMethods> {
   String? chose;
   String? state;
   DateTime orderDate = DateTime.now();
-
 
   List data = [
     {"1": "١", "2": "Small products"},
@@ -60,7 +56,6 @@ class _ShippingMethodsState extends State<ShippingMethods> {
               const SizedBox(
                 height: 32,
               ),
-
               Row(
                 children: [
                   SizedBox(
@@ -90,22 +85,20 @@ class _ShippingMethodsState extends State<ShippingMethods> {
                     children: [
                       SizedBox(
                         width: getProportionateScreenWidth(200),
-                        child:
-                        DefaultTable(
+                        child: DefaultTable(
                           color: ColorManager.second,
                           columnData: columnData,
                           rows: data
                               .map((data) => DataRow(cells: [
-                            DataCell(Text(
-                              data['2'],
-                            )),
-                            DataCell(Text(
-                              data['1'],
-                            )),
-                          ]))
+                                    DataCell(Text(
+                                      data['2'],
+                                    )),
+                                    DataCell(Text(
+                                      data['1'],
+                                    )),
+                                  ]))
                               .toList(),
                         ),
-
                       ),
                     ],
                   ),

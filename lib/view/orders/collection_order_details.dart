@@ -5,9 +5,7 @@ import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/drop_down_par.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-import '../../resources/style_manager.dart';
 import '../../size_config.dart';
 import '../auth/component/text_fom_feild.dart';
 import '../home/components/botton.dart';
@@ -33,7 +31,6 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
   String? companyCharge;
   String? calcComCharge;
 
-
   String? governorate;
   String? numLine1;
   String? typeOrder;
@@ -41,8 +38,6 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
   DateTime orderDate = DateTime.now();
   DateTime stateDate = DateTime.now();
   DateTime chargeDate = DateTime.now();
-
-
 
   List data = [
     {
@@ -52,7 +47,6 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
       "4": "100",
       "5": "كيلو",
       "6": "٣٠",
-
     },
     {
       "1": "١/١٢.٢٠٢٢",
@@ -61,12 +55,10 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
       "4": "100",
       "5": "كيلو",
       "6": "٣٠",
-
     },
   ];
 
   List<String> columnData = [
-
     "صورةالمنتج",
     "اجمالي سعر البيع",
     "سعر ",
@@ -162,10 +154,10 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                   children: [
                                     Container(
                                       width:
-                                      MediaQuery.of(context).size.width <=
-                                          500
-                                          ? getProportionateScreenWidth(65)
-                                          : getProportionateScreenWidth(43),
+                                          MediaQuery.of(context).size.width <=
+                                                  500
+                                              ? getProportionateScreenWidth(65)
+                                              : getProportionateScreenWidth(43),
                                       height: getProportionateScreenHeight(90),
                                       padding: const EdgeInsets.only(top: 35),
                                       child: dropDown(
@@ -188,10 +180,10 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                     ),
                                     Container(
                                       width:
-                                      MediaQuery.of(context).size.width <=
-                                          500
-                                          ? getProportionateScreenWidth(65)
-                                          : getProportionateScreenWidth(43),
+                                          MediaQuery.of(context).size.width <=
+                                                  500
+                                              ? getProportionateScreenWidth(65)
+                                              : getProportionateScreenWidth(43),
                                       height: getProportionateScreenHeight(90),
                                       padding: const EdgeInsets.only(top: 35),
                                       child: dropDown(
@@ -219,10 +211,10 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                     ),
                                     Container(
                                       width:
-                                      MediaQuery.of(context).size.width <=
-                                          500
-                                          ? getProportionateScreenWidth(65)
-                                          : getProportionateScreenWidth(43),
+                                          MediaQuery.of(context).size.width <=
+                                                  500
+                                              ? getProportionateScreenWidth(65)
+                                              : getProportionateScreenWidth(43),
                                       height: getProportionateScreenHeight(90),
                                       padding: const EdgeInsets.only(top: 35),
                                       child: dropDown(
@@ -261,15 +253,15 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                         onPressed: () => _selectDate(context),
                                         style: ButtonStyle(
                                             backgroundColor:
-                                            MaterialStateProperty.all(
-                                                Colors.white)),
+                                                MaterialStateProperty.all(
+                                                    Colors.white)),
                                         child: Text(
-                                          '$orderDate',
+                                          "${orderDate.year.toString()}/${orderDate.month.toString().padLeft(2, '0')}/${orderDate.day.toString().padLeft(2, '0')}",
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontSize:
-                                              getProportionateScreenWidth(
-                                                  5)),
+                                                  getProportionateScreenWidth(
+                                                      5)),
                                         ),
                                       ),
                                     ),
@@ -287,15 +279,15 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                         onPressed: () => _select1Date(context),
                                         style: ButtonStyle(
                                             backgroundColor:
-                                            MaterialStateProperty.all(
-                                                Colors.white)),
+                                                MaterialStateProperty.all(
+                                                    Colors.white)),
                                         child: Text(
-                                          '$stateDate',
+                                          "${stateDate.year.toString()}/${stateDate.month.toString().padLeft(2, '0')}/${stateDate.day.toString().padLeft(2, '0')}",
                                           style: TextStyle(
-                                              color:Colors.black,
+                                              color: Colors.black,
                                               fontSize:
-                                              getProportionateScreenWidth(
-                                                  5)),
+                                                  getProportionateScreenWidth(
+                                                      5)),
                                         ),
                                       ),
                                     ),
@@ -305,10 +297,10 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                   children: [
                                     Container(
                                       width:
-                                      MediaQuery.of(context).size.width <=
-                                          500
-                                          ? getProportionateScreenWidth(75)
-                                          : getProportionateScreenWidth(43),
+                                          MediaQuery.of(context).size.width <=
+                                                  500
+                                              ? getProportionateScreenWidth(75)
+                                              : getProportionateScreenWidth(43),
                                       height: getProportionateScreenHeight(50),
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 10),
@@ -317,7 +309,7 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                               width: 3,
                                               color: const Color(0xff82225E)),
                                           borderRadius:
-                                          BorderRadius.circular(10)),
+                                              BorderRadius.circular(10)),
                                       child: Center(
                                         child: DropdownButtonHideUnderline(
                                           child: DropdownButton<String>(
@@ -328,14 +320,14 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                               "الكل",
                                             ]
                                                 .map((e) => DropdownMenuItem(
-                                              value: e,
-                                              child: Text(
-                                                e,
-                                                style: const TextStyle(
-                                                    color:
-                                                    Colors.black),
-                                              ),
-                                            ))
+                                                      value: e,
+                                                      child: Text(
+                                                        e,
+                                                        style: const TextStyle(
+                                                            color:
+                                                                Colors.black),
+                                                      ),
+                                                    ))
                                                 .toList(),
                                             value: city,
                                             onChanged: (val) {
@@ -350,7 +342,7 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                               ),
                                             ),
                                             borderRadius:
-                                            BorderRadius.circular(10),
+                                                BorderRadius.circular(10),
                                             dropdownColor: Colors.white,
                                             style: const TextStyle(
                                                 color: Color(0xff82225E)),
@@ -360,10 +352,10 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                     ),
                                     Container(
                                       width:
-                                      MediaQuery.of(context).size.width <=
-                                          500
-                                          ? getProportionateScreenWidth(75)
-                                          : getProportionateScreenWidth(43),
+                                          MediaQuery.of(context).size.width <=
+                                                  500
+                                              ? getProportionateScreenWidth(75)
+                                              : getProportionateScreenWidth(43),
                                       height: getProportionateScreenHeight(50),
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 10),
@@ -372,7 +364,7 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                               width: 3,
                                               color: const Color(0xff82225E)),
                                           borderRadius:
-                                          BorderRadius.circular(10)),
+                                              BorderRadius.circular(10)),
                                       child: Center(
                                         child: DropdownButtonHideUnderline(
                                           child: DropdownButton<String>(
@@ -383,14 +375,14 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                               "الكل",
                                             ]
                                                 .map((e) => DropdownMenuItem(
-                                              value: e,
-                                              child: Text(
-                                                e,
-                                                style: const TextStyle(
-                                                    color:
-                                                    Colors.black),
-                                              ),
-                                            ))
+                                                      value: e,
+                                                      child: Text(
+                                                        e,
+                                                        style: const TextStyle(
+                                                            color:
+                                                                Colors.black),
+                                                      ),
+                                                    ))
                                                 .toList(),
                                             value: governorate,
                                             onChanged: (val) {
@@ -405,7 +397,7 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                               ),
                                             ),
                                             borderRadius:
-                                            BorderRadius.circular(10),
+                                                BorderRadius.circular(10),
                                             dropdownColor: Colors.white,
                                             style: const TextStyle(
                                                 color: Color(0xff82225E)),
@@ -416,7 +408,6 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                     const SizedBox(
                                       height: 5,
                                     ),
-
                                   ],
                                 ),
                                 Column(
@@ -432,7 +423,7 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                         ),
                                         SizedBox(
                                           width:
-                                          getProportionateScreenWidth(40),
+                                              getProportionateScreenWidth(40),
                                           height: 60,
                                           child: DefaultInputForm(
                                             hint: '',
@@ -461,7 +452,7 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                         ),
                                         SizedBox(
                                           width:
-                                          getProportionateScreenWidth(40),
+                                              getProportionateScreenWidth(40),
                                           height: 60,
                                           child: DefaultInputForm(
                                             hint: '',
@@ -486,7 +477,7 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                         ),
                                         SizedBox(
                                           width:
-                                          getProportionateScreenWidth(40),
+                                              getProportionateScreenWidth(40),
                                           height: 60,
                                           child: DefaultInputForm(
                                             hint: '',
@@ -505,9 +496,9 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                 ),
                                 Container(
                                   width:
-                                  MediaQuery.of(context).size.width <= 500
-                                      ? getProportionateScreenWidth(65)
-                                      : getProportionateScreenWidth(43),
+                                      MediaQuery.of(context).size.width <= 500
+                                          ? getProportionateScreenWidth(65)
+                                          : getProportionateScreenWidth(43),
                                   height: getProportionateScreenHeight(90),
                                   padding: const EdgeInsets.only(top: 35),
                                   child: dropDown(
@@ -550,13 +541,13 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                     ),
                                     child: Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.start,
+                                          MainAxisAlignment.start,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                       children: [
                                         Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Icon(Icons.more_horiz),
                                             Text(
@@ -592,13 +583,13 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                     ),
                                     child: Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.start,
+                                          MainAxisAlignment.start,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                       children: [
                                         Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Icon(Icons.more_horiz),
                                             Text(
@@ -631,32 +622,32 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                     color: ColorManager.primary,
                                     rows: data
                                         .map((data) => DataRow(cells: [
-                                      DataCell(Image.asset(
-                                        ImageAssets.iconDropDown23,
-                                        width: 50,
-                                        height: 50,
-                                      )),
-                                      DataCell(Text(
-                                        data['5'],
-                                        style: style,
-                                      )),
-                                      DataCell(Text(
-                                        data['4'],
-                                        style: style,
-                                      )),
-                                      DataCell(Text(
-                                        data['3'],
-                                        style: style,
-                                      )),
-                                      DataCell(Text(
-                                        data['2'],
-                                        style: style,
-                                      )),
-                                      DataCell(Text(
-                                        data['1'],
-                                        style: style,
-                                      )),
-                                    ]))
+                                              DataCell(Image.asset(
+                                                ImageAssets.iconDropDown23,
+                                                width: 50,
+                                                height: 50,
+                                              )),
+                                              DataCell(Text(
+                                                data['5'],
+                                                style: style,
+                                              )),
+                                              DataCell(Text(
+                                                data['4'],
+                                                style: style,
+                                              )),
+                                              DataCell(Text(
+                                                data['3'],
+                                                style: style,
+                                              )),
+                                              DataCell(Text(
+                                                data['2'],
+                                                style: style,
+                                              )),
+                                              DataCell(Text(
+                                                data['1'],
+                                                style: style,
+                                              )),
+                                            ]))
                                         .toList(),
                                   ),
                                 ],
@@ -717,9 +708,9 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                   ),
                                   Container(
                                     width:
-                                    MediaQuery.of(context).size.width <= 500
-                                        ? getProportionateScreenWidth(65)
-                                        : getProportionateScreenWidth(43),
+                                        MediaQuery.of(context).size.width <= 500
+                                            ? getProportionateScreenWidth(65)
+                                            : getProportionateScreenWidth(43),
                                     height: getProportionateScreenHeight(90),
                                     padding: const EdgeInsets.only(top: 35),
                                     child: dropDown(
@@ -767,9 +758,9 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                   ),
                                   Container(
                                     width:
-                                    MediaQuery.of(context).size.width <= 500
-                                        ? getProportionateScreenWidth(65)
-                                        : getProportionateScreenWidth(43),
+                                        MediaQuery.of(context).size.width <= 500
+                                            ? getProportionateScreenWidth(65)
+                                            : getProportionateScreenWidth(43),
                                     height: getProportionateScreenHeight(90),
                                     padding: const EdgeInsets.only(top: 35),
                                     child: dropDown(
@@ -826,14 +817,14 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                       onPressed: () => _select2Date(context),
                                       style: ButtonStyle(
                                           backgroundColor:
-                                          MaterialStateProperty.all(
-                                              Colors.white)),
+                                              MaterialStateProperty.all(
+                                                  Colors.white)),
                                       child: Text(
-                                        '$chargeDate',
+                                        "${chargeDate.year.toString()}/${chargeDate.month.toString().padLeft(2, '0')}/${chargeDate.day.toString().padLeft(2, '0')}",
                                         style: TextStyle(
                                             color: Colors.black,
                                             fontSize:
-                                            getProportionateScreenWidth(5)),
+                                                getProportionateScreenWidth(5)),
                                       ),
                                     ),
                                   ),
@@ -879,10 +870,9 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                   ),
                                   Container(
                                     width:
-                                    MediaQuery.of(context).size.width <=
-                                        500
-                                        ? getProportionateScreenWidth(65)
-                                        : getProportionateScreenWidth(43),
+                                        MediaQuery.of(context).size.width <= 500
+                                            ? getProportionateScreenWidth(65)
+                                            : getProportionateScreenWidth(43),
                                     height: getProportionateScreenHeight(90),
                                     padding: const EdgeInsets.only(top: 35),
                                     child: dropDown(
@@ -942,48 +932,49 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                     height: 5,
                                   ),
                                   SizedBox(
-                                    width: MediaQuery.of(context)
-                                        .size
-                                        .width <=
-                                        917
-                                        ? getProportionateScreenWidth(75)
-                                        : getProportionateScreenWidth(63),
+                                    width:
+                                        MediaQuery.of(context).size.width <= 917
+                                            ? getProportionateScreenWidth(75)
+                                            : getProportionateScreenWidth(63),
                                     height: 100,
                                     child: TextFormField(
                                       maxLines: 5,
                                       decoration: InputDecoration(
                                           border: OutlineInputBorder(
-                                              borderSide: BorderSide(color: ColorManager.primary)
-                                          )
-                                      ),
+                                              borderSide: BorderSide(
+                                                  color:
+                                                      ColorManager.primary))),
                                     ),
                                   ),
                                 ],
                               ),
-                              const SizedBox(width: 20,),
+                              const SizedBox(
+                                width: 20,
+                              ),
                               Container(
                                 width: getProportionateScreenWidth(35),
                                 height: getProportionateScreenHeight(132),
                                 decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: Colors.black,
-                                      width: 2,
-                                    )),
+                                  color: Colors.black,
+                                  width: 2,
+                                )),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Text(
                                       'ارفاق ايصال الدفع',
                                       style: style,
                                     ),
                                     InkWell(
-                                      onTap: (){},
+                                      onTap: () {},
                                       child: Image.asset(
                                         ImageAssets.iconDropDown20,
                                         width: getProportionateScreenWidth(35),
-                                        height: getProportionateScreenHeight(85),
+                                        height:
+                                            getProportionateScreenHeight(85),
                                       ),
                                     )
                                   ],
@@ -997,13 +988,13 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                 height: getProportionateScreenHeight(132),
                                 decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: Colors.black,
-                                      width: 2,
-                                    )),
+                                  color: Colors.black,
+                                  width: 2,
+                                )),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Text(
                                       'ارفاق صوره بوليسه الشحن',
@@ -1014,9 +1005,9 @@ class _CollectionOrderDetailsState extends State<CollectionOrderDetails> {
                                         child: Image.asset(
                                           ImageAssets.iconDropDown20,
                                           width:
-                                          getProportionateScreenWidth(35),
+                                              getProportionateScreenWidth(35),
                                           height:
-                                          getProportionateScreenHeight(85),
+                                              getProportionateScreenHeight(85),
                                         ))
                                   ],
                                 ),

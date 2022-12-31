@@ -727,14 +727,14 @@ class _TalabatState extends State<Talabat> {
                                             ),
                                             PopupMenuItem(
                                               value: 2,
-                                              child: const Text('تعديل الطلب'),
+                                              child: const Text('شحن الطلب'),
                                               onTap: () {
-                                                QR.to('');
+                                                QR.to('/LoadOrder');
                                               },
                                             ),
                                             PopupMenuItem(
                                               value: 3,
-                                              child: Text('الغاء الطلب'),
+                                              child: const Text('الغاء الطلب'),
                                               onTap: () {
                                                 setState(() {
                                                   decline = !decline;
@@ -743,11 +743,25 @@ class _TalabatState extends State<Talabat> {
                                             ),
                                             PopupMenuItem(
                                               value: 4,
-                                              child: Text('تفاصيل الطلب'),
+                                              child: Text('صيانه الطلب'),
+                                              onTap: () {
+                                                QR.to('/OrderMaintenance');
+                                              },
                                             ),
                                             PopupMenuItem(
                                               value: 5,
-                                              child: Text('تاجيل الطلب'),
+                                              child: Text('تحصيل الطلب'),
+                                              onTap: () {
+                                                QR.to('/CollectionOrder');
+                                              },
+                                            ),
+                                            PopupMenuItem(
+                                              value: 5,
+                                              child: Text('تفاصيل تحصيل الطلب'),
+                                              onTap: () {
+                                                QR.to(
+                                                    '/CollectionOrderDetails');
+                                              },
                                             ),
                                             PopupMenuItem(
                                               value: 6,
