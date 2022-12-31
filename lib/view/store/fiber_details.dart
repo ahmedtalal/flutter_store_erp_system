@@ -6,6 +6,7 @@ import 'package:erb_system/size_config.dart';
 import 'package:erb_system/view/auth/component/text_fom_feild.dart';
 import 'package:erb_system/view/home/components/default_botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
+import 'package:erb_system/view/home/components/default_row.dart';
 import 'package:erb_system/view/home/components/default_table.dart';
 import 'package:erb_system/view/store/d1_fiper.dart';
 import 'package:erb_system/view/store/mo4_details.dart';
@@ -115,7 +116,6 @@ class FiperDetails extends StatelessWidget {
                 const SizedBox(
                   height: 50,
                 ),
-
                 DefaultContainer(title: 'تفاصيل خام فايبر'),
                 const SizedBox(
                   height: 50,
@@ -159,12 +159,16 @@ class FiperDetails extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     Padding(
-                                      padding:
-                                          MediaQuery.of(context).size.width <= 1000
-                                              ? const EdgeInsets.only(bottom: 20)
-                                              : const EdgeInsets.only(bottom: 10),
+                                      padding: MediaQuery.of(context)
+                                                  .size
+                                                  .width <=
+                                              1000
+                                          ? const EdgeInsets.only(bottom: 20)
+                                          : const EdgeInsets.only(bottom: 10),
                                       child: DefaultBotton(
-                                        top: MediaQuery.of(context).size.width <=
+                                        top: MediaQuery.of(context)
+                                                    .size
+                                                    .width <=
                                                 1000
                                             ? getProportionateScreenWidth(8)
                                             : getProportionateScreenWidth(3),
@@ -240,50 +244,58 @@ class FiperDetails extends StatelessWidget {
                                   ]))
                               .toList(),
                           DataRow(
-                              color:MaterialStateProperty.all(ColorManager.primary) ,
+                              color: MaterialStateProperty.all(
+                                  ColorManager.primary),
                               cells: [
-                            DataCell(Text(
-                              '',
-                              style: style,
-                            )),
-                            DataCell(Text(
-                              '',
-                              style: style,
-                            )),
-                            DataCell(Text(
-                              " 250",
-                              style: TextStyle(color: ColorManager.white,fontSize: getProportionateScreenWidth(5),fontWeight: FontWeight.w800),
-                            )),
-                            DataCell(Text(
-                              '',
-                              style: style,
-                            )),
-                            DataCell(Text(
-                              '',
-                              style: style,
-                            )),
-                            DataCell(Text(
-                              '',
-                              style: style,
-                            )),
-                            DataCell(Text(
-                              '',
-                              style: style,
-                            )),
-                            DataCell(Text(
-                              '',
-                              style: style,
-                            )),
-                            DataCell(
-                                Container(
-                                  color: ColorManager.primary,
-                                  child: Text(
-                                    'الاجمالي',
-                                    style: TextStyle(color: ColorManager.white,fontSize: getProportionateScreenWidth(5),fontWeight: FontWeight.w800),
-                                  ),
-                                ),
-                                placeholder: true),
-                          ])
+                                DataCell(Text(
+                                  '',
+                                  style: style,
+                                )),
+                                DataCell(Text(
+                                  '',
+                                  style: style,
+                                )),
+                                DataCell(Text(
+                                  " 250",
+                                  style: TextStyle(
+                                      color: ColorManager.white,
+                                      fontSize: getProportionateScreenWidth(5),
+                                      fontWeight: FontWeight.w800),
+                                )),
+                                DataCell(Text(
+                                  '',
+                                  style: style,
+                                )),
+                                DataCell(Text(
+                                  '',
+                                  style: style,
+                                )),
+                                DataCell(Text(
+                                  '',
+                                  style: style,
+                                )),
+                                DataCell(Text(
+                                  '',
+                                  style: style,
+                                )),
+                                DataCell(Text(
+                                  '',
+                                  style: style,
+                                )),
+                                DataCell(
+                                    Container(
+                                      color: ColorManager.primary,
+                                      child: Text(
+                                        'الاجمالي',
+                                        style: TextStyle(
+                                            color: ColorManager.white,
+                                            fontSize:
+                                                getProportionateScreenWidth(5),
+                                            fontWeight: FontWeight.w800),
+                                      ),
+                                    ),
+                                    placeholder: true),
+                              ])
                         ]),
                   ],
                 ),
@@ -299,41 +311,7 @@ class FiperDetails extends StatelessWidget {
               ],
             ),
           ),
-          Row(
-            children: [
-              Container(
-                width: 50,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: ColorManager.primary,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Center(
-                  child: InkWell(
-                      onTap: () {
-                        QR.navigator.popUntilOrPush('/');
-                      },
-                      child: Image.asset(ImageAssets.iconDropDown2)),
-                ),
-              ),
-              SizedBox(width: 5,),
-              Container(
-                width: 50,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: ColorManager.primary,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Center(
-                  child: InkWell(
-                      onTap: () {
-                        QR.navigator.popUntilOrPush('/');
-                      },
-                      child: Image.asset(ImageAssets.iconDropDown52)),
-                ),
-              ),
-            ],
-          ),
+          const DefaultRow(),
         ],
       ),
     ));

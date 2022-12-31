@@ -1,13 +1,13 @@
 import 'package:erb_system/resources/assets_manager.dart';
 import 'package:erb_system/size_config.dart';
 import 'package:erb_system/view/auth/component/text_fom_feild.dart';
-import 'package:erb_system/view/home/components/default_botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/components/default_table.dart';
 import 'package:erb_system/view/home/components/drop_down.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qlevar_router/qlevar_router.dart';
+
 import '../../resources/color_manger.dart';
 
 class Talabat extends StatefulWidget {
@@ -33,6 +33,8 @@ class _TalabatState extends State<Talabat> {
   DateTime orderDate = DateTime.now();
   DateTime stateDate = DateTime.now();
   String search = '';
+  bool decline = false;
+  bool decline1 = false;
   bool visable = false;
 
   Future<void> _selectDate(BuildContext context) async {
@@ -96,7 +98,7 @@ class _TalabatState extends State<Talabat> {
       "14": "aaaaa",
       "15": "عدد 1",
       "16": "small",
-      "18": "aaa ",
+      "18": "aaa",
     },
     {
       "1": "0",
@@ -702,43 +704,76 @@ class _TalabatState extends State<Talabat> {
                       alignment: Alignment.center,
                       children: [
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(top: 71),
                               child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: List.generate(
                                     data.length,
-                                    (index) => Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            Padding(
-                                              padding: MediaQuery.of(context)
-                                                          .size
-                                                          .width <=
-                                                      776
-                                                  ? const EdgeInsets.only(
-                                                      top: 10, bottom: 10)
-                                                  : const EdgeInsets.only(
-                                                      top: 5),
-                                              child: IconButton(
-                                                icon: const Icon(
-                                                    Icons.more_horiz),
-                                                onPressed: () {},
-                                              ),
+                                    (index) => PopupMenuButton(
+                                          iconSize:
+                                              getProportionateScreenWidth(5),
+                                          itemBuilder: (context) => [
+                                            PopupMenuItem(
+                                              value: 1,
+                                              child: const Text('تاكيد الطلب'),
+                                              onTap: () {
+                                                QR.to('/ConfirmOrder');
+                                              },
+                                            ),
+                                            PopupMenuItem(
+                                              value: 2,
+                                              child: const Text('تعديل الطلب'),
+                                              onTap: () {
+                                                QR.to('');
+                                              },
+                                            ),
+                                            PopupMenuItem(
+                                              value: 3,
+                                              child: Text('الغاء الطلب'),
+                                              onTap: () {
+                                                setState(() {
+                                                  decline = !decline;
+                                                });
+                                              },
+                                            ),
+                                            PopupMenuItem(
+                                              value: 4,
+                                              child: Text('تفاصيل الطلب'),
+                                            ),
+                                            PopupMenuItem(
+                                              value: 5,
+                                              child: Text('تاجيل الطلب'),
+                                            ),
+                                            PopupMenuItem(
+                                              value: 6,
+                                              child: Text('رفض استلام'),
+                                              onTap: () {
+                                                setState(() {
+                                                  decline1 = !decline1;
+                                                });
+                                              },
                                             ),
                                           ],
                                         )),
                               ),
                             ),
+                            SizedBox(
+                              width: getProportionateScreenWidth(10),
+                            ),
                             DefaultTable(
                               columnData: dataTable,
                               color: ColorManager.primary,
-                              size: getProportionateScreenWidth(0.2),
+                              size: MediaQuery.of(context).size.width <= 690
+                                  ? getProportionateScreenWidth(.1)
+                                  : getProportionateScreenWidth(2),
                               icon: Image.asset(
                                 ImageAssets.iconDropDown32,
-                                width: getProportionateScreenWidth(20),
+                                width: getProportionateScreenWidth(10),
                                 height: getProportionateScreenWidth(6),
                               ),
                               rows: data
@@ -1027,6 +1062,98 @@ class _TalabatState extends State<Talabat> {
                                 ]),
                               )
                             : Container(),
+                        decline
+                            ? Container(
+                                width: getProportionateScreenWidth(70),
+                                height: getProportionateScreenHeight(193),
+                                decoration: BoxDecoration(
+                                  color: ColorManager.white,
+                                  borderRadius: BorderRadius.circular(15),
+                                  border: Border.all(
+                                      color: ColorManager.primary, width: 2),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const Icon(Icons.more_horiz),
+                                        Text(
+                                          'يرجي توضيح سبب الالغاء',
+                                          style: style,
+                                        ),
+                                        InkWell(
+                                            onTap: () {
+                                              setState(() {
+                                                decline = false;
+                                              });
+                                            },
+                                            child: const Icon(Icons.close))
+                                      ],
+                                    ),
+                                    const Divider(
+                                      color: Colors.black,
+                                      thickness: 2,
+                                    ),
+                                    TextFormField(
+                                      keyboardType: TextInputType.multiline,
+                                      maxLines: 5,
+                                      decoration: const InputDecoration(
+                                          border: InputBorder.none),
+                                    )
+                                  ],
+                                ),
+                              )
+                            : Container(),
+                        decline1
+                            ? Container(
+                                width: getProportionateScreenWidth(75),
+                                height: getProportionateScreenHeight(193),
+                                decoration: BoxDecoration(
+                                  color: ColorManager.white,
+                                  borderRadius: BorderRadius.circular(15),
+                                  border:
+                                      Border.all(color: Colors.black, width: 2),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Icon(Icons.more_horiz),
+                                        Text(
+                                          'يرجي توضيح سبب رفض الاستلام',
+                                          style: style,
+                                        ),
+                                        InkWell(
+                                            onTap: () {
+                                              setState(() {
+                                                decline1 = false;
+                                              });
+                                            },
+                                            child: const Icon(Icons.close))
+                                      ],
+                                    ),
+                                    const Divider(
+                                      color: Colors.black,
+                                      thickness: 2,
+                                    ),
+                                    TextFormField(
+                                      keyboardType: TextInputType.multiline,
+                                      maxLines: 5,
+                                      decoration: const InputDecoration(
+                                          border: InputBorder.none),
+                                    )
+                                  ],
+                                ),
+                              )
+                            : Container(),
                       ],
                     ),
                     const SizedBox(
@@ -1052,11 +1179,6 @@ class _TalabatState extends State<Talabat> {
                   child: Image.asset(ImageAssets.iconDropDown2)),
             ),
           ),
-          // IconButton(
-          //     onPressed: () {
-          //       QR.navigator.popUntilOrPush('/');
-          //     },
-          //     icon: const Icon(Icons.home))
         ],
       ),
     );

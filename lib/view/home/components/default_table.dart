@@ -2,17 +2,21 @@ import 'package:erb_system/size_config.dart';
 import 'package:flutter/material.dart';
 
 import '../../../resources/color_manger.dart';
-import '../../../resources/style_manager.dart';
-
 
 class DefaultTable extends StatelessWidget {
-  DefaultTable({Key? key, required this.columnData, required this.rows,this.icon,this.color,this.size});
+  DefaultTable(
+      {Key? key,
+      required this.columnData,
+      required this.rows,
+      this.icon,
+      this.color,
+      this.size});
 
   List<String> columnData;
   List<DataRow> rows;
-  Widget? icon ;
-  double? size=56;
-  Color? color=ColorManager.second;
+  Widget? icon;
+  double? size = 56;
+  Color? color = ColorManager.second;
 
   @override
   Widget build(BuildContext context) {
@@ -20,27 +24,30 @@ class DefaultTable extends StatelessWidget {
         columnSpacing: size,
         headingRowHeight: 80,
         border: const TableBorder(
-            top: BorderSide(color: Colors.black, width: 1.5),
-            right: BorderSide(color: Colors.black, width: 1.5),
-            bottom: BorderSide(color: Colors.black, width: 1.5),
-            left: BorderSide(color: Colors.black, width: 1.5),
-            horizontalInside: BorderSide(color: Colors.black, width: 1.5),
-            verticalInside: BorderSide(color: Colors.black, width: 1.5)),
+            top: BorderSide(color: Colors.black, width: 1),
+            right: BorderSide(color: Colors.black, width: 1),
+            bottom: BorderSide(color: Colors.black, width: 1),
+            left: BorderSide(color: Colors.black, width: 1),
+            horizontalInside: BorderSide(color: Colors.black, width: 1),
+            verticalInside: BorderSide(color: Colors.black, width: 1)),
         headingRowColor: MaterialStateProperty.all(color),
         columns: List.generate(
             columnData.length,
-                (index) => DataColumn(
-                label: Flexible(
+            (index) => DataColumn(
+                label: Center(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(columnData[index],
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                          textAlign: TextAlign.center,
-                          style: getSemiBoldStyle(color: Colors.white,fontSize: getProportionateScreenWidth(4))),
-                      icon ??Container(),
+                      Flexible(
+                        child: Text(columnData[index],
+                            maxLines: 2,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: getProportionateScreenWidth(4))),
+                      ),
+                      icon ?? Container(),
                     ],
                   ),
                 ),

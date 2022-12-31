@@ -1,11 +1,11 @@
 import 'package:erb_system/size_config.dart';
+import 'package:erb_system/view/home/components/appBar.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
+import 'package:erb_system/view/home/drop_down_par.dart';
 import 'package:flutter/material.dart';
+import 'package:qlevar_router/qlevar_router.dart';
 
 import '../../resources/color_manger.dart';
-import '../../view/auth/component/text_fom_feild.dart';
-import '../../view/home/components/botton.dart';
-import '../../view/home/components/default_botton.dart';
 import '../../view/home/components/default_table.dart';
 import '../../view/home/components/drop_down.dart';
 
@@ -44,167 +44,140 @@ class _companies_representativesState extends State<companies_representatives> {
     double height = MediaQuery.of(context).size.height;
     return SafeArea(
         child: Scaffold(
-      body: SizedBox(
-        width: width,
-        height: height,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              DefaultContainer(title: 'شركات الشحن والمندوبين'),
-              const SizedBox(
-                height: 32,
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  dropDown(
-                    const [
-                      'كشف حساب',
-                      'تعديل شركة الشحن',
-                      'تحصيل االجمالي',
-                    ],
-                    bgColor: ColorManager.primary,
-                    dpColor: ColorManager.primary,
-                    selectTalab: chose,
-                    foColor: Colors.white,
-                    width: getProportionateScreenWidth(65),
-                    label: 'خيارات',
-                    onchanged: () => (val) {
-                      setState(() {
-                        chose = val;
-                      });
-                    },
-                  ),
-                  Column(
-                    children: [
-                      DefaultTable(
-                        color: ColorManager.primary,
-                        columnData: columnData,
-                        size: getProportionateScreenWidth(2),
-                        rows: data
-                            .map((data) => DataRow(cells: [
-                                  DataCell(Text(
-                                    data['5'],
-                                    style: style,
-                                  )),
-                                  DataCell(Text(
-                                    data['4'],
-                                    style: style,
-                                  )),
-                                  DataCell(Text(
-                                    data['3'],
-                                    style: style,
-                                  )),
-                                  DataCell(Text(
-                                    data['2'],
-                                    style: style,
-                                  )),
-                                  DataCell(Text(
-                                    data['1'],
-                                    style: style,
-                                  )),
-                                ]))
-                            .toList(),
-                      ),
-                      // SizedBox(
-                      //   width: width / 3.01,
-                      //   child: Table(
-                      //     border: TableBorder.all(color: Colors.black),
-                      //     children: [
-                      //       TableRow(
-                      //           decoration: const BoxDecoration(
-                      //             color: Colors.white,
-                      //           ),
-                      //           children: List.generate(
-                      //               dataTable.length,
-                      //               (index) => Column(
-                      //                     children: [
-                      //                       const SizedBox(height: 10),
-                      //                       Text(
-                      //                         dataTable[index],
-                      //                         style: const TextStyle(
-                      //                             color: Colors.white),
-                      //                       ),
-                      //                     ],
-                      //                   ))),
-                      //     ],
-                      //   ),
-                      // ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 32,
-              ),
-              DefaultContainer(
-                title: 'اضافة شركة شحن او مندوب',
-              ),
-              const SizedBox(
-                height: 32,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: getProportionateScreenWidth(40),
+            body: Row(
+      children: [
+        Expanded(
+            flex: 5,
+            child: Stack(
+              children: [
+                SizedBox(
+                  width: width,
+                  height: height,
+                  child: SingleChildScrollView(
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text('النوع',style: style,),
-                        DefaultInputForm(
-                          hint: '',
-                          label: '',
-                          onTab: () {},
-                          validate: () {},
-                          onSave: () {},
-                          passFun: () {},
-                          obscureText: false,
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        DefaultContainer(title: 'شركات الشحن والمندوبين'),
+                        const SizedBox(
+                          height: 32,
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            dropDown(
+                              const [
+                                'كشف حساب',
+                                'تعديل شركة الشحن',
+                                'تحصيل االجمالي',
+                              ],
+                              bgColor: ColorManager.primary,
+                              dpColor: ColorManager.primary,
+                              selectTalab: chose,
+                              foColor: Colors.white,
+                              width: getProportionateScreenWidth(65),
+                              label: 'خيارات',
+                              onchanged: () => (val) {
+                                setState(() {
+                                  chose = val;
+                                });
+                              },
+                            ),
+                            Column(
+                              children: [
+                                DefaultTable(
+                                  color: ColorManager.primary,
+                                  columnData: columnData,
+                                  size: getProportionateScreenWidth(2),
+                                  rows: data
+                                      .map((data) => DataRow(cells: [
+                                            DataCell(Text(
+                                              data['5'],
+                                              style: style,
+                                            )),
+                                            DataCell(Text(
+                                              data['4'],
+                                              style: style,
+                                            )),
+                                            DataCell(Text(
+                                              data['3'],
+                                              style: style,
+                                            )),
+                                            DataCell(Text(
+                                              data['2'],
+                                              style: style,
+                                            )),
+                                            DataCell(Text(
+                                              data['1'],
+                                              style: style,
+                                            )),
+                                          ]))
+                                      .toList(),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    QR.to('/add_company');
+                                  },
+                                  child: Container(
+                                    width: getProportionateScreenWidth(42),
+                                    decoration: BoxDecoration(
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(25)),
+                                        border: Border.all(
+                                            color: ColorManager.primary)),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.add,
+                                          color: ColorManager.primary,
+                                        ),
+                                        Text(
+                                          'اضافه ',
+                                          style: TextStyle(
+                                            fontSize:
+                                                getProportionateScreenWidth(5),
+                                            fontWeight: FontWeight.w500,
+                                            // color: ColorManager.primary
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 32,
                         ),
                       ],
                     ),
                   ),
-                   SizedBox(
-                    width: getProportionateScreenWidth(10),
-                  ),
-                  SizedBox(
-                    width: getProportionateScreenWidth(40),
-                    child: Column(
-                      children: [
-                        Text('النوع',style: style,),
-                        DefaultInputForm(
-                          hint: '',
-                          label: '',
-                          onTab: () {},
-                          validate: () {},
-                          onSave: () {},
-                          passFun: () {},
-                          obscureText: false,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 64,
-              ),
-              Botton(
-                bgColor: Colors.black,
-                color: Colors.white,
-                title: 'اضافة',
-                onTap: () {},
-              )
-            ],
-          ),
-        ),
-      ),
-    ));
+                ),
+                DefaultAppBar()
+              ],
+            )),
+        Expanded(
+            flex: 1,
+            child: Container(
+                padding: const EdgeInsets.only(top: 20),
+                decoration: BoxDecoration(
+                  color: ColorManager.primary,
+                ),
+                child: DropDownList())),
+      ],
+    )));
   }
 }

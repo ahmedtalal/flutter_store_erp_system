@@ -1,5 +1,3 @@
-import 'package:erb_system/resources/color_manger.dart';
-import 'package:erb_system/resources/value_manager.dart';
 import 'package:erb_system/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:qlevar_router/qlevar_router.dart';
@@ -75,32 +73,27 @@ class DropDownList extends StatelessWidget {
     return Column(
       children: [
         ListTile(
-          onTap: () {
-            QR.to('/');
-            DateTime now = DateTime.now();
-            String convertedDateTime =
-                "${now.year.toString()}/${now.month.toString().padLeft(2, '0')}/${now.day.toString().padLeft(2, '0')}";
-            print(convertedDateTime);
-          },
-          trailing: Image.asset(ImageAssets.iconDropDown2),
-          title: Center(
-            child: MediaQuery.of(context).size.width < 1500
-                ? const Text(' ')
-                : Text(
-                    'الرئيسيه',
-                    style: TextStyle(
-                        fontSize: getProportionateScreenWidth(5),
-                        color: Colors.white),
-                  ),
-          ),
-          leading: MediaQuery.of(context).size.width < 800
-              ? Container(
-                  width: 2,
-                )
-              : Image.asset(
-                  "assets/images/15.png",
-                ),
-        ),
+            onTap: () {
+              QR.to('/');
+              DateTime now = DateTime.now();
+              String convertedDateTime =
+                  "${now.year.toString()}/${now.month.toString().padLeft(2, '0')}/${now.day.toString().padLeft(2, '0')}";
+              print(convertedDateTime);
+            },
+            trailing: Image.asset(ImageAssets.iconDropDown2),
+            title: Center(
+              child: MediaQuery.of(context).size.width < 1500
+                  ? const Text(' ')
+                  : Text(
+                      'الرئيسيه',
+                      style: TextStyle(
+                          fontSize: getProportionateScreenWidth(5),
+                          color: Colors.white),
+                    ),
+            ),
+            leading: Container(
+              width: 2,
+            )),
         const SizedBox(
           height: 10,
         ),
