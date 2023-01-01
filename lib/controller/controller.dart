@@ -47,6 +47,14 @@ class Controller with ChangeNotifier {
       '/individual_clients',
       '/covenant',
       '/pay_convenent'
+    ],
+    ['/add_user', '/users', '/permission', '/follow_users'],
+    [
+      '/add_employee',
+      '/employees',
+      '/payroll',
+      '/account_statement_hr',
+      '/advance_exchange'
     ]
   ];
 
