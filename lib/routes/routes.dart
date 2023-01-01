@@ -1,4 +1,35 @@
 import 'package:erb_system/routes/deferred_loader.dart';
+import 'package:erb_system/view/accounts/add_%20revenue.dart'
+    deferred as add_revenue;
+import 'package:erb_system/view/accounts/add_expenses.dart'
+    deferred as add_expenses;
+import 'package:erb_system/view/accounts/add_obligations.dart'
+    deferred as add_obligations;
+import 'package:erb_system/view/accounts/add_origins.dart'
+    deferred as add_origins;
+import 'package:erb_system/view/accounts/company_and_customer.dart'
+    deferred as company_and_customer;
+import 'package:erb_system/view/accounts/covenant.dart' deferred as covenant;
+import 'package:erb_system/view/accounts/covenent_settlement.dart'
+    deferred as covenent_settlement;
+import 'package:erb_system/view/accounts/customer_account_details.dart'
+    deferred as customer_account_details;
+import 'package:erb_system/view/accounts/discount_obligations.dart'
+    deferred as discount_obligations;
+import 'package:erb_system/view/accounts/expenses.dart' deferred as expenses;
+import 'package:erb_system/view/accounts/individual_clients.dart'
+    deferred as individual_clients;
+import 'package:erb_system/view/accounts/origins.dart' deferred as origins;
+import 'package:erb_system/view/accounts/other_revenue.dart'
+    deferred as other_revenue;
+import 'package:erb_system/view/accounts/pay_convenent.dart'
+    deferred as pay_convenent;
+import 'package:erb_system/view/accounts/payment_home.dart'
+    deferred as payment_home;
+import 'package:erb_system/view/accounts/payment_method/account_details.dart'
+    deferred as account_details;
+import 'package:erb_system/view/accounts/types_expenses.dart'
+    deferred as types_expenses;
 import 'package:erb_system/view/category/add_cat.dart' deferred as Addcat;
 import 'package:erb_system/view/category/add_nyotin.dart' deferred as AddNyotin;
 import 'package:erb_system/view/category/category.dart' deferred as Categories;
@@ -455,6 +486,127 @@ class Routes {
       builder: () => order_sources.OrderSources(),
       middleware: [
         DefferedLoader(order_sources.loadLibrary),
+      ],
+    ),
+
+    // Accounts
+    QRoute(
+      path: '/account_details',
+      builder: () => account_details.AccountsDetails(),
+      middleware: [
+        DefferedLoader(account_details.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/payment_home',
+      builder: () => payment_home.PaymentHome(),
+      middleware: [
+        DefferedLoader(payment_home.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/add_revenue',
+      builder: () => add_revenue.AddRevenue(),
+      middleware: [
+        DefferedLoader(add_revenue.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/add_expenses',
+      builder: () => add_expenses.AddExpenses(),
+      middleware: [
+        DefferedLoader(add_expenses.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/add_obligations',
+      builder: () => add_obligations.AddObligations(),
+      middleware: [
+        DefferedLoader(add_obligations.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/add_origins',
+      builder: () => add_origins.AddOrigins(),
+      middleware: [
+        DefferedLoader(add_origins.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/covenant',
+      builder: () => covenant.Covenant(),
+      middleware: [
+        DefferedLoader(covenant.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/discount_obligations',
+      builder: () => discount_obligations.DiscountObligations(),
+      middleware: [
+        DefferedLoader(discount_obligations.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/expenses',
+      builder: () => expenses.Expenses(),
+      middleware: [
+        DefferedLoader(expenses.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/individual_clients',
+      builder: () => individual_clients.IndividualClients(),
+      middleware: [
+        DefferedLoader(individual_clients.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/origins',
+      builder: () => origins.Origins(),
+      middleware: [
+        DefferedLoader(origins.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/other_revenue',
+      builder: () => other_revenue.OtherRevenue(),
+      middleware: [
+        DefferedLoader(other_revenue.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/types_expenses',
+      builder: () => types_expenses.TypesExpenses(),
+      middleware: [
+        DefferedLoader(types_expenses.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/company_and_customer',
+      builder: () => company_and_customer.CompanyAndCustomer(),
+      middleware: [
+        DefferedLoader(company_and_customer.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/customer_account_details',
+      builder: () => customer_account_details.CustomerAccountDetails(),
+      middleware: [
+        DefferedLoader(customer_account_details.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/covenent_settlement',
+      builder: () => covenent_settlement.CovenantSettlement(),
+      middleware: [
+        DefferedLoader(covenent_settlement.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/pay_convenent',
+      builder: () => pay_convenent.PayCovenant(),
+      middleware: [
+        DefferedLoader(pay_convenent.loadLibrary),
       ],
     ),
   ];

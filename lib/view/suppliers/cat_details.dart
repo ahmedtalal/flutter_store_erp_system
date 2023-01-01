@@ -1,12 +1,11 @@
-import 'package:erb_system/resources/assets_manager.dart';
 import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/size_config.dart';
 import 'package:erb_system/view/auth/component/text_fom_feild.dart';
 import 'package:erb_system/view/home/components/botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
+import 'package:erb_system/view/home/components/default_row.dart';
 import 'package:erb_system/view/home/components/default_table.dart';
 import 'package:flutter/material.dart';
-import 'package:qlevar_router/qlevar_router.dart';
 
 class CatDetails extends StatelessWidget {
   CatDetails({Key? key}) : super(key: key);
@@ -129,43 +128,7 @@ class CatDetails extends StatelessWidget {
               ],
             ),
           ),
-          Row(
-            children: [
-              Container(
-                width: 50,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: ColorManager.primary,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Center(
-                  child: InkWell(
-                      onTap: () {
-                        QR.navigator.popUntilOrPush('/');
-                      },
-                      child: Image.asset(ImageAssets.iconDropDown2)),
-                ),
-              ),
-              const SizedBox(
-                width: 5,
-              ),
-              Container(
-                width: 50,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: ColorManager.primary,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Center(
-                  child: InkWell(
-                      onTap: () {
-                        QR.navigator.popUntilOrPush('/');
-                      },
-                      child: Image.asset(ImageAssets.iconDropDown52)),
-                ),
-              ),
-            ],
-          ),
+          DefaultRow(),
         ],
       ),
     ));

@@ -157,7 +157,7 @@ class StoreDetails extends StatelessWidget {
                       children: [
                         DefaultTable(
                           columnData: columnData,
-                          size: getProportionateScreenWidth(10),
+                          size: getProportionateScreenWidth(15),
                           color: ColorManager.second,
                           rows: data
                               .map((data) => DataRow(cells: [

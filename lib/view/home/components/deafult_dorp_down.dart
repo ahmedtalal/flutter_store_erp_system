@@ -37,16 +37,23 @@ class _DefaultDropDownState extends State<DefaultDropDown> {
     var pro = Provider.of<Controller>(context);
     SizeConfig.init(context);
     return ExpansionTile(
-      initiallyExpanded:selectedTap == widget.index?true:false ,
+        initiallyExpanded: selectedTap == widget.index ? true : false,
         trailing: widget.trailing,
         title: Center(
-          child:MediaQuery.of(context).size.width <1500?const Text(' '): Text(
-            widget.title,
-            style: TextStyle(
-                fontSize: getProportionateScreenWidth(5), color: Colors.white),
-          ),
+          child: MediaQuery.of(context).size.width < 1500
+              ? const Text(' ')
+              : Text(
+                  widget.title,
+                  style: TextStyle(
+                      fontSize: getProportionateScreenWidth(5),
+                      color: Colors.white),
+                ),
         ),
-        leading:MediaQuery.of(context).size.width <800?Container(width: 2,): widget.leading,
+        leading: MediaQuery.of(context).size.width < 800
+            ? Container(
+                width: 2,
+              )
+            : widget.leading,
         children: [
           for (int i = 0; i < widget.item.length; i++)
             Container(
@@ -59,13 +66,11 @@ class _DefaultDropDownState extends State<DefaultDropDown> {
                   borderRadius: BorderRadius.circular(AppSize.s15)),
               child: ListTile(
                 onTap: () {
-                  QR.to(pro.screen[widget.index][i]);
-                  // QR.to(pro.screen[widget.index][i],
-                  //     pageAlreadyExistAction: PageAlreadyExistAction.Remove);
-                  // pro.changePage(pro.screen[widget.index][i]);
                   setState(() {
                     selectedItem = i;
+                    selectedTap = widget.index;
                   });
+                  QR.to(pro.screen[widget.index][i]);
                 },
                 title: Text(
                   widget.item[i],
