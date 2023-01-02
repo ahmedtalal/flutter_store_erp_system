@@ -1,18 +1,19 @@
-
 import 'package:erb_system/merge_table/merge_table.dart';
 import 'package:erb_system/merge_table/src/datas/m_row.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MergeTable extends StatelessWidget {
-  MergeTable({
-    Key? key,
-    required this.rows,
-    required this.columns,
-    required this.borderColor,
-    this.rowHeight,
-    this.alignment = MergeTableAlignment.center,required this.size, required this.color
-  }) : super(key: key) {
+  MergeTable(
+      {Key? key,
+      required this.rows,
+      required this.columns,
+      required this.borderColor,
+      this.rowHeight,
+      this.alignment = MergeTableAlignment.center,
+      required this.size,
+      required this.color})
+      : super(key: key) {
     columnWidths = fetchColumnWidths(columns);
     assert(columns.isNotEmpty);
     assert(rows.isNotEmpty);
@@ -30,7 +31,9 @@ class MergeTable extends StatelessWidget {
   final double? size;
   late final Map<int, TableColumnWidth>? columnWidths;
 
-  TableCellVerticalAlignment get defaultVerticalAlignment => alignment.tableAlignment;
+  TableCellVerticalAlignment get defaultVerticalAlignment =>
+      alignment.tableAlignment;
+
   AlignmentGeometry get alignmentGeometry => alignment.geometry;
 
   @override
@@ -130,7 +133,12 @@ class MergeTable extends StatelessWidget {
   Widget buildSingleColumn(String title) {
     return Container(
       color: color,
-      child: buildAlign(Text(title,style: TextStyle(fontSize: size,color: Colors.white),),),
+      child: buildAlign(
+        Text(
+          title,
+          style: TextStyle(fontSize: size, color: Colors.white),
+        ),
+      ),
     );
   }
 
@@ -147,7 +155,8 @@ class MergeTable extends StatelessWidget {
     for (int i = 0; i < columns.length; i++) {
       BaseMColumn column = columns[i];
       if (column.isMergedColumn) {
-        columnWidths[i] = FlexColumnWidth(flexPerColumn * column.columns!.length);
+        columnWidths[i] =
+            FlexColumnWidth(flexPerColumn * column.columns!.length);
       } else {
         columnWidths[i] = FlexColumnWidth(flexPerColumn);
       }

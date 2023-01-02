@@ -38,6 +38,13 @@ import 'package:erb_system/view/category/nyotins.dart' deferred as Nyotins;
 import 'package:erb_system/view/category/production.dart'
     deferred as Production;
 import 'package:erb_system/view/home/homepage.dart';
+import 'package:erb_system/view/hr/account_statement_hr.dart'
+    deferred as account_statement_hr;
+import 'package:erb_system/view/hr/add_employee.dart' deferred as add_employee;
+import 'package:erb_system/view/hr/advance_exchange.dart'
+    deferred as advance_exchange;
+import 'package:erb_system/view/hr/employees.dart' deferred as employees;
+import 'package:erb_system/view/hr/payroll.dart' deferred as payroll;
 import 'package:erb_system/view/industry/add_desc_industry.dart'
     deferred as AddDescIndustry;
 import 'package:erb_system/view/industry/confirm_indus.dart'
@@ -80,6 +87,27 @@ import 'package:erb_system/view/purchases/confirm_back_purchase.dart'
 import 'package:erb_system/view/purchases/confirm_purchase.dart'
     deferred as confirm_purchase;
 import 'package:erb_system/view/purchases/purchases.dart' deferred as purchases;
+import 'package:erb_system/view/reports/Product_sales_report.dart'
+    deferred as Product_sales_report;
+import 'package:erb_system/view/reports/Statement_financial_position.dart'
+    deferred as Statement_financial_position;
+import 'package:erb_system/view/reports/Stock_report.dart'
+    deferred as Stock_report;
+import 'package:erb_system/view/reports/audit_pudget.dart'
+    deferred as audit_pudget;
+import 'package:erb_system/view/reports/category_profitability_report.dart'
+    deferred as category_profitability_report;
+import 'package:erb_system/view/reports/cost_goods_sold.dart'
+    deferred as cost_goods_sold;
+import 'package:erb_system/view/reports/list_input.dart' deferred as list_input;
+import 'package:erb_system/view/reports/payment_shoping.dart'
+    deferred as payment_shoping;
+import 'package:erb_system/view/reports/procurement_report.dart'
+    deferred as procurement_report;
+import 'package:erb_system/view/reports/revenue_details.dart'
+    deferred as revenue_details;
+import 'package:erb_system/view/reports/shipping_companies_report.dart'
+    deferred as shipping_companies_report;
 import 'package:erb_system/view/store/PO_fiper.dart' deferred as PO_fiper;
 import 'package:erb_system/view/store/add_store.dart' deferred as store;
 import 'package:erb_system/view/store/d1_fiper.dart' deferred as d1_fiper;
@@ -111,6 +139,15 @@ import 'package:erb_system/view/suppliers/sup_money_details.dart'
     deferred as sup_money_details;
 import 'package:erb_system/view/suppliers/sup_pay.dart' deferred as sup_pay;
 import 'package:erb_system/view/suppliers/suppliers.dart' deferred as suppliers;
+import 'package:erb_system/view/system_admin/add_user.dart'
+    deferred as add_user;
+import 'package:erb_system/view/system_admin/follow_user_details.dart'
+    deferred as follow_user_details;
+import 'package:erb_system/view/system_admin/follow_users.dart'
+    deferred as follow_users;
+import 'package:erb_system/view/system_admin/permission.dart'
+    deferred as permission;
+import 'package:erb_system/view/system_admin/users.dart' deferred as users;
 import 'package:qlevar_router/qlevar_router.dart';
 
 //updated
@@ -607,6 +644,162 @@ class Routes {
       builder: () => pay_convenent.PayCovenant(),
       middleware: [
         DefferedLoader(pay_convenent.loadLibrary),
+      ],
+    ),
+
+    //users
+    QRoute(
+      path: '/follow_users',
+      builder: () => follow_users.FollowUser(),
+      middleware: [
+        DefferedLoader(follow_users.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/permission',
+      builder: () => permission.Permission(),
+      middleware: [
+        DefferedLoader(permission.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/add_user',
+      builder: () => add_user.AddUser(),
+      middleware: [
+        DefferedLoader(add_user.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/users',
+      builder: () => users.Users(),
+      middleware: [
+        DefferedLoader(users.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/follow_user_details',
+      builder: () => follow_user_details.FollowUsersDetails(),
+      middleware: [
+        DefferedLoader(follow_user_details.loadLibrary),
+      ],
+    ),
+
+    // HR
+
+    QRoute(
+      path: '/payroll',
+      builder: () => payroll.Payroll(),
+      middleware: [
+        DefferedLoader(payroll.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/employees',
+      builder: () => employees.Employees(),
+      middleware: [
+        DefferedLoader(employees.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/advance_exchange',
+      builder: () => advance_exchange.AdvanceExchange(),
+      middleware: [
+        DefferedLoader(advance_exchange.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/add_employee',
+      builder: () => add_employee.AddEmployee(),
+      middleware: [
+        DefferedLoader(add_employee.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/account_statement_hr',
+      builder: () => account_statement_hr.AccountStatement(),
+      middleware: [
+        DefferedLoader(account_statement_hr.loadLibrary),
+      ],
+    ),
+
+    //reports
+    QRoute(
+      path: '/cost_goods_sold',
+      builder: () => cost_goods_sold.CostGoodsSold(),
+      middleware: [
+        DefferedLoader(cost_goods_sold.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/list_input',
+      builder: () => list_input.ListInput(),
+      middleware: [
+        DefferedLoader(list_input.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/audit_pudget',
+      builder: () => audit_pudget.Auditbudget(),
+      middleware: [
+        DefferedLoader(audit_pudget.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/payment_shoping',
+      builder: () => payment_shoping.PaymentShoping(),
+      middleware: [
+        DefferedLoader(payment_shoping.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/revenue_details',
+      builder: () => revenue_details.RevenueDetails(),
+      middleware: [
+        DefferedLoader(revenue_details.loadLibrary),
+      ],
+    ),
+
+    QRoute(
+      path: '/category_profitability_report',
+      builder: () =>
+          category_profitability_report.CategoryProfitabilityReport(),
+      middleware: [
+        DefferedLoader(category_profitability_report.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/procurement_report',
+      builder: () => procurement_report.ProcurementReport(),
+      middleware: [
+        DefferedLoader(procurement_report.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/Product_sales_report',
+      builder: () => Product_sales_report.ProductSalesReport(),
+      middleware: [
+        DefferedLoader(Product_sales_report.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/shipping_companies_report',
+      builder: () => shipping_companies_report.ShippingCompaniesReport(),
+      middleware: [
+        DefferedLoader(shipping_companies_report.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/Statement_financial_position',
+      builder: () => Statement_financial_position.StatementFinancialPosition(),
+      middleware: [
+        DefferedLoader(Statement_financial_position.loadLibrary),
+      ],
+    ),
+    QRoute(
+      path: '/Stock_report',
+      builder: () => Stock_report.StockReport(),
+      middleware: [
+        DefferedLoader(Stock_report.loadLibrary),
       ],
     ),
   ];

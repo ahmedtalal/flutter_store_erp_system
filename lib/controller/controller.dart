@@ -31,7 +31,16 @@ class Controller with ChangeNotifier {
       '/shipping_methods',
       '/shipping_lines',
     ],
-    [],
+    [
+      '/list_input',
+      '/audit_pudget',
+      '/Statement_financial_position',
+      '/procurement_report',
+      '/Product_sales_report',
+      '/Stock_report',
+      '/category_profitability_report',
+      '/shipping_companies_report'
+    ],
     [
       '/add_expenses',
       '/expenses',
