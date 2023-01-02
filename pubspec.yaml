@@ -42,12 +42,11 @@ dependencies:
   provider:
   qlevar_router: ^1.5.9
   simple_animations: ^4.0.1
-#  merge_table:
-#    git:
-#      url: https://github.com/juniorise/merge_table.git
-#      ref: 1.0.1
-
-
+  firebase_core:
+  firebase_messaging:
+  cloud_firestore:
+  firebase_auth:
+  firebase_core_web: ^2.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

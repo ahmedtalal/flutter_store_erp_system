@@ -1,3 +1,4 @@
+import 'package:erb_system/controller/suppliers/add_suppliers.dart';
 import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/resources/style_manager.dart';
 import 'package:erb_system/size_config.dart';
@@ -6,6 +7,7 @@ import 'package:erb_system/view/home/components/appBar.dart';
 import 'package:erb_system/view/home/components/botton.dart';
 import 'package:erb_system/view/home/drop_down_par.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AddSup extends StatefulWidget {
   const AddSup({Key? key}) : super(key: key);
@@ -26,6 +28,7 @@ class _AddSupState extends State<AddSup> {
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
+    var pro = Provider.of<AddSuppliersController>(context);
     return SafeArea(
         child: Scaffold(
             body: Row(
@@ -243,7 +246,10 @@ class _AddSupState extends State<AddSup> {
                       Botton(
                         color: ColorManager.white,
                         title: 'اضافه',
-                        onTap: () {},
+                        onTap: () {
+                          // pro.addSupplier(address, category, name, phonenumber,
+                          //     pricerate, supplierrate);
+                        },
                         bgColor: ColorManager.black,
                       ),
                     ],

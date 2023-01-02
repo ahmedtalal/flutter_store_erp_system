@@ -1,3 +1,4 @@
+import 'package:erb_system/controller/store_controller/add_store_controller.dart';
 import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/resources/style_manager.dart';
 import 'package:erb_system/size_config.dart';
@@ -7,6 +8,7 @@ import 'package:erb_system/view/home/components/botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/drop_down_par.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class add_Stock extends StatefulWidget {
   const add_Stock({Key? key}) : super(key: key);
@@ -23,6 +25,7 @@ class _add_StockState extends State<add_Stock> {
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
+    var pro = Provider.of<AddStoreController>(context);
     return SafeArea(
         child: Scaffold(
       body: Row(
@@ -111,7 +114,15 @@ class _add_StockState extends State<add_Stock> {
                         Botton(
                           color: ColorManager.white,
                           title: 'اضافه',
-                          onTap: () {},
+                          onTap: () {
+                            pro.addWarehouse(
+                                name: controller2.text,
+                                description: controller1.text,
+                                unit: 'KG',
+                                context: context);
+                            controller1.clear();
+                            controller2.clear();
+                          },
                           bgColor: ColorManager.black,
                         ),
                       ],
