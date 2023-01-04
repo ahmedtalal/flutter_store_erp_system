@@ -70,7 +70,7 @@ class _DefaultDropDownState extends State<DefaultDropDown> {
                     selectedItem = i;
                     selectedTap = widget.index;
                   });
-                  QR.to(pro.screen[widget.index][i]);
+                  QR.navigator.replaceLast(pro.screen[widget.index][i]);
                 },
                 title: Text(
                   widget.item[i],
