@@ -1,6 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dropdown_search/dropdown_search.dart';
+import 'package:erb_system/controller/category/category_controller.dart';
+import 'package:erb_system/controller/purchase_controller/pruchase_controller.dart';
+import 'package:erb_system/controller/suppliers/add_suppliers.dart';
 import 'package:erb_system/resources/assets_manager.dart';
 import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/resources/style_manager.dart';
+import 'package:erb_system/resources/value_manager.dart';
 import 'package:erb_system/size_config.dart';
 import 'package:erb_system/view/auth/component/text_fom_feild.dart';
 import 'package:erb_system/view/home/components/appBar.dart';
@@ -10,6 +16,7 @@ import 'package:erb_system/view/home/components/default_table.dart';
 import 'package:erb_system/view/home/components/drop_down.dart';
 import 'package:erb_system/view/home/drop_down_par.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AddPurchaseBill extends StatefulWidget {
   const AddPurchaseBill({Key? key}) : super(key: key);
@@ -27,26 +34,21 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
   TextEditingController controller2 = TextEditingController();
   TextEditingController controller3 = TextEditingController();
   TextEditingController controller4 = TextEditingController();
+  TextEditingController total = TextEditingController();
+  TextEditingController quantity = TextEditingController();
 
   int? selectedIndex;
-  List data = [
-    {
-      "1": "١/١٢.٢٠٢٢",
-      "2": "شراء",
-      "3": "022",
-      "4": "100",
-      "5": "كيلو",
-      "6": "٣٠",
-    },
-    {
-      "1": "١/١٢.٢٠٢٢",
-      "2": "شراء",
-      "3": "022",
-      "4": "100",
-      "5": "كيلو",
-      "6": "٣٠",
-    },
-  ];
+  List data = [];
+  List finalData = [];
+
+  String? catName;
+  String? catPrice;
+  String? catMeasurement;
+  String? image;
+  double totalTotal = 0;
+  int totalQuantity = 0;
+  String? bank;
+  String? supName;
 
   List<String> columnData = [
     "صوره الصنف",
@@ -74,6 +76,7 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     TextStyle style = TextStyle(fontSize: getProportionateScreenWidth(4));
+    var pro = Provider.of<PurchaseController>(context);
     return SafeArea(
         child: Scaffold(
       body: Row(
@@ -160,22 +163,56 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
                                   const SizedBox(
                                     height: 10,
                                   ),
-                                  SizedBox(
-                                    width: 200,
-                                    height: 60,
-                                    child: DefaultInputForm(
-                                      controller: controller1,
-                                      hint: '',
-                                      label: '',
-                                      onTab: () {},
-                                      validate: () {},
-                                      onSave: () {},
-                                      passFun: () {},
-                                      perFix: Icon(Icons.search),
-                                      color: Colors.white70,
-                                      obscureText: false,
-                                    ),
-                                  ),
+                                  Consumer<AddSuppliersController>(
+                                    builder: (context, valu, child) {
+                                      return FutureBuilder(
+                                          future: valu.getSupplier(),
+                                          builder: (context, snapshot) {
+                                            if (snapshot.hasData) {
+                                              List sup = snapshot.data as List;
+
+                                              return SizedBox(
+                                                width:
+                                                    getProportionateScreenWidth(
+                                                        50),
+                                                height: 60,
+                                                child: DropdownSearch<String>(
+                                                  popupProps: PopupProps.menu(
+                                                    showSelectedItems: true,
+                                                    showSearchBox: true,
+                                                    searchFieldProps:
+                                                        TextFieldProps(
+                                                            cursorColor:
+                                                                ColorManager
+                                                                    .primary),
+                                                    // disabledItemFn:
+                                                    //     (String s) =>
+                                                    //         s.startsWith('I'),
+                                                  ),
+                                                  items: List.generate(
+                                                      sup.length,
+                                                      (index) =>
+                                                          sup[index]['name']),
+                                                  dropdownDecoratorProps:
+                                                      const DropDownDecoratorProps(
+                                                    dropdownSearchDecoration:
+                                                        InputDecoration(
+                                                      hintText: "Enter Name",
+                                                    ),
+                                                  ),
+                                                  onChanged: (v) {
+                                                    setState(() {
+                                                      supName = v;
+                                                    });
+                                                  },
+                                                ),
+                                              );
+                                            } else {
+                                              return const CircularProgressIndicator();
+                                            }
+                                          });
+                                    },
+                                  )
                                 ],
                               ),
                               SizedBox(
@@ -212,60 +249,268 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
                                           'اضافة صورة',
                                           style: style,
                                         ),
-                                        Image.asset(
-                                          ImageAssets.iconDropDown20,
-                                          width:
-                                              getProportionateScreenWidth(35),
-                                          height:
-                                              getProportionateScreenHeight(85),
+                                        InkWell(
+                                          onTap: () {},
+                                          child: Image.asset(
+                                            ImageAssets.iconDropDown20,
+                                            width:
+                                                getProportionateScreenWidth(35),
+                                            height:
+                                                getProportionateScreenHeight(
+                                                    85),
+                                          ),
                                         )
                                       ],
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    width: 20,
                                   ),
                                 ],
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  DefaultTable(
-                                    columnData: columnData,
-                                    size: getProportionateScreenWidth(15),
-                                    color: ColorManager.primary,
-                                    rows: data
-                                        .map((data) => DataRow(cells: [
-                                              DataCell(Image.asset(
-                                                ImageAssets.iconDropDown23,
-                                                width: 50,
-                                                height: 50,
-                                              )),
-                                              DataCell(Text(
-                                                data['5'],
-                                                style: style,
-                                              )),
-                                              DataCell(Text(
-                                                data['4'],
-                                                style: style,
-                                              )),
-                                              DataCell(Text(
-                                                data['3'],
-                                                style: style,
-                                              )),
-                                              DataCell(Text(
-                                                data['2'],
-                                                style: style,
-                                              )),
-                                              DataCell(Text(
-                                                data['1'],
-                                                style: style,
-                                              )),
-                                            ]))
-                                        .toList(),
+                                  Column(
+                                    children: [
+                                      Text(
+                                        'اسم الصنف',
+                                        style: getSemiBoldStyle(
+                                            color: ColorManager.black),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Consumer<CategoryController>(
+                                        builder: (context, valu, child) {
+                                          return FutureBuilder(
+                                              future: valu.getMaterials(),
+                                              builder: (context, snapshot) {
+                                                if (snapshot.hasData) {
+                                                  List sup =
+                                                      snapshot.data as List;
+
+                                                  return SizedBox(
+                                                    width:
+                                                        getProportionateScreenWidth(
+                                                            50),
+                                                    height: 60,
+                                                    child:
+                                                        DropdownSearch<String>(
+                                                      popupProps:
+                                                          PopupProps.menu(
+                                                        showSelectedItems: true,
+                                                        showSearchBox: true,
+                                                        searchFieldProps:
+                                                            TextFieldProps(
+                                                                cursorColor:
+                                                                    ColorManager
+                                                                        .primary),
+                                                        // disabledItemFn:
+                                                        //     (String s) =>
+                                                        //         s.startsWith('I'),
+                                                      ),
+                                                      items: List.generate(
+                                                          sup.length,
+                                                          (index) => sup[index]
+                                                              ['name']),
+                                                      dropdownDecoratorProps:
+                                                          const DropDownDecoratorProps(
+                                                        dropdownSearchDecoration:
+                                                            InputDecoration(
+                                                          hintText: "اسم الصنف",
+                                                        ),
+                                                      ),
+                                                      onChanged: (v) async {
+                                                        await FirebaseFirestore
+                                                            .instance
+                                                            .collection(
+                                                                'Materials')
+                                                            .doc(v)
+                                                            .get()
+                                                            .then((value) {
+                                                          catPrice =
+                                                              value['price']
+                                                                  .toString();
+                                                          catName = v;
+                                                          catMeasurement = value[
+                                                              'measurement'];
+                                                          image =
+                                                              value['image'];
+                                                          quantity.text = '0';
+                                                          total.text = '0';
+                                                          data.add({
+                                                            "name": v,
+                                                            'quantity': value[
+                                                                'quantity'],
+                                                            "measurement": value[
+                                                                'measurement'],
+                                                            'price':
+                                                                value['price'],
+                                                            'image':
+                                                                value['image'],
+                                                          });
+                                                        });
+
+                                                        print(v);
+                                                        setState(() {});
+                                                      },
+                                                    ),
+                                                  );
+                                                } else {
+                                                  return const CircularProgressIndicator();
+                                                }
+                                              });
+                                        },
+                                      )
+                                    ],
                                   ),
+                                  DefaultTable(
+                                      columnData: columnData,
+                                      size: getProportionateScreenWidth(15),
+                                      color: ColorManager.primary,
+                                      rows: [
+                                        ...finalData
+                                            .map((data) => DataRow(cells: [
+                                                  DataCell(Image.network(
+                                                    data['image'],
+                                                    width: 50,
+                                                    height: 50,
+                                                  )),
+                                                  DataCell(Text(
+                                                    data['total'].toString(),
+                                                    style: style,
+                                                  )),
+                                                  DataCell(Text(
+                                                    data['price'].toString(),
+                                                    style: style,
+                                                  )),
+                                                  DataCell(Text(
+                                                    data['measurement'],
+                                                    style: style,
+                                                  )),
+                                                  DataCell(Text(
+                                                    data['quantity'],
+                                                    style: style,
+                                                  )),
+                                                  DataCell(Text(
+                                                    data['name'],
+                                                    style: style,
+                                                  )),
+                                                ]))
+                                            .toList(),
+                                        ...data
+                                            .map((data) => DataRow(cells: [
+                                                  DataCell(Image.network(
+                                                    data['image'],
+                                                    width: 50,
+                                                    height: 50,
+                                                  )),
+                                                  DataCell(
+                                                    TextFormField(
+                                                      readOnly: false,
+                                                      controller: total,
+                                                      style: TextStyle(
+                                                          fontSize:
+                                                              getProportionateScreenWidth(
+                                                                  4)),
+                                                      onChanged: (v) {},
+                                                      decoration:
+                                                          InputDecoration(
+                                                        border:
+                                                            InputBorder.none,
+                                                        hintStyle:
+                                                            const TextStyle(
+                                                                fontSize: 14),
+                                                        label: Container(
+                                                            alignment: Alignment
+                                                                .center,
+                                                            child: const Text(
+                                                              '',
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                            )),
+                                                        filled: true,
+                                                        fillColor: Colors.white,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  DataCell(Text(
+                                                    data['price'].toString(),
+                                                    style: style,
+                                                  )),
+                                                  DataCell(Text(
+                                                    data['measurement'],
+                                                    style: style,
+                                                  )),
+                                                  DataCell(
+                                                    TextFormField(
+                                                      controller: quantity,
+                                                      style: TextStyle(
+                                                          fontSize:
+                                                              getProportionateScreenWidth(
+                                                                  4)),
+                                                      onChanged: (v) {
+                                                        setState(() {
+                                                          if (v.isNotEmpty) {
+                                                            total = TextEditingController(
+                                                                text:
+                                                                    "${data['price'] * num.parse(v)}");
+                                                          } else {
+                                                            total =
+                                                                TextEditingController(
+                                                                    text: "0");
+                                                          }
+                                                        });
+                                                      },
+                                                      decoration:
+                                                          InputDecoration(
+                                                        border:
+                                                            InputBorder.none,
+                                                        hintStyle:
+                                                            const TextStyle(
+                                                                fontSize: 14),
+                                                        label: Container(
+                                                            alignment: Alignment
+                                                                .center,
+                                                            child: const Text(
+                                                              '',
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                            )),
+                                                        filled: true,
+                                                        fillColor: Colors.white,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  DataCell(Text(
+                                                    data['name'],
+                                                    style: style,
+                                                  )),
+                                                ]))
+                                            .toList(),
+                                      ]),
                                   InkWell(
-                                    onTap: () {},
+                                    onTap: () {
+                                      finalData.add({
+                                        "name": catName,
+                                        'quantity': quantity.text,
+                                        "measurement": catMeasurement,
+                                        'price': catPrice,
+                                        'image': image,
+                                        'total': total.text,
+                                      });
+                                      totalTotal += double.parse(total.text);
+                                      totalQuantity += int.parse(quantity.text);
+                                      print(totalTotal);
+                                      data.clear();
+                                      setState(() {});
+                                    },
                                     child: Container(
                                       width: getProportionateScreenWidth(42),
                                       decoration: BoxDecoration(
@@ -322,6 +567,19 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
                                       ],
                                       selectTalab: chose1,
                                       onchanged: () => (val) {
+                                        if (val == 'خزينه المصنع') {
+                                          setState(() {
+                                            bank = 'companytreasury';
+                                          });
+                                        } else if (val == 'البنك الاهلي') {
+                                          setState(() {
+                                            bank = 'bankalahly';
+                                          });
+                                        } else if (val == 'بنك مصر') {
+                                          setState(() {
+                                            bank = 'bankmasr';
+                                          });
+                                        }
                                         setState(() {
                                           chose1 = val;
                                         });
@@ -408,16 +666,55 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
                                   SizedBox(
                                     width: getProportionateScreenWidth(60),
                                     height: 60,
-                                    child: DefaultInputForm(
-                                      controller: controller4,
-                                      hint: '',
-                                      label: '',
-                                      onTab: () {},
-                                      validate: () {},
-                                      onSave: () {},
-                                      passFun: () {},
-                                      color: Colors.white,
-                                      obscureText: false,
+                                    child: TextFormField(
+                                      controller: controller1,
+                                      style: TextStyle(
+                                          fontSize:
+                                              getProportionateScreenWidth(4)),
+                                      onChanged: (v) {
+                                        setState(() {
+                                          if (v.isNotEmpty) {
+                                            controller3 = TextEditingController(
+                                                text:
+                                                    '${totalTotal - num.parse(v)}');
+                                          } else {
+                                            controller3 = TextEditingController(
+                                                text: "0");
+                                          }
+                                        });
+                                      },
+                                      decoration: InputDecoration(
+                                        hintStyle:
+                                            const TextStyle(fontSize: 14),
+                                        label: Container(
+                                            alignment: Alignment.center,
+                                            child: const Text(
+                                              '',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            )),
+                                        border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                AppSize.s15),
+                                            borderSide: const BorderSide(
+                                                color: Colors.black,
+                                                width: 1.2)),
+                                        enabledBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                AppSize.s15),
+                                            borderSide: const BorderSide(
+                                                color: Colors.black,
+                                                width: 1.2)),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              AppSize.s15),
+                                          borderSide: const BorderSide(
+                                              color: Colors.black, width: 1.2),
+                                        ),
+                                        filled: true,
+                                        fillColor: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -430,7 +727,33 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
                           Botton(
                             color: ColorManager.white,
                             title: 'اضافه',
-                            onTap: () {},
+                            onTap: () {
+                              pro
+                                  .addBill(
+                                      bank!,
+                                      double.parse(controller1.text) +
+                                          double.parse(controller2.text),
+                                      supName!,
+                                      double.parse(controller3.text),
+                                      totalTotal)
+                                  .then((value) {
+                                pro.addPurchasing(
+                                    date: orderDate.toString(),
+                                    state: chose!,
+                                    trasury: chose1!,
+                                    supName: supName!,
+                                    podownpayment:
+                                        double.parse(controller1.text),
+                                    poshippingfees:
+                                        double.parse(controller2.text),
+                                    remainbalance:
+                                        double.parse(controller3.text),
+                                    total: totalTotal,
+                                    purData: finalData,
+                                    totalQuantity: totalQuantity,
+                                    measurement: catMeasurement!);
+                              });
+                            },
                             bgColor: ColorManager.black,
                           )
                         ],

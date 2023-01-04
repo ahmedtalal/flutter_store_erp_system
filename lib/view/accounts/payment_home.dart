@@ -1,3 +1,4 @@
+import 'package:erb_system/controller/treasury/treasury_controller.dart';
 import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/resources/style_manager.dart';
 import 'package:erb_system/size_config.dart';
@@ -12,6 +13,7 @@ import 'package:erb_system/view/home/components/default_table.dart';
 import 'package:erb_system/view/home/components/drop_down.dart';
 import 'package:erb_system/view/home/drop_down_par.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:qlevar_router/qlevar_router.dart';
 
 class PaymentHome extends StatefulWidget {
@@ -30,6 +32,10 @@ class _PaymentHomeState extends State<PaymentHome> {
   bool isVisible3 = false;
   bool isVisible4 = false;
   int? selectedIndex;
+  String? title;
+  String? id;
+  String? balance;
+
   TextEditingController controller1 = TextEditingController();
 
   DateTime orderDate = DateTime.now();
@@ -97,6 +103,7 @@ class _PaymentHomeState extends State<PaymentHome> {
 
   @override
   Widget build(BuildContext context) {
+    var pro = Provider.of<TreasuryController>(context);
     SizeConfig.init(context);
     TextStyle style = TextStyle(fontSize: getProportionateScreenWidth(4));
     return SafeArea(
@@ -232,256 +239,308 @@ class _PaymentHomeState extends State<PaymentHome> {
                           const SizedBox(
                             height: 90,
                           ),
-                          Stack(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 71),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: List.generate(
-                                          data.length,
-                                          (index) => Column(
-                                                children: [
-                                                  SizedBox(
-                                                      width:
-                                                          getProportionateScreenWidth(
-                                                              40),
-                                                      child: dropDown(
-                                                        const [
-                                                          'تعديل',
-                                                          ' تحويل',
-                                                          ' مسحوبات',
-                                                          ' ايداع',
-                                                          ' كشف حساب',
-                                                        ],
-                                                        selectTalab: index ==
-                                                                selectedIndex
-                                                            ? chose1
-                                                            : chose2,
-                                                        onchanged: () => (val) {
-                                                          if (val == 'تعديل') {
-                                                            setState(() {
-                                                              isVisible1 = true;
-                                                            });
-                                                          } else if (val ==
-                                                              ' تحويل') {
-                                                            setState(() {
-                                                              isVisible2 = true;
-                                                            });
-                                                          } else if (val ==
-                                                              ' مسحوبات') {
-                                                            setState(() {
-                                                              isVisible3 = true;
-                                                            });
-                                                          } else if (val ==
-                                                              ' ايداع') {
-                                                            setState(() {
-                                                              isVisible4 = true;
-                                                            });
-                                                          } else if (val ==
-                                                              ' كشف حساب') {
-                                                            QR.to(
-                                                                '/account_details');
-                                                          }
-                                                          setState(() {
-                                                            selectedIndex =
-                                                                index;
-                                                            chose1 = val;
-                                                          });
-                                                        },
-                                                        label: 'خيارات',
-                                                        foColor: Colors.white,
-                                                        bgColor: ColorManager
-                                                            .primary,
-                                                        dpColor: ColorManager
-                                                            .primary,
-                                                      )),
-                                                  const SizedBox(
-                                                    height: 10,
-                                                  )
-                                                ],
-                                              )),
-                                    ),
-                                  ),
-                                  Column(
+                          FutureBuilder(
+                              future: pro.getTreasury(),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  List treasury = snapshot.data as List;
+                                  return Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      DefaultTable(
-                                          columnData: columnData,
-                                          size: getProportionateScreenWidth(30),
-                                          color: ColorManager.primary,
-                                          rows: [
-                                            ...data
-                                                .map((data) => DataRow(cells: [
-                                                      DataCell(Text(
-                                                        data['4'],
-                                                        style: style,
-                                                      )),
-                                                      DataCell(Text(
-                                                        data['3'],
-                                                        style: style,
-                                                      )),
-                                                      DataCell(Text(
-                                                        data['2'],
-                                                        style: style,
-                                                      )),
-                                                      DataCell(Text(
-                                                        data['1'],
-                                                        style: style,
-                                                      )),
-                                                    ]))
-                                                .toList(),
-                                          ]),
-                                      SizedBox(
-                                        height: 10,
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 71),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: List.generate(
+                                              treasury.length,
+                                              (index) => Column(
+                                                    children: [
+                                                      SizedBox(
+                                                          width:
+                                                              getProportionateScreenWidth(
+                                                                  40),
+                                                          child: dropDown(
+                                                            const [
+                                                              'تعديل',
+                                                              ' تحويل',
+                                                              ' مسحوبات',
+                                                              ' ايداع',
+                                                              ' كشف حساب',
+                                                            ],
+                                                            selectTalab: index ==
+                                                                    selectedIndex
+                                                                ? chose1
+                                                                : chose2,
+                                                            onchanged: () =>
+                                                                (val) {
+                                                              if (val ==
+                                                                  'تعديل') {
+                                                                setState(() {
+                                                                  isVisible1 =
+                                                                      true;
+                                                                  title = treasury[
+                                                                          index]
+                                                                      ['name'];
+                                                                  id = treasury[
+                                                                          index]
+                                                                      ['id'];
+                                                                  balance = treasury[
+                                                                              index]
+                                                                          [
+                                                                          'balance']
+                                                                      .toString();
+                                                                });
+                                                              } else if (val ==
+                                                                  ' تحويل') {
+                                                                setState(() {
+                                                                  isVisible2 =
+                                                                      true;
+                                                                });
+                                                              } else if (val ==
+                                                                  ' مسحوبات') {
+                                                                setState(() {
+                                                                  isVisible3 =
+                                                                      true;
+                                                                });
+                                                              } else if (val ==
+                                                                  ' ايداع') {
+                                                                setState(() {
+                                                                  isVisible4 =
+                                                                      true;
+                                                                });
+                                                              } else if (val ==
+                                                                  ' كشف حساب') {
+                                                                QR.to(
+                                                                    '/account_details');
+                                                              }
+                                                              setState(() {
+                                                                selectedIndex =
+                                                                    index;
+                                                                chose1 = val;
+                                                              });
+                                                            },
+                                                            label: 'خيارات',
+                                                            foColor:
+                                                                Colors.white,
+                                                            bgColor:
+                                                                ColorManager
+                                                                    .primary,
+                                                            dpColor:
+                                                                ColorManager
+                                                                    .primary,
+                                                          )),
+                                                      const SizedBox(
+                                                        height: 10,
+                                                      )
+                                                    ],
+                                                  )),
+                                        ),
                                       ),
-                                      InkWell(
-                                        onTap: () {},
-                                        child: Container(
-                                          width:
-                                              getProportionateScreenWidth(42),
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(25)),
-                                              border: Border.all(
-                                                  color: ColorManager.primary)),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
+                                      Column(
+                                        children: [
+                                          Stack(
                                             children: [
-                                              Icon(
-                                                Icons.add,
-                                                color: ColorManager.primary,
-                                              ),
-                                              Text(
-                                                'اضافه نوع',
-                                                style: TextStyle(
-                                                    fontSize:
-                                                        getProportionateScreenWidth(
-                                                            5),
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                              )
+                                              DefaultTable(
+                                                  columnData: columnData,
+                                                  size:
+                                                      getProportionateScreenWidth(
+                                                          30),
+                                                  color: ColorManager.primary,
+                                                  rows: [
+                                                    ...treasury
+                                                        .map((data) =>
+                                                            DataRow(cells: [
+                                                              DataCell(Text(
+                                                                data['usage'],
+                                                                style: style,
+                                                              )),
+                                                              DataCell(Text(
+                                                                data['balance']
+                                                                    .toString(),
+                                                                style: style,
+                                                              )),
+                                                              DataCell(Text(
+                                                                data['type'],
+                                                                style: style,
+                                                              )),
+                                                              DataCell(Text(
+                                                                data['name'],
+                                                                style: style,
+                                                              )),
+                                                            ]))
+                                                        .toList(),
+                                                  ]),
+                                              isVisible1
+                                                  ? Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        EditTreasury(
+                                                          title: title,
+                                                          id: id,
+                                                          balance: balance,
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 5,
+                                                        ),
+                                                        InkWell(
+                                                          onTap: () {
+                                                            setState(() {
+                                                              isVisible1 =
+                                                                  false;
+                                                            });
+                                                          },
+                                                          child: CircleAvatar(
+                                                            backgroundColor:
+                                                                ColorManager
+                                                                    .primary,
+                                                            radius: 30,
+                                                            child: const Icon(Icons
+                                                                .close_rounded),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    )
+                                                  : Container(),
+                                              isVisible2
+                                                  ? Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        TransferTreasury(),
+                                                        const SizedBox(
+                                                          width: 5,
+                                                        ),
+                                                        InkWell(
+                                                          onTap: () {
+                                                            setState(() {
+                                                              isVisible2 =
+                                                                  false;
+                                                            });
+                                                          },
+                                                          child: CircleAvatar(
+                                                            backgroundColor:
+                                                                ColorManager
+                                                                    .primary,
+                                                            radius: 30,
+                                                            child: const Icon(Icons
+                                                                .close_rounded),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    )
+                                                  : Container(),
+                                              isVisible3
+                                                  ? Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        PayFromTreasury(),
+                                                        const SizedBox(
+                                                          width: 5,
+                                                        ),
+                                                        InkWell(
+                                                          onTap: () {
+                                                            setState(() {
+                                                              isVisible3 =
+                                                                  false;
+                                                            });
+                                                          },
+                                                          child: CircleAvatar(
+                                                            backgroundColor:
+                                                                ColorManager
+                                                                    .primary,
+                                                            radius: 30,
+                                                            child: const Icon(Icons
+                                                                .close_rounded),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    )
+                                                  : Container(),
+                                              isVisible4
+                                                  ? Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        DespositTreasury(),
+                                                        const SizedBox(
+                                                          width: 5,
+                                                        ),
+                                                        InkWell(
+                                                          onTap: () {
+                                                            setState(() {
+                                                              isVisible4 =
+                                                                  false;
+                                                            });
+                                                          },
+                                                          child: CircleAvatar(
+                                                            backgroundColor:
+                                                                ColorManager
+                                                                    .primary,
+                                                            radius: 30,
+                                                            child: const Icon(Icons
+                                                                .close_rounded),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    )
+                                                  : Container(),
                                             ],
                                           ),
-                                        ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          InkWell(
+                                            onTap: () {},
+                                            child: Container(
+                                              width:
+                                                  getProportionateScreenWidth(
+                                                      42),
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      const BorderRadius.all(
+                                                          Radius.circular(25)),
+                                                  border: Border.all(
+                                                      color: ColorManager
+                                                          .primary)),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    Icons.add,
+                                                    color: ColorManager.primary,
+                                                  ),
+                                                  Text(
+                                                    'اضافه نوع',
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            getProportionateScreenWidth(
+                                                                5),
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ],
-                                  ),
-                                ],
-                              ),
-                              isVisible1
-                                  ? Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        EditTreasury(),
-                                        const SizedBox(
-                                          width: 5,
-                                        ),
-                                        InkWell(
-                                          onTap: () {
-                                            setState(() {
-                                              isVisible1 = false;
-                                            });
-                                          },
-                                          child: CircleAvatar(
-                                            backgroundColor:
-                                                ColorManager.primary,
-                                            radius: 30,
-                                            child:
-                                                const Icon(Icons.close_rounded),
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  : Container(),
-                              isVisible2
-                                  ? Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        TransferTreasury(),
-                                        const SizedBox(
-                                          width: 5,
-                                        ),
-                                        InkWell(
-                                          onTap: () {
-                                            setState(() {
-                                              isVisible2 = false;
-                                            });
-                                          },
-                                          child: CircleAvatar(
-                                            backgroundColor:
-                                                ColorManager.primary,
-                                            radius: 30,
-                                            child:
-                                                const Icon(Icons.close_rounded),
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  : Container(),
-                              isVisible3
-                                  ? Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        PayFromTreasury(),
-                                        const SizedBox(
-                                          width: 5,
-                                        ),
-                                        InkWell(
-                                          onTap: () {
-                                            setState(() {
-                                              isVisible3 = false;
-                                            });
-                                          },
-                                          child: CircleAvatar(
-                                            backgroundColor:
-                                                ColorManager.primary,
-                                            radius: 30,
-                                            child:
-                                                const Icon(Icons.close_rounded),
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  : Container(),
-                              isVisible4
-                                  ? Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        DespositTreasury(),
-                                        const SizedBox(
-                                          width: 5,
-                                        ),
-                                        InkWell(
-                                          onTap: () {
-                                            setState(() {
-                                              isVisible4 = false;
-                                            });
-                                          },
-                                          child: CircleAvatar(
-                                            backgroundColor:
-                                                ColorManager.primary,
-                                            radius: 30,
-                                            child:
-                                                const Icon(Icons.close_rounded),
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  : Container(),
-                            ],
-                          ),
+                                  );
+                                } else {
+                                  return CircularProgressIndicator();
+                                }
+                              }),
                           const SizedBox(
                             height: 50,
                           ),

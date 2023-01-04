@@ -1,14 +1,12 @@
-import 'package:erb_system/resources/assets_manager.dart';
+import 'package:erb_system/controller/category/category_controller.dart';
 import 'package:erb_system/resources/color_manger.dart';
-import 'package:erb_system/resources/style_manager.dart';
-import 'package:erb_system/view/auth/component/text_fom_feild.dart';
 import 'package:erb_system/view/home/components/appBar.dart';
-import 'package:erb_system/view/home/components/default_botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/components/default_table.dart';
 import 'package:erb_system/view/home/components/drop_down.dart';
 import 'package:erb_system/view/home/drop_down_par.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../size_config.dart';
 
@@ -41,101 +39,117 @@ class _NyotinsState extends State<Nyotins> {
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
+    var pro = Provider.of<CategoryController>(context);
 
     return SafeArea(
         child: Scaffold(
-            body:Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            body: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+            flex: 5,
+            child: Stack(
               children: [
-                Expanded(
-                    flex: 5,
-                    child: Stack(
+                SizedBox(
+                  width: double.infinity,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(
-                          width: double.infinity,
-                          child: SingleChildScrollView(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const SizedBox(
-                                  height: 50,
-                                ),
-                                DefaultContainer(title: 'وحدات القياس'),
-                                const SizedBox(
-                                  height: 50,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        const SizedBox(
+                          height: 50,
+                        ),
+                        DefaultContainer(title: 'وحدات القياس'),
+                        const SizedBox(
+                          height: 50,
+                        ),
+                        FutureBuilder(
+                            future: pro.getMeasurements(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                List mData = snapshot.data as List;
+                                return Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(top: 71),
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: List.generate(
-                                            data.length,
-                                                (index) => Column(
-                                              children: [
-                                                SizedBox(
-                                                    width: getProportionateScreenWidth(40),
-                                                    child: dropDown(
-                                                      const [
-                                                        'تعديل',
-                                                        'حذف',
-                                                      ],
-                                                      selectTalab: index == selectedIndex
-                                                          ? chose1
-                                                          : chose2,
-                                                      onchanged: () => (val) {
-                                                        setState(() {
-                                                          selectedIndex = index;
-                                                          chose1 = val;
-                                                        });
-                                                      },
-                                                      label: 'خيارات',
-                                                      foColor: Colors.white,
-                                                      bgColor: ColorManager.primary,
-                                                      dpColor: ColorManager.primary,
-                                                    )),
-                                                const SizedBox(
-                                                  height: 10,
-                                                )
-                                              ],
-                                            )),
+                                            mData.length,
+                                            (index) => Column(
+                                                  children: [
+                                                    SizedBox(
+                                                        width:
+                                                            getProportionateScreenWidth(
+                                                                40),
+                                                        child: dropDown(
+                                                          const [
+                                                            'تعديل',
+                                                            'حذف',
+                                                          ],
+                                                          selectTalab: index ==
+                                                                  selectedIndex
+                                                              ? chose1
+                                                              : chose2,
+                                                          onchanged: () =>
+                                                              (val) {
+                                                            setState(() {
+                                                              selectedIndex =
+                                                                  index;
+                                                              chose1 = val;
+                                                            });
+                                                          },
+                                                          label: 'خيارات',
+                                                          foColor: Colors.white,
+                                                          bgColor: ColorManager
+                                                              .primary,
+                                                          dpColor: ColorManager
+                                                              .primary,
+                                                        )),
+                                                    const SizedBox(
+                                                      height: 10,
+                                                    )
+                                                  ],
+                                                )),
                                       ),
                                     ),
                                     DefaultTable(
                                       columnData: columnData,
-                                      size:getProportionateScreenWidth(30),
+                                      size: getProportionateScreenWidth(30),
                                       color: Colors.grey.shade800,
-                                      rows: data
+                                      rows: mData
                                           .map((data) => DataRow(cells: [
-                                        DataCell(Text(
-                                          data['1'],
-                                        )),
-                                      ]))
+                                                DataCell(Text(
+                                                  data['name'],
+                                                )),
+                                              ]))
                                           .toList(),
                                     ),
                                   ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        DefaultAppBar()
+                                );
+                              } else {
+                                return CircularProgressIndicator();
+                              }
+                            })
                       ],
-                    )),
-                Expanded(
-                    flex: 1,
-                    child: Container(
-                        padding: const EdgeInsets.only(top: 20),
-                        decoration: BoxDecoration(
-                          color: ColorManager.primary,
-                        ),
-                        child: DropDownList())),
+                    ),
+                  ),
+                ),
+                DefaultAppBar()
               ],
-            )
-
-
-        ));
+            )),
+        Expanded(
+            flex: 1,
+            child: Container(
+                padding: const EdgeInsets.only(top: 20),
+                decoration: BoxDecoration(
+                  color: ColorManager.primary,
+                ),
+                child: DropDownList())),
+      ],
+    )));
   }
 }

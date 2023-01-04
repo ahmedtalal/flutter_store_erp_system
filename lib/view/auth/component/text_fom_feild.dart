@@ -26,6 +26,7 @@ class DefaultInputForm extends StatelessWidget {
   Function() validate;
   Function() onSave;
   Function() passFun;
+
   bool obscureText;
   Widget? suffix;
   Color? color = ColorManager.primary;

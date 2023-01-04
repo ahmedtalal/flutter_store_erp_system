@@ -247,8 +247,19 @@ class _AddSupState extends State<AddSup> {
                         color: ColorManager.white,
                         title: 'اضافه',
                         onTap: () {
-                          // pro.addSupplier(address, category, name, phonenumber,
-                          //     pricerate, supplierrate);
+                          pro.addSupplier(
+                              controller1.text,
+                              controller2.text,
+                              controller3.text,
+                              controller6.text,
+                              double.parse(controller4.text),
+                              double.parse(controller5.text));
+                          controller1.clear();
+                          controller2.clear();
+                          controller3.clear();
+                          controller6.clear();
+                          controller4.clear();
+                          controller5.clear();
                         },
                         bgColor: ColorManager.black,
                       ),

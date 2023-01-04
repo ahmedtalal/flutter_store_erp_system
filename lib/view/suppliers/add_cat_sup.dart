@@ -1,10 +1,13 @@
+import 'package:erb_system/controller/suppliers/add_suppliers.dart';
 import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/resources/style_manager.dart';
+import 'package:erb_system/size_config.dart';
 import 'package:erb_system/view/auth/component/text_fom_feild.dart';
 import 'package:erb_system/view/home/components/appBar.dart';
 import 'package:erb_system/view/home/components/botton.dart';
 import 'package:erb_system/view/home/drop_down_par.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AddSupCat extends StatefulWidget {
   const AddSupCat({Key? key}) : super(key: key);
@@ -19,6 +22,8 @@ class _AddSupCatState extends State<AddSupCat> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
+    var pro = Provider.of<AddSuppliersController>(context);
     return SafeArea(
         child: Scaffold(
       body: Row(
@@ -77,7 +82,10 @@ class _AddSupCatState extends State<AddSupCat> {
                           Botton(
                             color: ColorManager.white,
                             title: 'اضافه',
-                            onTap: () {},
+                            onTap: () {
+                              pro.addSupplierType(controller1.text);
+                              controller1.clear();
+                            },
                             bgColor: ColorManager.black,
                           ),
                         ],

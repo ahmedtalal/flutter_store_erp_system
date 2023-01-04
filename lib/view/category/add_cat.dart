@@ -1,3 +1,4 @@
+import 'package:erb_system/controller/category/category_controller.dart';
 import 'package:erb_system/resources/assets_manager.dart';
 import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/resources/style_manager.dart';
@@ -9,6 +10,7 @@ import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/components/drop_down.dart';
 import 'package:erb_system/view/home/drop_down_par.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AddCat extends StatefulWidget {
   const AddCat({Key? key}) : super(key: key);
@@ -31,6 +33,7 @@ class _AddCatState extends State<AddCat> {
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     TextStyle style = TextStyle(fontSize: getProportionateScreenWidth(4));
+    var pro = Provider.of<CategoryController>(context);
 
     return SafeArea(
         child: Scaffold(
@@ -324,7 +327,18 @@ class _AddCatState extends State<AddCat> {
                           Botton(
                             color: ColorManager.white,
                             title: 'اضافه',
-                            onTap: () {},
+                            onTap: () {
+                              pro.addMaterial(
+                                  '',
+                                  chose1!,
+                                  int.parse(controller2.text),
+                                  chose2!,
+                                  controller1.text,
+                                  int.parse(controller3.text),
+                                  double.parse(controller4.text),
+                                  chose3!,
+                                  0);
+                            },
                             bgColor: ColorManager.black,
                           ),
                         ],

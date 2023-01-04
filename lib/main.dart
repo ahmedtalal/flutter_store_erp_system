@@ -1,5 +1,9 @@
+import 'package:erb_system/controller/category/category_controller.dart';
 import 'package:erb_system/controller/controller.dart';
+import 'package:erb_system/controller/purchase_controller/pruchase_controller.dart';
 import 'package:erb_system/controller/store_controller/add_store_controller.dart';
+import 'package:erb_system/controller/suppliers/add_suppliers.dart';
+import 'package:erb_system/controller/treasury/treasury_controller.dart';
 import 'package:erb_system/routes/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +24,12 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => Controller()),
-        ChangeNotifierProvider(create: (context) => AddStoreController()),
+        ChangeNotifierProvider(
+            create: (context) => AddStoreController()..getStoreDetails()),
+        ChangeNotifierProvider(create: (context) => AddSuppliersController()),
+        ChangeNotifierProvider(create: (context) => PurchaseController()),
+        ChangeNotifierProvider(create: (context) => TreasuryController()),
+        ChangeNotifierProvider(create: (context) => CategoryController()),
       ],
       child: Builder(builder: (context) {
         return MaterialApp.router(

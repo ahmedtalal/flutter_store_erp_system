@@ -115,13 +115,14 @@ class _add_StockState extends State<add_Stock> {
                           color: ColorManager.white,
                           title: 'اضافه',
                           onTap: () {
-                            pro.addWarehouse(
-                                name: controller2.text,
-                                description: controller1.text,
-                                unit: 'KG',
-                                context: context);
-                            controller1.clear();
-                            controller2.clear();
+                            pro.getStoreDetails();
+                            // pro.addWarehouse(
+                            //     name: controller2.text,
+                            //     description: controller1.text,
+                            //     unit: 'KG',
+                            //     context: context);
+                            // controller1.clear();
+                            // controller2.clear();
                           },
                           bgColor: ColorManager.black,
                         ),

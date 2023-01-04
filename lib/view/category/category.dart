@@ -1,3 +1,4 @@
+import 'package:erb_system/controller/category/category_controller.dart';
 import 'package:erb_system/resources/assets_manager.dart';
 import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/resources/style_manager.dart';
@@ -10,6 +11,7 @@ import 'package:erb_system/view/home/components/default_table.dart';
 import 'package:erb_system/view/home/components/drop_down.dart';
 import 'package:erb_system/view/home/drop_down_par.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Categories extends StatefulWidget {
   const Categories({Key? key}) : super(key: key);
@@ -51,7 +53,7 @@ class _CategoriesState extends State<Categories> {
 
   List<String> columnData = [
     "صورة الصنف",
-    "التكلفه سعر البيع",
+    "التكلفه او سعر البيع",
     "المطلوب",
     "الرصيد",
     "فرع الانتاج",
@@ -63,7 +65,8 @@ class _CategoriesState extends State<Categories> {
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
-    TextStyle style = TextStyle(fontSize: getProportionateScreenWidth(5));
+    TextStyle style = TextStyle(fontSize: getProportionateScreenWidth(4));
+    var pro = Provider.of<CategoryController>(context);
     return SafeArea(
         child: Scaffold(
       body: Row(
@@ -185,96 +188,133 @@ class _CategoriesState extends State<Categories> {
                           const SizedBox(
                             height: 90,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 71),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: List.generate(
-                                      data.length,
-                                      (index) => Column(
-                                            children: [
-                                              SizedBox(
-                                                  width:
-                                                      getProportionateScreenWidth(
-                                                          41),
-                                                  child: dropDown(
-                                                    const [
-                                                      'تفاصيل',
-                                                      'تاكيد طلب شراء',
-                                                      'تعديل الصنف',
-                                                      'تعديل الرصيد'
+                          FutureBuilder(
+                              future: pro.getMaterials(),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  List Data = snapshot.data as List;
+                                  return Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 71),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: List.generate(
+                                              Data.length,
+                                              (index) => Column(
+                                                    children: [
+                                                      SizedBox(
+                                                          width:
+                                                              getProportionateScreenWidth(
+                                                                  41),
+                                                          child: dropDown(
+                                                            const [
+                                                              'تفاصيل',
+                                                              'تاكيد طلب شراء',
+                                                              'تعديل الصنف',
+                                                              'تعديل الرصيد'
+                                                            ],
+                                                            selectTalab: index ==
+                                                                    selectedIndex
+                                                                ? chose1
+                                                                : chose2,
+                                                            onchanged: () =>
+                                                                (val) {
+                                                              setState(() {
+                                                                selectedIndex =
+                                                                    index;
+                                                                chose1 = val;
+                                                              });
+                                                            },
+                                                            label: 'خيارات',
+                                                            foColor:
+                                                                Colors.white,
+                                                            bgColor:
+                                                                ColorManager
+                                                                    .primary,
+                                                            dpColor:
+                                                                ColorManager
+                                                                    .primary,
+                                                          )),
+                                                      const SizedBox(
+                                                        height: 10,
+                                                      )
                                                     ],
-                                                    selectTalab:
-                                                        index == selectedIndex
-                                                            ? chose1
-                                                            : chose2,
-                                                    onchanged: () => (val) {
-                                                      setState(() {
-                                                        selectedIndex = index;
-                                                        chose1 = val;
-                                                      });
-                                                    },
-                                                    label: 'خيارات',
-                                                    foColor: Colors.white,
-                                                    bgColor:
-                                                        ColorManager.primary,
-                                                    dpColor:
-                                                        ColorManager.primary,
                                                   )),
-                                              const SizedBox(
-                                                height: 10,
-                                              )
-                                            ],
-                                          )),
-                                ),
-                              ),
-                              DefaultTable(
-                                columnData: columnData,
-                                size: getProportionateScreenWidth(15),
-                                color: ColorManager.second,
-                                rows: data
-                                    .map((data) => DataRow(cells: [
-                                          DataCell(Image.asset(
-                                            ImageAssets.iconDropDown23,
-                                            width: 50,
-                                            height: 50,
-                                          )),
-                                          DataCell(Text(
-                                            data['7'],
-                                            style: style,
-                                          )),
-                                          DataCell(Text(
-                                            data['6'],
-                                            style: style,
-                                          )),
-                                          DataCell(Text(
-                                            data['5'],
-                                            style: style,
-                                          )),
-                                          DataCell(Text(
-                                            data['4'],
-                                            style: style,
-                                          )),
-                                          DataCell(Text(
-                                            data['3'],
-                                            style: style,
-                                          )),
-                                          DataCell(Text(
-                                            data['2'],
-                                            style: style,
-                                          )),
-                                          DataCell(Text(
-                                            data['1'],
-                                            style: style,
-                                          )),
-                                        ]))
-                                    .toList(),
-                              ),
-                            ],
-                          ),
+                                        ),
+                                      ),
+                                      DefaultTable(
+                                        columnData: columnData,
+                                        size: MediaQuery.of(context)
+                                                    .size
+                                                    .width <=
+                                                500
+                                            ? getProportionateScreenWidth(8)
+                                            : getProportionateScreenWidth(10),
+                                        color: ColorManager.second,
+                                        rows:
+                                            Data.map((data) => DataRow(cells: [
+                                                  DataCell(Image.asset(
+                                                    ImageAssets.iconDropDown23,
+                                                    width: 30,
+                                                    height: 30,
+                                                  )),
+                                                  DataCell(Text(
+                                                    '${data['openingbalance'] * data['price']}',
+                                                    style: style,
+                                                  )),
+                                                  DataCell(Text(
+                                                    '',
+                                                    style: style,
+                                                  )),
+                                                  DataCell(Text(
+                                                    data['openingbalance']
+                                                        .toString(),
+                                                    style: style,
+                                                  )),
+                                                  DataCell(Text(
+                                                    data['productionline'],
+                                                    style: style,
+                                                  )),
+                                                  DataCell(Text(
+                                                    data['measurement'],
+                                                    style: style,
+                                                  )),
+                                                  DataCell(
+                                                    SizedBox(
+                                                      width:
+                                                          getProportionateScreenWidth(
+                                                              30),
+                                                      child: Text(data['type'],
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          maxLines: 3,
+                                                          style: style),
+                                                    ),
+                                                  ),
+                                                  DataCell(
+                                                    SizedBox(
+                                                      width:
+                                                          getProportionateScreenWidth(
+                                                              30),
+                                                      child: Text(data['name'],
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          maxLines: 3,
+                                                          style: style),
+                                                    ),
+                                                  ),
+                                                ])).toList(),
+                                      ),
+                                    ],
+                                  );
+                                } else {
+                                  return CircularProgressIndicator();
+                                }
+                              }),
                           const SizedBox(
                             height: 30,
                           ),

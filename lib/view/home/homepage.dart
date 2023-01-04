@@ -1,17 +1,6 @@
 import 'package:erb_system/controller/controller.dart';
-import 'package:erb_system/view/auth/login.dart';
+import 'package:erb_system/size_config.dart';
 import 'package:erb_system/view/home/components/appBar.dart';
-import 'package:erb_system/view/home/taps/home_tap.dart';
-import 'package:erb_system/view/store/PO_fiper.dart';
-import 'package:erb_system/view/store/add_store.dart';
-import 'package:erb_system/view/store/d1_fiper.dart';
-import 'package:erb_system/view/store/d_fiper.dart';
-import 'package:erb_system/view/store/fiber_details.dart';
-import 'package:erb_system/view/store/mo4_details.dart';
-import 'package:erb_system/view/store/mo_fiber.dart';
-import 'package:erb_system/view/store/po1_details.dart';
-import 'package:erb_system/view/store/store_dtails.dart';
-import 'package:erb_system/view/store/stores.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,6 +12,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
     return Scaffold(
       body: Row(
         children: [

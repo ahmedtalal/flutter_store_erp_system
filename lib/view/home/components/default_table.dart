@@ -34,22 +34,20 @@ class DefaultTable extends StatelessWidget {
         columns: List.generate(
             columnData.length,
             (index) => DataColumn(
-                label: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Flexible(
-                        child: Text(columnData[index],
-                            maxLines: 2,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: getProportionateScreenWidth(4))),
-                      ),
-                      icon ?? Container(),
-                    ],
-                  ),
+                label: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Flexible(
+                      child: Text(columnData[index],
+                          maxLines: 2,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: getProportionateScreenWidth(4))),
+                    ),
+                    icon ?? Container(),
+                  ],
                 ),
                 tooltip: '')),
         rows: rows);

@@ -1,22 +1,43 @@
+import 'package:erb_system/controller/treasury/treasury_controller.dart';
 import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/resources/style_manager.dart';
+import 'package:erb_system/resources/value_manager.dart';
 import 'package:erb_system/size_config.dart';
 import 'package:erb_system/view/auth/component/text_fom_feild.dart';
 import 'package:erb_system/view/home/components/botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class EditTreasury extends StatelessWidget {
-  EditTreasury({Key? key}) : super(key: key);
+class EditTreasury extends StatefulWidget {
+  EditTreasury({Key? key, this.title, this.id, this.balance}) : super(key: key);
+  String? title = '';
+  String? id = '';
+  String? balance;
 
-  TextEditingController controller1 = TextEditingController();
-  TextEditingController controller2 = TextEditingController();
-  TextEditingController controller3 = TextEditingController();
+  @override
+  State<EditTreasury> createState() => _EditTreasuryState();
+}
+
+class _EditTreasuryState extends State<EditTreasury> {
   TextEditingController controller4 = TextEditingController();
+  double? avarage;
+  double? newBalance;
+  TextEditingController controller1 = TextEditingController();
+  late TextEditingController controller3;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller3 = TextEditingController(text: '${widget.balance}');
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     TextStyle style = TextStyle(fontSize: getProportionateScreenWidth(5));
+    var pro = Provider.of<TreasuryController>(context);
     return Center(
       child: Container(
         width: getProportionateScreenWidth(230),
@@ -31,7 +52,7 @@ class EditTreasury extends StatelessWidget {
               SizedBox(
                 height: getProportionateScreenHeight(15),
               ),
-              DefaultContainer(title: 'تعديل الخزينه'),
+              DefaultContainer(title: ' تعديل الخزينه ${widget.title}'),
               SizedBox(
                 height: getProportionateScreenHeight(15),
               ),
@@ -80,16 +101,47 @@ class EditTreasury extends StatelessWidget {
                       SizedBox(
                         width: getProportionateScreenWidth(50),
                         height: 60,
-                        child: DefaultInputForm(
-                          controller: controller2,
-                          hint: '',
-                          label: '',
-                          onTab: () {},
-                          validate: () {},
-                          onSave: () {},
-                          passFun: () {},
-                          color: Colors.white70,
-                          obscureText: false,
+                        child: TextFormField(
+                          style: TextStyle(
+                              fontSize: getProportionateScreenWidth(4)),
+                          onChanged: (v) {
+                            setState(() {
+                              if (v.isNotEmpty) {
+                                controller1 = TextEditingController(
+                                    text:
+                                        "${-double.parse(controller3.text) + num.parse(v)}");
+                              } else {
+                                controller1 = TextEditingController(text: "0");
+                              }
+                            });
+                          },
+                          decoration: InputDecoration(
+                            hintStyle: const TextStyle(fontSize: 14),
+                            label: Container(
+                                alignment: Alignment.center,
+                                child: const Text(
+                                  '',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(color: Colors.white),
+                                )),
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.circular(AppSize.s15),
+                                borderSide: const BorderSide(
+                                    color: Colors.black, width: 1.2)),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.circular(AppSize.s15),
+                                borderSide: const BorderSide(
+                                    color: Colors.black, width: 1.2)),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(AppSize.s15),
+                              borderSide: const BorderSide(
+                                  color: Colors.black, width: 1.2),
+                            ),
+                          ),
                         ),
                       ),
                     ],
@@ -176,7 +228,10 @@ class EditTreasury extends StatelessWidget {
                 bgColor: Colors.black,
                 color: Colors.white,
                 title: 'تعديل',
-                onTap: () {},
+                onTap: () {
+                  pro.editTreasury(widget.id!, double.parse(controller1.text),
+                      controller4.text);
+                },
               )
             ],
           ),

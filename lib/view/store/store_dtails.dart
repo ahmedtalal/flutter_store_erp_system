@@ -1,3 +1,4 @@
+import 'package:erb_system/controller/store_controller/add_store_controller.dart';
 import 'package:erb_system/resources/assets_manager.dart';
 import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/size_config.dart';
@@ -7,47 +8,13 @@ import 'package:erb_system/view/home/components/default_botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/components/default_table.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:qlevar_router/qlevar_router.dart';
 
 class StoreDetails extends StatelessWidget {
-  StoreDetails({Key? key}) : super(key: key);
-  List data = [
-    {
-      "first_name": "خشب زان",
-      "last_name": "متر",
-      "Quantity": "١٠",
-      "cost": "200 جنيه",
-      "verified": "2000"
-    },
-    {
-      "first_name": "خشب زان",
-      "last_name": "متر",
-      "Quantity": "١٠",
-      "cost": "200 جنيه",
-      "verified": "2000"
-    },
-    {
-      "first_name": "خشب زان",
-      "last_name": "متر",
-      "Quantity": "١٠",
-      "cost": "200 جنيه",
-      "verified": "2000"
-    },
-    {
-      "first_name": "خشب زان",
-      "last_name": "متر",
-      "Quantity": "١٠",
-      "cost": "200 جنيه",
-      "verified": "2000"
-    },
-    {
-      "first_name": "خشب زان",
-      "last_name": "متر",
-      "Quantity": "١٠",
-      "cost": "200 جنيه",
-      "verified": "2000"
-    },
-  ];
+  StoreDetails({Key? key, this.title}) : super(key: key);
+  String? title = '';
+
   TextEditingController controller1 = TextEditingController();
 
   List<String> columnData = [
@@ -66,7 +33,7 @@ class StoreDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     TextStyle style = TextStyle(fontSize: getProportionateScreenWidth(4));
-
+    var pro = Provider.of<AddStoreController>(context);
     return SafeArea(
         child: Scaffold(
       body: Stack(
@@ -79,7 +46,7 @@ class StoreDetails extends StatelessWidget {
                 const SizedBox(
                   height: 50,
                 ),
-                DefaultContainer(title: 'تفاصيل مخزن مواد خام'),
+                DefaultContainer(title: 'تفاصيل  $title'),
                 const SizedBox(
                   height: 50,
                 ),
@@ -124,7 +91,7 @@ class StoreDetails extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: List.generate(
-                            data.length,
+                            pro.rowMaterial.length,
                             (index) => Column(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
@@ -156,29 +123,69 @@ class StoreDetails extends StatelessWidget {
                     Column(
                       children: [
                         DefaultTable(
-                          columnData: columnData,
-                          size: getProportionateScreenWidth(15),
-                          color: ColorManager.second,
-                          rows: data
-                              .map((data) => DataRow(cells: [
+                            columnData: columnData,
+                            size: getProportionateScreenWidth(15),
+                            color: ColorManager.second,
+                            rows: [
+                              ...pro.rowMaterial
+                                  .map((data) => DataRow(cells: [
+                                        DataCell(Text(
+                                          data['total'].toString(),
+                                        )),
+                                        DataCell(Text(
+                                          data['price'].toString(),
+                                        )),
+                                        DataCell(Text(
+                                          data['quantity'].toString(),
+                                        )),
+                                        DataCell(Text(
+                                          data['measurement'],
+                                        )),
+                                        DataCell(Text(
+                                          data['name'],
+                                        )),
+                                      ]))
+                                  .toList(),
+                              DataRow(
+                                  color: MaterialStateProperty.all(
+                                      ColorManager.primary),
+                                  cells: [
                                     DataCell(Text(
-                                      data['first_name'],
+                                      " ٧٢٠٠",
+                                      style: TextStyle(
+                                          color: ColorManager.white,
+                                          fontSize:
+                                              getProportionateScreenWidth(5),
+                                          fontWeight: FontWeight.w800),
                                     )),
                                     DataCell(Text(
-                                      data['last_name'],
+                                      '',
+                                      style: style,
                                     )),
                                     DataCell(Text(
-                                      data['Quantity'],
+                                      '',
+                                      style: style,
                                     )),
                                     DataCell(Text(
-                                      data['cost'],
+                                      '',
+                                      style: style,
                                     )),
-                                    DataCell(Text(
-                                      data['verified'],
-                                    )),
-                                  ]))
-                              .toList(),
-                        ),
+                                    DataCell(
+                                        Container(
+                                          color: ColorManager.primary,
+                                          child: Text(
+                                            'الاجمالي',
+                                            style: TextStyle(
+                                                color: ColorManager.white,
+                                                fontSize:
+                                                    getProportionateScreenWidth(
+                                                        5),
+                                                fontWeight: FontWeight.w800),
+                                          ),
+                                        ),
+                                        placeholder: true),
+                                  ])
+                            ]),
                         // Container(
                         //   width: 617,
                         //   child: Table(

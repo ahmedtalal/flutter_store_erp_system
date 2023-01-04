@@ -1,4 +1,3 @@
-import 'package:erb_system/resources/assets_manager.dart';
 import 'package:erb_system/resources/color_manger.dart';
 import 'package:erb_system/view/home/components/appBar.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
@@ -9,7 +8,6 @@ import 'package:flutter/material.dart';
 import '../../size_config.dart';
 import '../auth/component/text_fom_feild.dart';
 import '../home/components/botton.dart';
-import '../home/components/default_table.dart';
 import '../home/components/drop_down.dart';
 
 class AddEmployee extends StatefulWidget {
@@ -39,11 +37,6 @@ class _AddEmployeeState extends State<AddEmployee> {
   String? numLine1;
   String? typeOrder;
   String? order;
-
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -104,9 +97,9 @@ class _AddEmployeeState extends State<AddEmployee> {
                                 ),
                                 Container(
                                   width:
-                                  MediaQuery.of(context).size.width <= 500
-                                      ? getProportionateScreenWidth(65)
-                                      : getProportionateScreenWidth(43),
+                                      MediaQuery.of(context).size.width <= 500
+                                          ? getProportionateScreenWidth(65)
+                                          : getProportionateScreenWidth(43),
                                   height: getProportionateScreenHeight(90),
                                   padding: const EdgeInsets.only(top: 35),
                                   child: dropDown(
@@ -123,7 +116,6 @@ class _AddEmployeeState extends State<AddEmployee> {
                                     dpColor: ColorManager.primary,
                                   ),
                                 ),
-
                                 Column(
                                   children: [
                                     Text('المستوي الوظيفي', style: style),
@@ -205,10 +197,8 @@ class _AddEmployeeState extends State<AddEmployee> {
                                   ),
                                 ],
                               ),
-
                               Container(
-                                width:
-                                MediaQuery.of(context).size.width <= 500
+                                width: MediaQuery.of(context).size.width <= 500
                                     ? getProportionateScreenWidth(65)
                                     : getProportionateScreenWidth(43),
                                 height: getProportionateScreenHeight(90),
@@ -251,7 +241,7 @@ class _AddEmployeeState extends State<AddEmployee> {
                                       passFun: () {},
                                       color: Colors.white70,
                                       obscureText: false,
-                                      controller: controller1,
+                                      controller: controller5,
                                     ),
                                   ),
                                 ],
@@ -277,13 +267,11 @@ class _AddEmployeeState extends State<AddEmployee> {
                                       passFun: () {},
                                       color: Colors.white70,
                                       obscureText: false,
-                                      controller: controller1,
+                                      controller: controller6,
                                     ),
                                   ),
                                 ],
                               ),
-
-
                             ],
                           ),
                           const SizedBox(

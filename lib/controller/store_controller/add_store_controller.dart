@@ -2,6 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class AddStoreController with ChangeNotifier {
+  List storeData = [];
+  List rowMaterial = [];
+
   void addWarehouse(
       {required String name,
       required String description,
@@ -13,6 +16,34 @@ class AddStoreController with ChangeNotifier {
       'unit': unit,
       'name': name,
       'date': DateTime.now().toIso8601String().toString()
+    });
+    notifyListeners();
+  }
+
+  Future getStoreDetails() async {
+    await FirebaseFirestore.instance
+        .collection('warehouses')
+        .get()
+        .then((value) {
+      value.docs.forEach((element) {
+        storeData.add(element.data());
+      });
+    });
+    print(storeData);
+    notifyListeners();
+  }
+
+  getRowMaterials(String type) async {
+    rowMaterial.clear();
+    await FirebaseFirestore.instance
+        .collection('warehouses')
+        .doc(type)
+        .collection('Materials')
+        .get()
+        .then((value) {
+      value.docs.forEach((element) {
+        rowMaterial.add(element.data());
+      });
     });
     notifyListeners();
   }
