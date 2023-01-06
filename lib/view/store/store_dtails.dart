@@ -7,11 +7,14 @@ import 'package:erb_system/view/home/components/botton.dart';
 import 'package:erb_system/view/home/components/default_botton.dart';
 import 'package:erb_system/view/home/components/default_container.dart';
 import 'package:erb_system/view/home/components/default_table.dart';
+import 'package:erb_system/view/store/fiber_details.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qlevar_router/qlevar_router.dart';
 
 class StoreDetails extends StatelessWidget {
+  var storeName;
+
   StoreDetails({Key? key, this.title}) : super(key: key);
   String? title = '';
 
@@ -109,7 +112,16 @@ class StoreDetails extends StatelessWidget {
                                         title: 'تفاصيل',
                                         color: ColorManager.white,
                                         onTap: () {
-                                          QR.to('/fiber_details');
+                                          //QR.to('/fiber_details');
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  FiperDetails(
+                                                storeName: storeName,
+                                              ),
+                                            ),
+                                          );
                                         },
                                       ),
                                     ),
@@ -127,25 +139,45 @@ class StoreDetails extends StatelessWidget {
                             size: getProportionateScreenWidth(15),
                             color: ColorManager.second,
                             rows: [
-                              ...pro.rowMaterial
-                                  .map((data) => DataRow(cells: [
-                                        DataCell(Text(
-                                          data['total'].toString(),
-                                        )),
-                                        DataCell(Text(
-                                          data['price'].toString(),
-                                        )),
-                                        DataCell(Text(
-                                          data['quantity'].toString(),
-                                        )),
-                                        DataCell(Text(
-                                          data['measurement'],
-                                        )),
-                                        DataCell(Text(
-                                          data['name'],
-                                        )),
-                                      ]))
-                                  .toList(),
+                              // ...pro.rowMaterial
+                              //     .map((data) => DataRow(cells: [
+                              //           DataCell(Text(
+                              //             data['total'].toString(),
+                              //           )),
+                              //           DataCell(Text(
+                              //             data['price'].toString(),
+                              //           )),
+                              //           DataCell(Text(
+                              //             data['quantity'].toString(),
+                              //           )),
+                              //           DataCell(Text(
+                              //             data['measurement'],
+                              //           )),
+                              //           DataCell(Text(
+                              //             data['name'],
+                              //           )),
+                              //         ]))
+                              //     .toList(),
+                              ...pro.rowMaterial.map((data) {
+                                storeName = data["name"];
+                                return DataRow(cells: [
+                                  DataCell(Text(
+                                    data['total'].toString(),
+                                  )),
+                                  DataCell(Text(
+                                    data['price'].toString(),
+                                  )),
+                                  DataCell(Text(
+                                    data['quantity'].toString(),
+                                  )),
+                                  DataCell(Text(
+                                    data['measurement'],
+                                  )),
+                                  DataCell(Text(
+                                    data['name'],
+                                  )),
+                                ]);
+                              }).toList(),
                               DataRow(
                                   color: MaterialStateProperty.all(
                                       ColorManager.primary),

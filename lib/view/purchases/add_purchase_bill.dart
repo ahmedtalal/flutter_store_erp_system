@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:erb_system/controller/category/category_controller.dart';
@@ -58,6 +60,8 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
     "الكميه المطلوبه",
     "اسم الصنف",
   ];
+
+  int? beforequanity;
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
@@ -326,6 +330,9 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
                                                             .doc(v)
                                                             .get()
                                                             .then((value) {
+                                                          beforequanity =
+                                                              value['quantity'];
+
                                                           catPrice =
                                                               value['price']
                                                                   .toString();
@@ -348,7 +355,6 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
                                                                 value['image'],
                                                           });
                                                         });
-
                                                         print(v);
                                                         setState(() {});
                                                       },
@@ -504,6 +510,7 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
                                         'price': catPrice,
                                         'image': image,
                                         'total': total.text,
+                                        "beforequanity": beforequanity,
                                       });
                                       totalTotal += double.parse(total.text);
                                       totalQuantity += int.parse(quantity.text);
@@ -742,6 +749,7 @@ class _AddPurchaseBillState extends State<AddPurchaseBill> {
                                     state: chose!,
                                     trasury: chose1!,
                                     supName: supName!,
+                                    suplierQuantity: 10,
                                     podownpayment:
                                         double.parse(controller1.text),
                                     poshippingfees:

@@ -14,7 +14,8 @@ import 'package:qlevar_router/qlevar_router.dart';
 import '../home/components/botton.dart';
 
 class FiperDetails extends StatelessWidget {
-  FiperDetails({Key? key}) : super(key: key);
+  FiperDetails({required this.storeName,Key? key}) : super(key: key);
+  final String storeName ;
   List data = [
     {
       "first_name": "١/١٢/٢٢",
@@ -204,7 +205,7 @@ class FiperDetails extends StatelessWidget {
                           size: getProportionateScreenWidth(2),
                           color: ColorManager.second,
                           rows: [
-                            ...data
+                           ...pro.
                                 .map((data) => DataRow(cells: [
                                       DataCell(Text(
                                         data['num_op'],

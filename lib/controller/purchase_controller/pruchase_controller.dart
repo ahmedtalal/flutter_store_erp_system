@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -61,9 +63,12 @@ class PurchaseController with ChangeNotifier {
     required double total,
     required List purData,
     required String measurement,
+    required int suplierQuantity,
   }) async {
     await FirebaseFirestore.instance.collection('addpurchasing').add({
       'date': date,
+      "befoerquantity": suplierQuantity,
+      "afterquantity": suplierQuantity + podownpayment,
       'suppliername': supName,
       'postatus': state,
       'total': total,
@@ -75,19 +80,41 @@ class PurchaseController with ChangeNotifier {
       'poname': '',
       'image': '',
     }).then((value) async {
-      purData.forEach((element) async {
+      print("the value id is : ${value.id}");
+      purData.forEach((x) async {
         await FirebaseFirestore.instance
             .collection('addpurchasing')
             .doc(value.id)
             .collection('rawmaterials')
+            .doc(x["name"])
+            .set({
+          'unit': x['measurement'], // here update 1>>>>>>>>>>
+          'price': x['price'].toString(),
+          'requirequantity': x['quantity'].toString(),
+          'name': x['name'],
+          'image': x['image'],
+          "beforequnatity": beforeBalance,
+          "afterquantity": afterBalance,
+          'totalprice': x['total'].toString(),
+        });
+        print("the value2 id is : ${value.id}");
+      });
+      purData.forEach((element) async {
+        // print(
+        //     "the quantity is :${element["quantity"] + element["beforequanity"]}");
+        await FirebaseFirestore.instance
+            .collection('Materials')
+            .doc(element["name"])
+            .update({
+          "quantity": int.parse(element["quantity"]) + element["beforequanity"],
+        });
+        await FirebaseFirestore.instance
+            .collection('Materials')
+            .doc(element["name"])
+            .collection("Reports")
             .add({
-          'id': value.id,
-          'unit': element['measurement'],
-          'price': element['price'].toString(),
-          'requirequantity': element['quantity'].toString(),
-          'name': element['name'],
-          'image': element['image'],
-          'totalprice': element['total'].toString(),
+          "type": "addpurchasing",
+          "id": value.id,
         });
       });
       await FirebaseFirestore.instance.collection('actions').add({
